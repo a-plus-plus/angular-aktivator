@@ -1,5 +1,4 @@
 'use strict'
-
 describe 'Controller: SurveyCtrl', () ->
 
   # load the controller's module
@@ -16,4 +15,4 @@ describe 'Controller: SurveyCtrl', () ->
     }
 
   it 'should attach a list of awesomeThings to the scope', () ->
-    expect(scope.awesomeThings.length).toBe 3
+    expect(scope.awesomeThings.length).toBe 4
