@@ -3,7 +3,7 @@
 describe 'Service: Survey', () ->
 
   # load the service's module
-  beforeEach module 'AngularaktivatorApp'
+  beforeEach module 'angularAktivatorApp'
 
   # instantiate service
   Survey = {}
