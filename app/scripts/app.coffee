@@ -10,6 +10,9 @@ angular.module('angularAktivatorApp', [
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
+      .when '/surveys',
+        templateUrl: 'views/survey.html'
+        controller: 'SurveyCtrl'
       .otherwise
         redirectTo: '/'
   ]
