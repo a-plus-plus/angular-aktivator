@@ -21,3 +21,4 @@ Downloads dependencies defined in package.json
 ``` bash
 	grunt server
 ```
+this will also watch any changes made on the files and update app accordingly 
