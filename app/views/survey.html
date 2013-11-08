@@ -1,7 +1,7 @@
 <div ng-controller="SurveyCtrl" ng-init="">
 <h1>Surveys</h1>
 <div ng-repeat="survey in surveys">
-	<h3>Survey {{$index+1}}: {{survey.title}}, Status: {{$survey.status}}</h3>
+	<h3>Survey {{$index+1}}: {{survey.title}}, Status: {{survey.status}}</h3>
 	<ul>
 		<div ng-repeat="question in survey.questions">
 			<li>Question {{$index+1}}: {{question.title}}</li>
