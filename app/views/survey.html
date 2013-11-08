@@ -1,7 +1,6 @@
-
 <h1>Surveys</h1>
 <div ng-repeat="survey in surveys">
-	<h3>{{survey.title}}</h3>
+	<h3><a href="#/answer/1">{{survey.title}}</a></h3>
 	<h4>questions</h4>
 	<ul>
 	<div ng-repeat="question in survey.questions">

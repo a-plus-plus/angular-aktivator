@@ -5,8 +5,6 @@ angular.module('angularAktivatorApp')
     # Service logic
     # ...
 
-    meaningOfLife = 42
-
     # Public API here
-    $resource 'http://localhost\\:3000/surveys'
+    $resource 'http://localhost\\:3000/surveys/:id', id: '@id'    
   ]
