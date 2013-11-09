@@ -1,3 +1,10 @@
+documents @[Google Drive](https://drive.google.com/folderview?id=0B5-DiiaR_VNIc0FoU0xualJ0ZEU&usp=sharing)
+
+[![Gemnasium](https://gemnasium.com/a-plus-plus/angular-aktivator.png)](https://gemnasium.com/a-plus-plus/angular-aktivator)
+[![Build Status](https://travis-ci.org/a-plus-plus/angular-aktivator.png)](https://travis-ci.org/a-plus-plus/angular-aktivator)
+[![Code Climate](https://codeclimate.com/github/a-plus-plus/angular-aktivator.png)](https://codeclimate.com/github/a-plus-plus/angular-aktivator)
+
+[![Heroku](https://d1lpkba4w1baqt.cloudfront.net/heroku-logo-light-88x31.png)]()
 # Setup
 ### Requirements
 * grunt-cli
