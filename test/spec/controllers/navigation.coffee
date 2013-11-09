@@ -15,5 +15,5 @@ describe 'Controller: NavigationCtrl', () ->
       $scope: scope
     }
 
-  it 'should attach a list of awesomeThings to the scope', () ->
-    expect(scope.awesomeThings.length).toBe 3
+  it 'should attach a list of navigation links to scope', () ->
+    expect(scope.links.length).toBe 3

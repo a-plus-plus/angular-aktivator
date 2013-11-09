@@ -3,7 +3,7 @@
 describe 'Service: Response', () ->
 
   # load the service's module
-  beforeEach module 'AngularaktivatorApp'
+  beforeEach module 'angularAktivatorApp'
 
   # instantiate service
   Response = {}
