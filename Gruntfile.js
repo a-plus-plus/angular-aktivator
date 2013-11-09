@@ -17,6 +17,13 @@ module.exports = function (grunt) {
       app: require('./bower.json').appPath || 'app',
       dist: 'dist'
     },
+    notify:{
+      testsPass:{
+        options:{
+          message:"All tests passed"
+        }
+      }
+    },
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -348,6 +355,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'connect:test',
     'karma:unit',
+    'notify:testsPass'
   ]);
 
   grunt.registerTask('travis', [
