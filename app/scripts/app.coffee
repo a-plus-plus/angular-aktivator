@@ -5,17 +5,18 @@ angular.module('angularAktivatorApp', [
   'ngResource',
   'ngSanitize'
 ])
-  .config ['$routeProvider', ($routeProvider) ->
+  .config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+    $locationProvider.html5Mode true
     $routeProvider
       .when '/',
-        templateUrl: 'views/main.html'
+        templateUrl: '/views/main.html'
         controller: 'MainCtrl'
       .when '/surveys',
-        templateUrl: 'views/survey.html'
+        templateUrl: '/views/survey.html'
         controller: 'SurveyCtrl'
       .when '/answer/:id', 
-        templateUrl: 'views/answer.html'
-        controller: 'AnswerCtrl'  
+        templateUrl: '/views/answer.html'
+        controller: 'AnswerCtrl'
       .otherwise
         redirectTo: '/'
   ]
