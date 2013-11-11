@@ -22,7 +22,7 @@
       <nav ng-controller="NavigationCtrl" class="navbar">
         <div class="navbar-inner">
           <ul class="nav">
-            <li ng-repeat="link in links" ng-class="{active:isActive(link.link)}"><a href="{{link.link}}" >{{link.text}}</a></li>
+            <li ng-repeat="link in links" ng-class="{active:isActive(link.link)}"><a ng-href="#{{link.link}}" >{{link.text}}</a></li>
           </ul>
         </div>
       </nav>
