@@ -16,7 +16,7 @@
 
 
 <h3>New survey</h3>
-
+<div>
 	<form ng-submit="addSurvey()">
 		<fieldset>
 			<label for="survey_title">Title:</label>
@@ -29,18 +29,18 @@
 			</select>			
 		</fieldset>	
 		<div ng-repeat="question in survey.questions" ng-init="outerIndex = $index" style="padding-left:50px">
-		<fieldset id = "survey_question_{{outerIndex}}" ng-hide="question.destroy==1" ng-scope>
-			<label for="question_title">Question</label><br />
-			<textarea ng-model="question.title" id="survey_question_title_{{outerIndex}}"></textarea>
-			<label for="question_kind">Kind</label><br />
-			<select ng-model="question.kind" id="survey_question_kind_{{outerIndex}}">
-				<option value="Radiobutton">Radiobutton</option>
-				<option value="Checkbox">Checkbox</option>
-				<option value="Textfield">Textfield</option>
-			</select>
-			<input type="hidden" value="{{question.id}}"/>
-			<input type="hidden" value="{{queation.destroy}}"
-		</fieldset>
+			<fieldset id = "survey_question_{{outerIndex}}" ng-hide="question.destroy==1" ng-scope>
+				<label for="question_title">Question</label><br />
+				<textarea ng-model="question.title" id="survey_question_title_{{outerIndex}}"></textarea>
+				<label for="question_kind">Kind</label><br />
+				<select ng-model="question.kind" id="survey_question_kind_{{outerIndex}}">
+					<option value="Radiobutton">Radiobutton</option>
+					<option value="Checkbox">Checkbox</option>
+					<option value="Textfield">Textfield</option>
+				</select>
+				<input type="hidden" value="{{question.id}}"/>
+				<input type="hidden" value="{{question.destroy}}">
+			</fieldset>
 		</div>
 		<div class="actions">
 
