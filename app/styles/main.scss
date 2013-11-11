@@ -30,3 +30,10 @@ body {
     line-height: 1;
     letter-spacing: -1px;
 }
+fieldset {
+    border: 1px solid gray;
+    padding:5px;
+    border-radius: 5px;
+    margin-top:5px;
+    position:relative;
+}
