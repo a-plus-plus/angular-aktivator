@@ -1,12 +1,13 @@
 
 <h1>Answer to a survey</h1>
-<div>
+<form>
 	<h3>{{survey.title}}</h3>
 	<div ng-repeat="question in survey.questions">
 		<li>{{question.title}}</li>
 		<ul ng-repeat="option in question.options">			
-			<input type="radio" name="{{survey.title}}" value="{{option.value}}">{{option.value}} <br>		
+			<input type="radio" ng-model="response.answers_attributes.title" name="{{survey.title}}" value="{{option.id}}">{{option.value}} <br>		
 		</ul>
 	</div>
-	<button ng-init="count = 1" ng-click="paina()">Paina {{count}}</button>
-</div>
+	<p>Response atm is: {{response}}</p>
+	<button ng-click="paina()">Paina</button>
+</form>
