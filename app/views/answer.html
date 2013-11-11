@@ -1,6 +1,6 @@
 
 <h1>Answer to a survey</h1>
-<div>
+<form>
 	<h3>{{survey.title}}</h3>
 	<div ng-repeat="question in survey.questions">
 		<li>{{question.title}}</li>
@@ -10,4 +10,4 @@
 	</div>
 	<p>Response atm is: {{response}}</p>
 	<button ng-click="paina()">Paina</button>
-</div>
+</form>
