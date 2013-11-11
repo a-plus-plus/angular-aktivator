@@ -33,6 +33,9 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test','karma:unit']
       },
+      e2eTest:{
+        files: ['test/e2e/{,*/}*.coffee'],
+        tasks: ['connect:test','karma:e2e']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
