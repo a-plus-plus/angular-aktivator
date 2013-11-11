@@ -304,13 +304,11 @@ module.exports = function (grunt) {
     },
     karma: {
       options:{
-        singleRun:true
-      },
-      unit: {
+        singleRun:true,
         configFile: 'karma.conf.js'
       },
+      unit: {},
       travis: {
-        configFile: 'karma.conf.js',
         browsers:['Firefox']
       },
       e2e: {
@@ -366,6 +364,7 @@ module.exports = function (grunt) {
     'karma:e2e',
     'notify:testsPass'
   ]);
+  
 
   grunt.registerTask('travis', [
     'concurrent:test',
