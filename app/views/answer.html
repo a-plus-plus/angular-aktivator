@@ -5,7 +5,7 @@
 	<div ng-repeat="question in survey.questions">
 		<li>{{question.title}}</li>
 		<ul ng-repeat="option in question.options">			
-			<input type="radio" ng-model="response" name="{{survey.title}}">{{option.value}} <br>		
+			<input type="radio" ng-model="response.answers_attributes.title" name="{{survey.title}}" value="{{option.id}}">{{option.value}} <br>		
 		</ul>
 	</div>
 	<p>Response atm is: {{response}}</p>
