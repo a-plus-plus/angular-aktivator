@@ -359,6 +359,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'connect:test',
     'karma:unit',
+    'karma:e2e',
     'notify:testsPass'
   ]);
 
