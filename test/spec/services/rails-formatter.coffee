@@ -3,7 +3,7 @@
 describe 'Service: RailsFormatter', () ->
 
   # load the service's module
-  beforeEach module 'AngularaktivatorApp'
+  beforeEach module 'angularAktivatorApp'
 
   # instantiate service
   RailsFormatter = {}
