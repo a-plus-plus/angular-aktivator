@@ -299,18 +299,18 @@ module.exports = function (grunt) {
       ]
     },
     karma: {
+      options:{
+        singleRun:true
+      },
       unit: {
-        configFile: 'karma.conf.js',
-        singleRun: true
+        configFile: 'karma.conf.js'
       },
       travis: {
         configFile: 'karma.conf.js',
-        singleRun:true,
         browsers:['Firefox']
       },
       e2e: {
-        configFile: 'karma-e2e.conf.js',
-        singleRun:true
+        configFile: 'karma-e2e.conf.js'
       }
     },
     cdnify: {
