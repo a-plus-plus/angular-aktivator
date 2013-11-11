@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-.controller 'SurveyCtrl', ['$scope','Survey', ($scope, Survey) ->
+.controller 'SurveyCtrl', ['$scope','Survey', 'RailsFormatter', ($scope, Survey, RailsFormatter) ->
 	
 	$scope.surveys = Survey.query()
 	$scope.survey = {questions:[]}
@@ -33,6 +33,8 @@ angular.module('angularAktivatorApp')
 		console.log(survey)
 
 	$scope.submit = (survey) ->
-		survey = {survey:survey}
+		survey.user_id = 1
+		survey = {survey:RailsFormatter.prepare(survey)}
+		console.log(survey)
 		Survey.save(survey)
 ]
