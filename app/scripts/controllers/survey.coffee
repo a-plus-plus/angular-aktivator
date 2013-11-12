@@ -29,7 +29,7 @@ angular.module('angularAktivatorApp')
 		console.log(survey)
 
 	$scope.submit = (survey) ->
-		survey.user_id = 1
+		survey.user_id = 1 # @TODO USE REAL USER ID
 		survey = {survey:RailsFormatter.prepare(survey)}
 		Survey.save(survey)
 ]
