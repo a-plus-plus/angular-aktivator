@@ -1,0 +1,12 @@
+<p>This is the registration view.</p>
+
+<h1>Register to Aktivator plus plus</h1>
+<form>
+	<h3>Moikka</h3>
+	<form ng-submit="addUser()">
+		Name: <input type="text"  name ="name" ng-model="name"}><br>
+		Password: <input type="password"  name ="password" ng-model="password"}><br>
+		Password confirmation: <input type="password"  name ="password_confirmation" ng-model ="password_confirmation"}><br> 
+		<button ng-click="newUser($event)">Register</button>
+	</form>
+</form>
