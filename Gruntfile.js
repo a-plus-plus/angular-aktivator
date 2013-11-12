@@ -27,11 +27,15 @@ module.exports = function (grunt) {
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
-        tasks: ['coffee:dist']
+        tasks: ['coffee:dist', 'karma:unit']
       },
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
-        tasks: ['coffee:test']
+        tasks: ['coffee:test','karma:unit']
+      },
+      e2eTest:{
+        files: ['test/e2e/{,*/}*.coffee'],
+        tasks: ['connect:test','karma:e2e']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -299,18 +303,16 @@ module.exports = function (grunt) {
       ]
     },
     karma: {
-      unit: {
-        configFile: 'karma.conf.js',
-        singleRun: true
-      },
-      travis: {
-        configFile: 'karma.conf.js',
+      options:{
         singleRun:true,
+        configFile: 'karma.conf.js'
+      },
+      unit: {},
+      travis: {
         browsers:['Firefox']
       },
       e2e: {
-        configFile: 'karma-e2e.conf.js',
-        singleRun:true
+        configFile: 'karma-e2e.conf.js'
       }
     },
     cdnify: {
@@ -362,6 +364,7 @@ module.exports = function (grunt) {
     'karma:e2e',
     'notify:testsPass'
   ]);
+  
 
   grunt.registerTask('travis', [
     'concurrent:test',

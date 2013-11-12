@@ -5,9 +5,10 @@
 	<div ng-repeat="question in survey.questions">
 		<li>{{question.title}}</li>
 		<ul ng-repeat="option in question.options">			
-			<input type="radio" ng-model="response.answers_attributes.title" name="{{survey.title}}" value="{{option.id}}">{{option.value}} <br>		
+			<input type="radio" ng-model="response[question.id-1]" name="{{question.id}}" value="{id:{{option.id}}, value:'{{option.value}}', question_id:{{option.question_id}}}">{{option.value}} <br>
 		</ul>
 	</div>
+	<br>
 	<p>Response atm is: {{response}}</p>
 	<button ng-click="paina()">Paina</button>
 </form>
