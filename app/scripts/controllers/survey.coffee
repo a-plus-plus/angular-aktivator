@@ -18,7 +18,6 @@ angular.module('angularAktivatorApp')
 		question.destroy = 1
 
 	$scope.newOption = (event, question) ->
-		console.log("new option for", question)
 		event.preventDefault()
 		question.options.push({})
 
