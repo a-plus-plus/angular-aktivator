@@ -20,14 +20,14 @@ module.exports = function (grunt) {
     notify:{
       testsPass:{
         options:{
-          message:"All tests passed"
+          message:'All tests passed'
         }
       }
     },
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
-        tasks: ['coffee:dist', 'karma:unit']
+        tasks: ['coffee:dist']
       },
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],

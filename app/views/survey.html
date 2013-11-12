@@ -1,9 +1,10 @@
 
 <h1>Surveys</h1>
-<div ng-repeat="survey in surveys">
-	<h3>Survey {{$index+1}}: <a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a>, Status: {{survey.status}}</h3>
+<div ng-repeat="survey in surveys" ng-init="survey.expand = false">
+	<h3>Survey {{$index+1}}: <a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a>, Status: {{survey.status}} 
+	<button type="button" ng-click="survey.expand=!survey.expand"><i class="icon-plus-sign" /></button></h3>
 	<ul>
-		<div ng-repeat="question in survey.questions" ng-init="index=$index+1">
+		<div ng-repeat="question in survey.questions" ng-init="index=$index+1" ng-hide="survey.expand">
 			<li> {{question.title}}</li>
 			<ul>
 				<div ng-repeat="option in question.options" ng-init="index=$index+1">
@@ -17,7 +18,7 @@
 
 <h3>New survey</h3>
 <div>
-	<form ng-submit="addSurvey()">
+	<form>
 		<fieldset>
 			<label>Title:</label>
 			<input ng-model="survey.title" type="text" />
@@ -66,7 +67,8 @@
 		</fieldset>	
 	</div>
 	<div class="actions">
-		<button ng-click="submit(survey)" class="btn ">Submit</button>
+		<button ng-click="submit(survey)" class="btn ">Submit</button> {{message}}
+		<br />
 		{{survey}}
 	</div>
 </form>
