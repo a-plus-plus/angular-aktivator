@@ -2,13 +2,15 @@
 <h1>Answer to a survey</h1>
 <form>
 	<h3>{{survey.title}}</h3>
-	<div ng-repeat="question in survey.questions">
+	<div ng-repeat="question in survey.questions" ng-init="questionIndex = $index">
 		<li>{{question.title}}</li>
 		<ul ng-repeat="option in question.options">			
-			<input type="radio" ng-model="response[question.id-1]" name="{{question.id}}" value="{id:{{option.id}}, value:'{{option.value}}', question_id:{{option.question_id}}}">{{option.value}} <br>
+			<input type="radio" ng-model="response[questionIndex]" name="{{question.id}}" value='{option_id:{{option.id}}, question_id:{{option.question_id}}}'>{{option.value}} <br>
 		</ul>
 	</div>
 	<br>
 	<p>Response atm is: {{response}}</p>
-	<button ng-click="paina()">Paina</button>
+	<p>parserd reponse: {{parsedResponse}}</p>
+	<button ng-click="clicksubmit()">Submit</button>
+
 </form>
