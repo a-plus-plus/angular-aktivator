@@ -1,16 +1,21 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-.controller 'UserCtrl', ['$scope','User', ($scope, User) ->
+.controller 'UserCtrl', ['$scope','User', 'RailsFormatter', ($scope, User, RailsFormatter) ->
 	
-	$scope.Users = User.query()
+	$scope.users = User.query()
+	$scope.user = {}
 
 	$scope.info = (event) ->
-		console.log($scope.Users);
+		console.log($scope.users);
 
-	$scope.newUser = (event) ->
-		console.log('new user!')
-		event.preventDefault()
-		$scope.Users.push({name:'', password:'', password_confirmation:''})	
+	$scope.submit = (user) ->
+		user = {user:user}
+		console.log(user)
+		User.save(user, (i,j,s,obj)->
+			console.log('success')
+		, (obj) ->
+			$scope.response = obj.data
+		)
 
 ]

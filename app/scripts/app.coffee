@@ -19,7 +19,7 @@ angular.module('angularAktivatorApp', [
         controller: 'AnswerCtrl'
       .when '/registration',
         templateUrl: '/views/registration.html'
-        
+        controller: 'UserCtrl'
       .otherwise
         redirectTo: '/'
   ]

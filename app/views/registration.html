@@ -1,12 +1,45 @@
-<p>This is the registration view.</p>
-
 <h1>Register to Aktivator plus plus</h1>
-<form>
-	<h3>Moikka</h3>
-	<form ng-submit="addUser()">
-		Name: <input type="text"  name ="name" ng-model="name"}><br>
-		Password: <input type="password"  name ="password" ng-model="password"}><br>
-		Password confirmation: <input type="password"  name ="password_confirmation" ng-model ="password_confirmation"}><br> 
-		<button ng-click="newUser($event)">Register</button>
+<h2>current users:</h2>
+<div ng-repeat="user in users">
+	{{user.name}}
+</div>
+<h3>Please fill in the following fields</h3>
+
+
+	<form name "registration_form" novalidate ng-submit="registrationForm()">
+		<fieldset>
+			
+			<div class="form-section">
+				<input type="text" placeholder="Name" name="name" ng-model="user.name" ng-minlength=3 ng-maxlength=20 required />
+					<div class="error" 
+        			ng-show="signup_form.name.$dirty && registration_form.name.$invalid">
+    				<small class="error" 
+        			ng-show="registration_form.name.$error.required">
+        			Your name is required.
+    				</small>
+    				<small class="error" 
+            		ng-show="registration_form.name.$error.minlength">
+            		Your name is required to be at least 3 characters
+    				</small>
+    				<small class="error" 
+            		ng-show="registration_form.name.$error.maxlength">
+            		Your name cannot be longer than 20 characters
+    				</small>
+  					</div>
+			</div>
+			
+			<div>
+			<input type="password" placeholder="Password" ng-model="user.password" ng-minlength=6 ng-maxlength=20 required />
+			</div>
+			
+			<div>
+			<input type="password" placeholder="Password Confirmation" ng-model ="user.password_confirmation" ng-minlength=6 ng-maxlength=20 required />
+			</div> 
+			
+			<button ng-click="submit(user)" ng-disabled="registration_form.$invalid || isUnchanged(user)">Register</button>
+			{{user}}
+					
+		</fieldset>
 	</form>
-</form>
+	{{response}}
+
