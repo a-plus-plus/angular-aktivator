@@ -8,7 +8,10 @@ angular.module('angularAktivatorApp')
 	$scope.message = ""
 
 	$scope.submit = (tag) ->
-		Tag.save(tag)
-		$scope.message = tag.title + " added!"
-		$scope.tag = {}
-]
+		Tag.save tag, (->
+			$scope.message = tag.title + " added!"
+			$scope.tag = {}
+		), (err) -> 
+			$scope.message = "Error adding tag: " + err.data.title
+
+	]
