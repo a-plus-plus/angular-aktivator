@@ -13,17 +13,23 @@ angular.module('angularAktivatorApp')
 		event.preventDefault()
 		$scope.survey.questions.push({kind:'Radiobutton', options:[]})
 
-	$scope.removeQuestion = (question, event, index) ->
+	$scope.removeQuestion = (question, event, index, survey) ->
 		event.preventDefault()
-		question.destroy = 1
+		if (question.id)
+			question.destroy = 1
+		else
+			survey.questions.splice(index, 1)
 
 	$scope.newOption = (event, question) ->
 		event.preventDefault()
 		question.options.push({})
 
-	$scope.removeOption = (option, event, index) ->
+	$scope.removeOption = (option, event, index, question) ->
 		event.preventDefault()
-		option.destroy = 1
+		if question.id
+			option.destroy = 1
+		else
+			question.options.splice(index,1)
 
 	$scope.test = (event, survey) ->
 		console.log(survey)
