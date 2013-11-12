@@ -36,5 +36,9 @@ angular.module('angularAktivatorApp')
 		survey.user_id = 1
 		survey = {survey:RailsFormatter.prepare(survey)}
 		console.log(survey)
-		Survey.save(survey)
+		Survey.save survey, (->
+			$scope.message = "Survey added!"
+			$scope.survey = {questions:[]}
+		), (err) -> 
+			$scope.message = "Error adding survey: " + err.data.title
 ]
