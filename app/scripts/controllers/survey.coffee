@@ -37,5 +37,9 @@ angular.module('angularAktivatorApp')
 	$scope.submit = (survey) ->
 		survey.user_id = 1 # @TODO USE REAL USER ID
 		survey = {survey:RailsFormatter.prepare(survey)}
-		Survey.save(survey)
+		Survey.save survey, (->
+			$scope.message = "Survey added!"
+			$scope.survey = {questions:[]}
+		), (err) -> 
+			$scope.message = "Error adding survey: " + err.data.title
 ]
