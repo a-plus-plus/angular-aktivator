@@ -1,0 +1,45 @@
+<h1>Register to Aktivator plus plus</h1>
+<h2>current users:</h2>
+<div ng-repeat="user in users">
+	{{user.name}}
+</div>
+<h3>Please fill in the following fields</h3>
+
+
+	<form name "registration_form" novalidate ng-submit="registrationForm()">
+		<fieldset>
+			
+			<div class="form-section">
+				<input type="text" placeholder="Name" name="name" ng-model="user.name" ng-minlength=3 ng-maxlength=20 required />
+					<div class="error" 
+        			ng-show="signup_form.name.$dirty && registration_form.name.$invalid">
+    				<small class="error" 
+        			ng-show="registration_form.name.$error.required">
+        			Your name is required.
+    				</small>
+    				<small class="error" 
+            		ng-show="registration_form.name.$error.minlength">
+            		Your name is required to be at least 3 characters
+    				</small>
+    				<small class="error" 
+            		ng-show="registration_form.name.$error.maxlength">
+            		Your name cannot be longer than 20 characters
+    				</small>
+  					</div>
+			</div>
+			
+			<div>
+			<input type="password" placeholder="Password" ng-model="user.password" ng-minlength=6 ng-maxlength=20 required />
+			</div>
+			
+			<div>
+			<input type="password" placeholder="Password Confirmation" ng-model ="user.password_confirmation" ng-minlength=6 ng-maxlength=20 required />
+			</div> 
+			
+			<button ng-click="submit(user)" ng-disabled="registration_form.$invalid || isUnchanged(user)">Register</button>
+			{{user}}
+					
+		</fieldset>
+	</form>
+	{{response}}
+
