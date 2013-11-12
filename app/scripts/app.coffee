@@ -20,6 +20,9 @@ angular.module('angularAktivatorApp', [
       .when '/tags', 
         templateUrl: '/views/tag.html'
         controller: 'TagCtrl'        
+      .when '/registration',
+        templateUrl: '/views/registration.html'
+        controller: 'UserCtrl'
       .otherwise
         redirectTo: '/'
   ]

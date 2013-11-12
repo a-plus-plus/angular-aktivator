@@ -5,7 +5,8 @@ angular.module('angularAktivatorApp')
     $scope.links = [
     	{text:'Home',link:'/'},
     	{text:'Surveys',link:'/surveys'},
-    	{text:'Tags',link:'/tags'}
+     	{text:'Tags',link:'/tags'}
+		{text:'Registration', link:'/registration'}
     ]
     $scope.isActive = (viewLocation) ->
     	viewLocation == $location.path()
