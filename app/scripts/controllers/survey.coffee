@@ -7,15 +7,13 @@ angular.module('angularAktivatorApp')
 	$scope.survey = {questions:[]}
 
 	$scope.info = (event) ->
-		console.log($scope.surveys);
+		console.log($scope.survey);
 
 	$scope.newQuestion = (event) ->
-		console.log('new question!')
 		event.preventDefault()
 		$scope.survey.questions.push({kind:'Radiobutton', options:[]})
 
 	$scope.removeQuestion = (question, event, index) ->
-		console.log('removing question', question)
 		event.preventDefault()
 		question.destroy = 1
 
@@ -25,7 +23,6 @@ angular.module('angularAktivatorApp')
 		question.options.push({})
 
 	$scope.removeOption = (option, event, index) ->
-		console.log('removing option', option)
 		event.preventDefault()
 		option.destroy = 1
 
@@ -35,6 +32,5 @@ angular.module('angularAktivatorApp')
 	$scope.submit = (survey) ->
 		survey.user_id = 1
 		survey = {survey:RailsFormatter.prepare(survey)}
-		console.log(survey)
 		Survey.save(survey)
 ]
