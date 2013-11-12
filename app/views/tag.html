@@ -1,0 +1,13 @@
+<h1>Tags</h1>
+
+<div ng-repeat="tag in tags">
+	<button type="button" class="btn btn-default">{{tag.title}}</button>
+</div>
+
+<h2>New tag</h2>
+<form>
+	<label>Name:</label>
+	<input ng-model="tag.title" type="text" /> 	{{message}}<br />
+	<button ng-click="submit(tag)" type="button" class="btn btn-default">Submit</button>
+</form>
+
