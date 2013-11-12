@@ -1,0 +1,17 @@
+<p>This is the results view.</p>
+
+<ul>
+	<li ng-repeat = "result in results">
+		{{result.id}}
+		<ul>
+
+			<li ng-repeat = "answer in result.answers">{{answer.value}}
+		 	{{answer.question_id}}
+			
+			</li>
+
+		</ul>
+
+	</li>
+
+</ul>

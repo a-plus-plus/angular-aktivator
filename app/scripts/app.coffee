@@ -17,6 +17,9 @@ angular.module('angularAktivatorApp', [
       .when '/answer/:id', 
         templateUrl: '/views/answer.html'
         controller: 'AnswerCtrl'
+      .when '/results', 
+        templateUrl: '/views/results.html'
+        controller: 'ResultsCtrl'
       .otherwise
         redirectTo: '/'
   ]
