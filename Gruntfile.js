@@ -20,7 +20,7 @@ module.exports = function (grunt) {
     notify:{
       testsPass:{
         options:{
-          message:"All tests passed"
+          message:'All tests passed'
         }
       }
     },
