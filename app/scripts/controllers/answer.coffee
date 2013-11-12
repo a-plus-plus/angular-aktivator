@@ -11,11 +11,18 @@ angular.module('angularAktivatorApp')
             console.log elem
             console.log eval("("+elem+")")
             $scope.parsedResponse[index]=eval("("+elem+")")
-        ) 
-
-        alert("got through json")
+        )
         response = {response:{survey_id:$scope.survey.id, answers_attributes:$scope.parsedResponse}}
         Response.save(response)
 
+    $scope.isRadio = (kind) ->
+        alert ("iluadhfl")
+        kind == "Radiobutton"
+
+    $scope.isCheckbox = (kind) ->
+        kind == "Checkbox"
+
+    $scope.isTextarea = (kind) ->
+        kind == "Textarea"
 
   ]
