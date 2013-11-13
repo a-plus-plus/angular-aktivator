@@ -12,7 +12,7 @@ angular.module('angularAktivatorApp')
 	$scope.submit = (user) ->
 		user = {user:user}
 		console.log(user)
-		User.save(user, (i,j,s,obj)->
+		User.save(user, ()->
 			console.log('success')
 		, (obj) ->
 			$scope.response = obj.data
