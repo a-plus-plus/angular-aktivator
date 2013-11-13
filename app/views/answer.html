@@ -7,17 +7,17 @@
 		
 		<div ng-switch on="question.kind">	
 			<p ng-switch-when="Textfield">
-				<input type="textarea" ng-model="response[questionIndex]" name="{{question.id}}" value='{value:!!!EI MÄÄRITELTY!!!!, question_id:{{option.question_id}}}'>{{option.value}}<br>
+				<input type="textarea" ng-model="response[questionIndex]" name="{{question.id}}" value='{value:!!!EI TOIMI!!!!, question_id:{{option.question_id}}}'>{{option.value}}<br>
 			</p>
 
 			<p ng-switch-default>
 				<ul ng-repeat="option in question.options">
 					<span ng-switch on="question.kind">
-						<input ng-switch-when="Checkbox" type="checkbox" ng-model="response[questionIndex]" name="{{question.id}}" value='{option_id:{{option.id}}, question_id:{{option.question_id}}}'>
-						<input type="radio" ng-switch-when="Radiobutton" ng-model="response[questionIndex]" name="{{question.id}}" value='{option_id:{{option.id}}, question_id:{{option.question_id}}}'>
+						<input type="checkbox" ng-switch-when="Checkbox" ng-model="response[questionIndex]" name="{{question.id}}" value="{option_id:{{option.id}}, question_id:{{option.question_id}}}" ng-true-value="{{option.id}}" ng-false-value="asd" ng-change="">
+						<input type="radio" ng-switch-when="Radiobutton" ng-model="response[questionIndex]" name="{{question.id}}" value='{option_id:{{option.id}}, question_id:{{option.question_id}}}' ngchan>
 
 					</span>
-					{{option.value}} 
+					{{option.value}}
 				</ul>
 			</p>
 
@@ -28,5 +28,7 @@
 	</div>
 	<br>
 	<button ng-click="clicksubmit()">Submit</button>
+
+	response atm: {{response}}
 
 </form>
