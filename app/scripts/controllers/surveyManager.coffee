@@ -31,7 +31,7 @@ angular.module('angularAktivatorApp')
 	$scope.removeQuestion = (question, event, index, survey) ->
 		event.preventDefault()
 		if (question.id)
-			question.destroy = 1
+			question._destroy = 1
 		else
 			survey.questions.splice(index, 1)
 
@@ -42,7 +42,7 @@ angular.module('angularAktivatorApp')
 	$scope.removeOption = (option, event, index, question) ->
 		event.preventDefault()
 		if question.id
-			option.destroy = 1
+			option._destroy = 1
 		else
 			question.options.splice(index,1)
 

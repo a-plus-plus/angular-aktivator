@@ -17,5 +17,4 @@ angular.module('angularAktivatorApp')
 		, (obj) ->
 			$scope.response = obj.data
 		)
-
 ]
