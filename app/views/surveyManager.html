@@ -20,7 +20,7 @@
 			
 
 			<div ng-repeat="question in survey.questions" style="padding-left:50px">
-				<fieldset ng-hide="question._destroy==1">
+				<fieldset ng-hide="question._destroy">
 					<textarea ng-model="question.title" ></textarea>
 					<button ng-click="removeQuestion(question, $event, $index, survey)" class="btn btn-small btn-danger" style="float:right">
 						<i  class="icon-minus-sign"/>
@@ -35,7 +35,7 @@
 
 
 					<div ng-repeat="option in question.options" style="padding-left:50px">
-						<fieldset ng-hide="option._destroy==1">
+						<fieldset ng-hide="option._destroy">
 							<button ng-click="removeOption(option, $event, $index, question)" class="btn btn-small btn-danger" style="float:right">
 								<i class="icon-minus-sign" />
 							</button>
