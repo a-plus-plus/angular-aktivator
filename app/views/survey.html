@@ -2,7 +2,9 @@
 <h1>Surveys</h1>
 <div ng-repeat="survey in surveys" ng-init="survey.expand = false">
 	<h3>Survey {{$index+1}}: <a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a>, Status: {{survey.status}} 
-	<button type="button" ng-click="survey.expand=!survey.expand"><i class="icon-plus-sign" /></button></h3>
+		<button type="button" ng-click="survey.expand=!survey.expand" class="btn"><i class="icon-plus-sign" /></button>
+		<a ng-href="#/surveys/{{survey.id}}">edit</a>
+	</h3>
 	<ul>
 		<div ng-repeat="question in survey.questions" ng-init="index=$index+1" ng-hide="survey.expand">
 			<li> {{question.title}}</li>
@@ -16,60 +18,3 @@
 </div>
 
 
-<h3>New survey</h3>
-<div>
-	<form>
-		<fieldset>
-			<label>Title:</label>
-			<input ng-model="survey.title" type="text" />
-			<label>Status:</label>
-			<select ng-model="survey.status" id="survey_status" ng-init="survey.status='Unpublished'">
-				<option value="Published">Published</option>
-				<option value="Unpublished">Unpublished</option>
-				<option value="Finished">Finished</option>
-			</select>			
-		
-		<div ng-repeat="question in survey.questions" style="padding-left:50px">
-			<fieldset ng-hide="question.destroy==1">
-				<textarea ng-model="question.title" ></textarea>
-				<button ng-click="removeQuestion(question, $event, $index, survey)" class="btn btn-small" style="float:right">
-					<i  class="icon-minus-sign"/>
-				</button>
-				<label>Kind</label>
-				<select ng-model="question.kind">
-					<option value="Radiobutton">Radiobutton</option>
-					<option value="Checkbox">Checkbox</option>
-					<option value="Textfield">Textfield</option>
-				</select>
-				<br>
-				
-			
-				<div ng-repeat="option in question.options" style="padding-left:50px">
-					<fieldset ng-hide="option.destroy==1">
-						<button ng-click="removeOption(option, $event, $index, question)" class="btn btn-small" style="float:right">
-							<i class="icon-minus-sign" />
-						</button>
-						<label >Option</label><br />
-						<textarea ng-model="option.value"></textarea>
-						<input type="hidden" value="{{option.id}}"/>
-						<input type="hidden" value="{{option.destroy}}">        
-					</fieldset>
-				</div>
-				<button ng-click="newOption($event, question)" class="btn btn-small">
-					<i class="icon-plus-sign"></i>
-				</button>
-				</fieldset>
-			</div>	
-			<br>
-			<button ng-click="newQuestion($event)" class="btn btn-small">
-			<i class="icon-plus-sign"></i>
-		</button>							
-		</fieldset>	
-	</div>
-	<div class="actions">
-		<button ng-click="submit(survey)" class="btn ">Submit</button> {{message}}
-		<br />
-		{{survey}}
-	</div>
-</form>
-</div>

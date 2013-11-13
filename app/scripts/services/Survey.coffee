@@ -6,5 +6,5 @@ angular.module('angularAktivatorApp')
     # ...
 
     # Public API here
-    $resource 'http://localhost\\:3000/surveys/:id', id: '@id'    
+    $resource 'http://localhost\\:3000/surveys/:id', id: '@id', {update:{method:'PUT'}}
   ]
