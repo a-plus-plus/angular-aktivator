@@ -26,6 +26,9 @@ angular.module('angularAktivatorApp', [
 		.when '/registration',
 			templateUrl: '/views/registration.html'
 			controller: 'UserCtrl'
+		.when '/surveys/:id',
+			templateUrl:'/views/surveyManager.html'
+			controller: 'SurveyManagerCtrl'
 		.otherwise
 			redirectTo: '/'
 ]
