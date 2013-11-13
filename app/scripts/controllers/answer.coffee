@@ -18,13 +18,4 @@ angular.module('angularAktivatorApp')
         
         Response.save(response)
 
-    $scope.isRadio = (kind) ->
-        kind == "Radiobutton"
-
-    $scope.isCheckbox = (kind) ->
-        kind == "Checkbox"
-
-    $scope.isTextarea = (kind) ->
-        kind == "Textarea"
-
   ]
