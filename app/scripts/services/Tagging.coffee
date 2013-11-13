@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .factory 'Tagging', [() ->
+  .factory 'Tagging', ['$resource',($resource) ->
     # Service logic
     # ...
 
