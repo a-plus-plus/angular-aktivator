@@ -6,7 +6,7 @@ angular.module('angularAktivatorApp')
   .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', '$location', ($scope, Survey, $routeParams, Response, RailsFormatter, $location) ->
     $scope.survey = Survey.get(id: $routeParams.id)
     $scope.response = []
-    # $scope.response = {survey_id:$scope.survey.id, answers:[]}
+    # $scope.response = {survey_id:$scope.survey.id, answers:[]} <- this would be nice :)
 
     # Submits the response to the server
     $scope.submit = () ->
@@ -64,6 +64,17 @@ angular.module('angularAktivatorApp')
     # Redirects the browser to the results page
     redirectToResults = () ->
         $location.path('/results')
+
+
+    # Functions for defining question kind for ng-ifs
+    $scope.isRadio = (kind) ->
+        kind == "Radiobutton"
+
+    $scope.isCheckbox = (kind) ->
+        kind == "Checkbox"
+
+    $scope.isTextfield = (kind) ->
+        kind == "Textfield"
 
      
             

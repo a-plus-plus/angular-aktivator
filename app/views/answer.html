@@ -2,30 +2,19 @@
 <h1>Answer to a survey</h1>
 <form>
 	<h3>{{survey.title}}</h3>
-	<div ng-repeat="question in survey.questions" ng-init="questionIndex = $index">
+	<div ng-repeat="question in survey.questions">
 		<li>{{question.title}}</li>
-		
-		<div ng-switch on="question.kind">	
-			<p ng-switch-when="Textfield">
-				<input type="textarea" name="{{question.id}}" ng-model = "response[question.index].value" ng-init="question.index = response.length; initTextbox(question.id)">{{option.value}}<br>
-			</p>
-
-			<p ng-switch-default>
-				<ul ng-repeat="option in question.options">
-					<span ng-switch on="question.kind">
-
-						<input type="checkbox" ng-switch-when="Checkbox" name="{{question.id}}"  ng-click="checkboxSave(question.id, option.id)">
-
-
-						<input type="radio" ng-switch-when="Radiobutton"  name="{{question.id}}" ng-click="radiobuttonSave(question.id, option.id)">
-
-					</span>
-					{{option.value}}
+		<div> 
+			<p>
+				<ul ng-if="isRadio(question.kind)" ng-repeat="option in question.options">
+					<input type="radio" name="{{question.id}}" ng-click="radiobuttonSave(question.id, option.id)">{{option.value}}
 				</ul>
-			</p>
-
-			<p ng-switch-default >
-				
+				<ul ng-if="isCheckbox(question.kind)" ng-repeat="option in question.options">
+					<input type="checkbox" name="{{question.id}}"  ng-click="checkboxSave(question.id, option.id)">{{option.value}}
+				</ul>
+				<ul ng-if="isTextfield(question.kind)">
+					<textarea name="{{question.id}}" ng-model = "response[question.index].value" ng-init="question.index = response.length; initTextbox(question.id)"></textarea>
+				</ul>
 			</p>
 		</div>
 	</div>
@@ -33,6 +22,4 @@
 	<button ng-click="submit()">Submit</button>
 	<br><br>
 	<font color="red">{{message}}</font>
-
-
 </form>
