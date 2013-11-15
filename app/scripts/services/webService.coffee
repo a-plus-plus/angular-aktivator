@@ -3,13 +3,13 @@
 class WebService
 
   constructor: (@$http, @storageService) ->
-    @baseUrl = "/"
+    @baseUrl = "http://localhost:3000/"
 
   login: (user) ->
-    @$http.post(@baseUrl + "login", {user: {email: user.email, password: user.password}})
+    @$http.post(@baseUrl + "login", {user: {name: user.name, password: user.password}})
 
   getAuthHeaders: () ->
-    {email: @storageService.get("email"), token: @storageService.get("token")}
+    {name: @storageService.get("name"), token: @storageService.get("token")}
 
   logout: () ->
     @$http.delete(@baseUrl + "logout", {headers: @getAuthHeaders()})

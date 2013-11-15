@@ -12,7 +12,7 @@ class StorageService
     localStorage.removeItem(key)
 
   logout: ->
-    localStorage.removeItem("email")
+    localStorage.removeItem("name")
     localStorage.removeItem("token")
 
 angular.module "angularAktivatorApp.storageService", [], ($provide) ->
