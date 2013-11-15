@@ -4,9 +4,10 @@ angular.module('angularAktivatorApp')
   .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', ($scope, Survey, $routeParams, Response, RailsFormatter) ->
     $scope.survey = Survey.get(id: $routeParams.id)
     $scope.response = []
-    #$scope.response = {survey_id:$scope.survey.id, answers:[]}
+    # $scope.response = {survey_id:$scope.survey.id, answers:[]}
 
-    $scope.clicksubmit = () ->
+    # Submits the response to the server
+    $scope.submit = () ->
         clearEmpty()        
         response = {
             response:RailsFormatter.prepare({
@@ -17,11 +18,13 @@ angular.module('angularAktivatorApp')
         console.log(response)
         Response.save(response)
 
+    # Removes all blank textbox answers from the response
     clearEmpty = () ->
         $scope.response.forEach (elem, index) ->
             if !elem.value and !elem.option_id                
                 $scope.response.splice(index, 1)
 
+    # Pushes the current radio button answer to the response
     $scope.radiobuttonSave = (question_id, option_id) ->
         elem = {
             question_id:question_id
@@ -30,9 +33,20 @@ angular.module('angularAktivatorApp')
         elem.option_id = option_id
         $scope.response.push(elem)
 
+    # Pushes the current checkbox answer(s) to the response
+    $scope.checkboxSave = (question_id, option_id) ->        
+        elem = {
+            question_id:question_id, 
+            option_id:option_id
+        }
+        if !deleteWhere(elem)
+            $scope.response.push(elem) 
+
+    # Initializes a textbox answer
     $scope.initTextbox = (q_id) ->
         $scope.response.push({question_id:q_id})
 
+    # Deletes obsolete data from the response (eg a checked checkbox value if a user decides to uncheck it)
     deleteWhere = (obj) ->
         ret = false
         !$scope.response.forEach (elem, index) ->
@@ -43,12 +57,6 @@ angular.module('angularAktivatorApp')
         ret
 
      
-    $scope.checkboxSave = (question_id, option_id) ->        
-        elem = {
-            question_id:question_id, 
-            option_id:option_id
-        }
-        if !deleteWhere(elem)
-            $scope.response.push(elem)         
+            
             
   ]
