@@ -1,7 +1,9 @@
 'use strict'
 
+# Contains functions used by answer.html
+
 angular.module('angularAktivatorApp')
-  .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', ($scope, Survey, $routeParams, Response, RailsFormatter) ->
+  .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', '$location', ($scope, Survey, $routeParams, Response, RailsFormatter, $location) ->
     $scope.survey = Survey.get(id: $routeParams.id)
     $scope.response = []
     # $scope.response = {survey_id:$scope.survey.id, answers:[]}
@@ -16,7 +18,10 @@ angular.module('angularAktivatorApp')
             })
         } 
         console.log(response)
-        Response.save(response)
+        Response.save(response, redirectToResults, (err) ->
+            $scope.message = "Something went wrong - your response was not saved!"
+        )
+
 
     # Removes all blank textbox answers from the response
     clearEmpty = () ->
@@ -55,6 +60,10 @@ angular.module('angularAktivatorApp')
                     $scope.response.splice(index,1)
                     ret= true
         ret
+
+    # Redirects the browser to the results page
+    redirectToResults = () ->
+        $location.path('/results')
 
      
             
