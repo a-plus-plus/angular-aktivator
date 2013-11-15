@@ -9,6 +9,7 @@ angular.module('angularAktivatorApp')
 		{text:'Tags',			link:'/tags'}
 		{text:'Registration', 	link:'/registration'}
 		{text:'Create Survey',	link:'/surveys/new'}
+		{text:'Login',	link:'/login'}
 	]
 	$scope.isActive = (viewLocation) ->
 		viewLocation == $location.path()

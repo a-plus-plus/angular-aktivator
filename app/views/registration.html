@@ -48,7 +48,7 @@
 			</div>
 			
 			<div>
-			<input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model ="user.password_confirmation" ng-minlength=6 ng-maxlength=20 />
+			<input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model ="user.password_confirmation" ng-minlength=6 ng-maxlength=20 required />
 				<div class="error" 
         			ng-show="registration_form.password_confirmation.$dirty && registration_form.password_confirmation.$invalid">
     				<small class="error" 
