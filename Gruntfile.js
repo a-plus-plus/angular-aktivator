@@ -31,11 +31,11 @@ module.exports = function (grunt) {
       },
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
-        tasks: ['coffee:test','karma:unit']
+        tasks: ['coffee:test']
       },
       e2eTest:{
         files: ['test/e2e/{,*/}*.coffee'],
-        tasks: ['connect:test','karma:e2e']
+        tasks: ['connect:test']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -312,7 +312,8 @@ module.exports = function (grunt) {
         browsers:['Firefox']
       },
       e2e: {
-        configFile: 'karma-e2e.conf.js'
+        configFile: 'karma-e2e.conf.js',
+        singleRun:false
       }
     },
     cdnify: {
