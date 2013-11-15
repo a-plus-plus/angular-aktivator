@@ -1,19 +1,19 @@
-'use strict'
+"use strict"
 
-angular.module 'angularAktivatorApp.storageService', [], ($provide) ->
-	$provide.factory 'storageService', -> new storageService()
-	
-	store = (key, value) ->
-		localStorage.setItem(key, value)
+class StorageService
 
-	get = (key) ->
-		localStorage.getItem key
-	
-	deleteItem = (key) ->
-		localStorage.removeItem(key)
+  store: (key, value) ->
+    localStorage.setItem(key, value)
 
-	logout = ->
-		localStorage.removeItem("name")
-		localStorage.removeItem("token")
+  get: (key) ->
+    localStorage.getItem key
 
-    # AngularJS will instantiate a singleton by calling "new" on this function
+  deleteItem: (key) ->
+    localStorage.removeItem(key)
+
+  logout: ->
+    localStorage.removeItem("email")
+    localStorage.removeItem("token")
+
+angular.module "angularAktivatorApp.storageService", [], ($provide) ->
+  $provide.factory "storageService", -> new StorageService()

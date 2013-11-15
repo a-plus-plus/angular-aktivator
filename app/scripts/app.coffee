@@ -3,7 +3,9 @@
 angular.module('angularAktivatorApp', [
 	'ngCookies',
 	'ngResource',
-	'ngSanitize'
+	'ngSanitize',
+	'angularAktivatorApp.webService', 'angularAktivatorApp.storageService'
+
 ])
 .config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
 	#$locationProvider.html5Mode true

@@ -1,23 +1,24 @@
 'use strict'
 
-angular.module 'angularAktivatorApp.webService', [], ($provide) ->
-	$provide.factory 'webService', '$http', 'storageService', ($http, storageService) -> new webService($http, storageService)
-	
-	baseUrl = "/"
-	
-	login = (user) ->
-		@$http.post(@baseUrl + "login", {user: {name: user.name, password: user.password}})
+class WebService
 
-	getAuthHeaders = () ->
-		{name: @storageService.get("name"), token: @storageService.get("token")}
+  constructor: (@$http, @storageService) ->
+    @baseUrl = "/"
 
-	logout = () ->
-		@$http.delete(@baseUrl + "logout", {headers: @getAuthHeaders()})
+  login: (user) ->
+    @$http.post(@baseUrl + "login", {user: {email: user.email, password: user.password}})
 
-	getGreeting = () ->
-		@$http.get(@baseUrl + "greet", {headers: @getAuthHeaders()})
+  getAuthHeaders: () ->
+    {email: @storageService.get("email"), token: @storageService.get("token")}
 
-	getSurveys = () ->
-		@$http.get(@baseUrl + "surveys", {headers: @getAuthHeaders()})
+  logout: () ->
+    @$http.delete(@baseUrl + "logout", {headers: @getAuthHeaders()})
 
-    # AngularJS will instantiate a singleton by calling "new" on this function
+  getGreeting: () ->
+    @$http.get(@baseUrl + "greet", {headers: @getAuthHeaders()})
+
+  getPosts: () ->
+    @$http.get(@baseUrl + "posts", {headers: @getAuthHeaders()})
+
+angular.module "angularAktivatorApp.webService", [], ($provide) ->
+  $provide.factory "webService", ["$http", "storageService", ($http, storageService) -> new WebService($http, storageService)]
