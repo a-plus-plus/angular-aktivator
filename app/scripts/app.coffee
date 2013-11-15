@@ -5,6 +5,7 @@ angular.module('angularAktivatorApp', [
 	'ngResource',
 	'ngSanitize',
 	'ngRoute'
+	'angularAktivatorApp.webService', 'angularAktivatorApp.storageService'
 ])
 .config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
 	#$locationProvider.html5Mode true
@@ -30,6 +31,9 @@ angular.module('angularAktivatorApp', [
 		.when '/surveys/:id',
 			templateUrl:'/views/surveyManager.html'
 			controller: 'SurveyManagerCtrl'
+		.when '/login',
+  			templateUrl: 'views/login.html',
+  			controller: 'LoginCtrl'
 		.otherwise
 			redirectTo: '/'
 ]
