@@ -10,21 +10,18 @@
 		<fieldset>
 			
 			<div class="form-section">
-				<input type="text" placeholder="Name" name="name" ng-model="user.name" ng-minlength=3 ng-maxlength=20 required />
+				<input type="text" placeholder="Name" name="name" ng-model="user.name" ng-minlength=3 ng-maxlength=20 required ensure-unique="name"/>
 					<div class="error" 
         			ng-show="registration_form.name.$dirty && registration_form.name.$invalid">
     				<small class="error" 
         			ng-show="registration_form.name.$error.required">
-        			Your name is required.
-    				</small>
+        			Your name is required.</small>
     				<small class="error" 
             		ng-show="registration_form.name.$error.minlength">
-            		Your name is required to be at least 3 characters
-    				</small>
+            		Your name is required to be at least 3 characters</small>
     				<small class="error" 
             		ng-show="registration_form.name.$error.maxlength">
-            		Your name cannot be longer than 20 characters
-    				</small>
+            		Your name cannot be longer than 20 characters</small>
   					</div>
 			</div>
 
@@ -34,13 +31,11 @@
                     ng-show="registration_form.email.$dirty && registration_form.email.$invalid">
                     <small class="error" 
                     ng-show="registration_form.email.$error.required">
-                    Your email is required.
-                    </small>
+                    Your email is required.</small>
                     <small class="error" 
                     ng-show="registration_form.email.$error.email">
-                    Not valid email!
-                    </small>
-                     </div>
+                    Not valid email!</small>
+                    </div>
             </div>
 			
 			<div>
@@ -49,40 +44,34 @@
         			ng-show="registration_form.password.$dirty && registration_form.password.$invalid">
     				<small class="error" 
         			ng-show="registration_form.password.$error.required">
-        			Your password is required.
-    				</small>
+        			Your password is required.</small>
     				<small class="error" 
             		ng-show="registration_form.password.$error.minlength">
-            		Your password is required to be at least 8 characters
-    				</small>
+            		Your password is required to be at least 8 characters</small>
     				<small class="error" 
             		ng-show="registration_form.password.$error.maxlength">
-            		Your password cannot be longer than 20 characters
-    				</small>
-    				</div>
+            		Your password cannot be longer than 20 characters</small>
+    			</div>
 			</div>
 			
 			<div>
-			<input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model ="user.password_confirmation" ng-minlength=8 ng-maxlength=20 required />
+			<input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model ="user.password_confirmation" ng-minlength=8 ng-maxlength=20 data-password-verify="user.password" required/>
 				<div class="error" 
         			ng-show="registration_form.password_confirmation.$dirty && registration_form.password_confirmation.$invalid">
-    				<small class="error" 
-        			ng-show="registration_form.password_confirmation.$error.required">
-        			Your password_confirmation is required.
-    				</small>
-    				<small class="error" 
-            		ng-show="registration_form.password_confirmation.$error.minlength">
-            		Your password_confirmation is required to be at least 8 characters
-    				</small>
-    				<small class="error" 
-            		ng-show="registration_form.password_confirmation.$error.maxlength">
-            		Your password_confirmation cannot be longer than 20 characters
-    				</small>
-   					</div>
+                    <small class="error" 
+                    ng-show="registration_form.password_confirmation.$error.passwordVerify">
+                    Passwords don't match.</small>
+                </div>
 			</div> 
 			
 			<button ng-click="submit(user)" ng-disabled="registration_form.$invalid || isUnchanged(user)">Register</button>
 			{{user}}
+
+            
+                <div ng-if="errorMsg()" class="login succeess">
+                    {{message}}
+                </div>
+            
 					
 		</fieldset>
 	</form>
