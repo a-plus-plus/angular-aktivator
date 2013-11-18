@@ -83,6 +83,12 @@
 			
 			<button ng-click="submit(user)" ng-disabled="registration_form.$invalid || isUnchanged(user)">Register</button>
 			{{user}}
+
+            
+                <div ng-if="errorMsg()" class="login succeess">
+                    {{message}}
+                </div>
+            
 					
 		</fieldset>
 	</form>

@@ -3,12 +3,10 @@
 # Contains functions used by answer.html
 
 angular.module('angularAktivatorApp')
-  .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', '$location', '$rootScope', ($scope, Survey, $routeParams, Response, RailsFormatter, $location, $rootScope) ->
+  .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', '$location', ($scope, Survey, $routeParams, Response, RailsFormatter, $location) ->
     $scope.survey = Survey.get(id: $routeParams.id)
     $scope.response = []
-    $rootScope.successMessage = ""
     # $scope.response = {survey_id:$scope.survey.id, answers:[]} <- this would be nice :)
-
 
     # Submits the response to the server
     $scope.submit = () ->
@@ -65,8 +63,8 @@ angular.module('angularAktivatorApp')
 
     # Redirects the browser to the results page
     redirectToResults = () ->
-        $rootScope.responseSuccessMessage = "Your response was saved successfully!"
         $location.path('/results')
+
 
     # Functions for defining question kind for ng-ifs
     $scope.isRadio = (kind) ->
@@ -78,9 +76,7 @@ angular.module('angularAktivatorApp')
     $scope.isTextfield = (kind) ->
         kind == "Textfield"
 
-    # Returns true for ng-if, if scope has a message
-    $scope.errorMsg = () ->
-        $scope.message.length > 0  
+     
             
             
   ]
