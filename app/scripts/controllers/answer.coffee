@@ -78,6 +78,7 @@ angular.module('angularAktivatorApp')
     $scope.isTextfield = (kind) ->
         kind == "Textfield"
 
+    # Returns true for ng-if, if scope has a message
     $scope.errorMsg = () ->
         $scope.message.length > 0  
             
