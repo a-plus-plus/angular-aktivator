@@ -27,9 +27,24 @@
     				</small>
   					</div>
 			</div>
+
+            <div class="form-section">
+                <input type="email" placeholder="Email" name="email" ng-model="user.email" required />
+                    <div class="error" 
+                    ng-show="registration_form.email.$dirty && registration_form.email.$invalid">
+                    <small class="error" 
+                    ng-show="registration_form.email.$error.required">
+                    Your email is required.
+                    </small>
+                    <small class="error" 
+                    ng-show="registration_form.email.$error.email">
+                    Not valid email!
+                    </small>
+                     </div>
+            </div>
 			
 			<div>
-			<input type="password" placeholder="Password" name="password" ng-model="user.password" ng-minlength=6 ng-maxlength=20 required />
+			<input type="password" placeholder="Password" name="password" ng-model="user.password" ng-minlength=8 ng-maxlength=20 required />
 				<div class="error" 
         			ng-show="registration_form.password.$dirty && registration_form.password.$invalid">
     				<small class="error" 
@@ -48,7 +63,7 @@
 			</div>
 			
 			<div>
-			<input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model ="user.password_confirmation" ng-minlength=6 ng-maxlength=20 required />
+			<input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model ="user.password_confirmation" ng-minlength=8 ng-maxlength=20 required />
 				<div class="error" 
         			ng-show="registration_form.password_confirmation.$dirty && registration_form.password_confirmation.$invalid">
     				<small class="error" 
