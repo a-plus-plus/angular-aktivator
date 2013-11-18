@@ -1,5 +1,9 @@
 <p>This is the results view.</p>
 
+<div ng-if="giveRootMsgToScope()" class="alert alert-success">
+	{{message}}
+</div>
+
 <ul>
 	<li ng-repeat = "result in results">
 		{{result.id}}
