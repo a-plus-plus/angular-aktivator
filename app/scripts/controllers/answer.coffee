@@ -3,9 +3,10 @@
 # Contains functions used by answer.html
 
 angular.module('angularAktivatorApp')
-  .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', '$location', ($scope, Survey, $routeParams, Response, RailsFormatter, $location) ->
+  .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', '$location', '$rootScope', ($scope, Survey, $routeParams, Response, RailsFormatter, $location, $rootScope) ->
     $scope.survey = Survey.get(id: $routeParams.id)
     $scope.response = []
+    $rootScope.responseSuccessMessage = ""
     # $scope.response = {survey_id:$scope.survey.id, answers:[]} <- this would be nice :)
 
     # Submits the response to the server
@@ -63,6 +64,7 @@ angular.module('angularAktivatorApp')
 
     # Redirects the browser to the results page
     redirectToResults = () ->
+        $rootScope.responseSuccessMessage = "Your response was saved successfully!"
         $location.path('/results')
 
 
