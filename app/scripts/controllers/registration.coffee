@@ -22,7 +22,7 @@ angular.module('angularAktivatorApp')
     
 ]
 
-).directive( "passwordVerify", ->
+.directive( "passwordVerify", ->
   require: "ngModel"
   scope:
     passwordVerify: "="
