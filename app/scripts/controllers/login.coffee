@@ -18,6 +18,7 @@ angular.module('angularAktivatorApp')
 
 		error = (response) ->
 			console.log response
+			
 		promise = webService.login(user)
 		promise.then success, error
 ]

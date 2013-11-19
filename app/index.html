@@ -23,6 +23,7 @@
         <div class="navbar-inner">
           <ul class="nav">
             <li ng-repeat="link in links" ng-class="{active:isActive(link.link)}"><a ng-href="#{{link.link}}" >{{link.text}}</a></li>
+            <li><a href="#/logout" ng-click="logout()">Logout</a></li>
           </ul>
           <div ng-controller="LoginCtrl" >
             <form name="loginForm" class="navbar-form pull-right" data-ng-submit="login(user)">
