@@ -1,4 +1,5 @@
-<h3>New survey</h3>
+<h3 ng-if="isNew()">New survey</h3>
+<h3 ng-if="!isNew()">Editing survey</h3>
 <div>
 	<form>
 		<fieldset>
@@ -8,7 +9,7 @@
 			<select ng-model="survey.status" id="survey_status" ng-init="survey.status='Unpublished'">
 				<option value="Published">Published</option>
 				<option value="Unpublished">Unpublished</option>
-				<option value="Finished">Finished</option>
+				<option ng-if="!isNew()" value="Finished">Finished</option>
 			</select><br>
 			<h4>tags:</h4>
 			<div ng-repeat="tag in tags">

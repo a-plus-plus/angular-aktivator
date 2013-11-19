@@ -3,9 +3,12 @@
 angular.module('angularAktivatorApp')
   .controller 'SurveyManagerCtrl', ['$scope','Survey', 'RailsFormatter', '$routeParams','Tag','filterFilter',($scope, Survey, RailsFormatter, $routeParams,Tag, filterFilter) ->
 	
+
 	id = $routeParams.id
 	console.log id
 	$scope.survey = if id =='new' then {questions:[]} else Survey.get(id:id, setTagIds)
+	$scope.tags = Tag.query(setTagIds)
+
 	
 
 	setTagIds = () ->
@@ -15,11 +18,17 @@ angular.module('angularAktivatorApp')
 		console.log $scope.survey.tags , $scope.tags
 		$scope.survey.tags.forEach (elem) ->
 			$scope.tags.forEach (elem2) ->
-				if elem.id ==elem2.id
+				if elem.id == elem2.id
 					elem2.selected = true
-					#console.log 'was true'
+					console.log 'was true'
 
-	$scope.tags = Tag.query(setTagIds)
+	
+	# Returns true when creating a new survey and false when editing an existing survey, used by ng-ifs
+	$scope.isNew = () ->
+		if id == 'new'
+			true
+		else
+			false
 	
 	$scope.info = (event) ->
 		console.log($scope.survey);
