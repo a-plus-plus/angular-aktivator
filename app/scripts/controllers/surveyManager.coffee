@@ -2,24 +2,24 @@
 
 angular.module('angularAktivatorApp')
   .controller 'SurveyManagerCtrl', ['$scope','Survey', 'RailsFormatter', '$routeParams','Tag','filterFilter',($scope, Survey, RailsFormatter, $routeParams,Tag, filterFilter) ->
-	setTagIds= () ->
+	
+	id = $routeParams.id
+	console.log id
+	$scope.survey = if id =='new' then {questions:[]} else Survey.get(id:id, setTagIds)
+	
+
+	setTagIds = () ->
 		#console.log $scope.survey
 		if !angular.isArray $scope.survey.tags or !angular.isArray $scope.tags
 			return
-		#console.log $scope.survey.tags , $scope.tags
+		console.log $scope.survey.tags , $scope.tags
 		$scope.survey.tags.forEach (elem) ->
 			$scope.tags.forEach (elem2) ->
 				if elem.id ==elem2.id
 					elem2.selected = true
 					#console.log 'was true'
-		
-	
-		
-	id = $routeParams.id
-	console.log id
-	$scope.survey = if id =='new' then {questions:[]} else Survey.get(id:id, setTagIds)
-	$scope.tags = Tag.query(setTagIds)
 
+	$scope.tags = Tag.query(setTagIds)
 	
 	$scope.info = (event) ->
 		console.log($scope.survey);

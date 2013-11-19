@@ -1,12 +1,14 @@
 'use strict'
 
-# Not in use currently - was supposed to be used by answer.coffee and results.coffee
-angular.module('angularAktivatorApp', [])
-  .service 'MsgService', () ->
+angular.module('angularAktivatorApp')
+  .service 'Msgservice', () ->
+
   	responseMsg = ""
 
-  	setMsg = (msg) ->
-		responseMsg = msg
+  	getResponseMsg = () ->
+  		responseMsg 
 
-	getMsg = () ->
-		responseMsg
+  	setResponseMsg = (msg) ->
+  		responseMsg = msg
+
+    # Not in use currently, was supposed to be used by answer.coffee, but injecting won't work for some reason
