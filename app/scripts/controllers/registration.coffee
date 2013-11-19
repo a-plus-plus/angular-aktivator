@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-.controller 'UserCtrl', ['$scope','User', 'RailsFormatter','$location', ($scope, User, RailsFormatter, $location) ->
+.controller('UserCtrl', ['$scope','User', 'RailsFormatter','$location', ($scope, User, RailsFormatter, $location) ->
 	
 	$scope.users = User.query()
 	$scope.user = {}
@@ -22,7 +22,7 @@ angular.module('angularAktivatorApp')
     
 ]
 
-.directive( "passwordVerify", ->
+).directive( "passwordVerify", ->
   require: "ngModel"
   scope:
     passwordVerify: "="
