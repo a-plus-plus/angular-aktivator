@@ -13,6 +13,8 @@ angular.module('angularAktivatorApp')
 			console.log ' SUCESS great success!'
 			$http.defaults.headers.common['name'] = response.data.name
 			$http.defaults.headers.common['token'] = response.data.token
+			user.name = ''
+			user.password = ''
 
 		error = (response) ->
 			console.log response
