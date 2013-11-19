@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .controller 'SurveyManagerCtrl', ['$scope','Survey', 'RailsFormatter', '$routeParams','Tag','filterFilter',($scope, Survey, RailsFormatter, $routeParams,Tag, filterFilter) ->
+  .controller 'SurveyManagerCtrl', ['$scope','Survey', 'RailsFormatter', '$routeParams','Tag','filterFilter', '$location', ($scope, Survey, RailsFormatter, $routeParams,Tag, filterFilter, $location) ->
 	
 
 	id = $routeParams.id
@@ -29,6 +29,9 @@ angular.module('angularAktivatorApp')
 			true
 		else
 			false
+
+	redirectToListing = () ->
+		$location.path('/surveys')
 	
 	$scope.info = (event) ->
 		console.log($scope.survey);
@@ -71,13 +74,13 @@ angular.module('angularAktivatorApp')
 		console.log survey
 		if (survey.survey.id)
 			Survey.update id:survey.survey.id, survey, (->
-				$scope.message = "Survey added!"
+				redirectToListing() #$scope.message = "Survey added!"
 				$scope.survey = {questions:[]}
 			), (err) -> 
 				$scope.message = "Error adding survey: " + err.data.title
 		else
 			Survey.save survey, (->
-				$scope.message = "Survey added!"
+				redirectToListing()  #$scope.message = "Survey added!"
 				$scope.survey = {questions:[]}
 			), (err) -> 
 				$scope.message = "Error adding survey: " + err.data.title
