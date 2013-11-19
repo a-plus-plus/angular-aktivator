@@ -7,10 +7,10 @@
 		<div> 
 			<p>
 				<ul ng-if="isRadio(question.kind)" ng-repeat="option in question.options">
-					<input type="radio" name="{{question.id}}" ng-click="radiobuttonSave(question.id, option.id)">{{option.value}}
+					<input type="radio" name="{{question.id}}" ng-click="radiobuttonSave(question.id, option.id)"> {{option.value}}
 				</ul>
 				<ul ng-if="isCheckbox(question.kind)" ng-repeat="option in question.options">
-					<input type="checkbox" name="{{question.id}}"  ng-click="checkboxSave(question.id, option.id)">{{option.value}}
+					<input type="checkbox" name="{{question.id}}"  ng-click="checkboxSave(question.id, option.id)"> {{option.value}}
 				</ul>
 				<ul ng-if="isTextfield(question.kind)">
 					<textarea name="{{question.id}}" ng-model = "response[question.index].value" ng-init="question.index = response.length; initTextbox(question.id)"></textarea>
