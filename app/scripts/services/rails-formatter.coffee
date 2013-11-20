@@ -2,21 +2,34 @@
 
 angular.module('angularAktivatorApp')
   .service 'RailsFormatter', () ->
-    # AngularJS will instantiate a singleton by calling "new" on this function
-    prepare = (obj) ->
-        ret = angular.copy(obj)
-        angular.forEach(ret, (value,key) ->
-        	if angular.isArray(value)
-        		delete ret[key]
-        		ret[key+'_attributes'] = prepareArray(value)
-        )
-        ret
-    prepareArray = (obj) ->
+    transformNested = (obj,keys,deep) ->
+        angular.forEach keys, (key,i) ->
+            if obj[key] and angular.isArray obj[key]
+                arr = obj[key]
+                delete obj[key]
+                obj[key+'_attributes'] = fakeArray(arr)
+        if deep and (angular.isObject obj or angular.isArray obj)
+            angular.forEach obj, (value, key) ->
+                transformNested value, keys, deep
+
+    fakeArray = (arr) ->
         ret = {}
-        angular.forEach(obj, (value,key) ->
-        	ret[key]=prepare(value)
-        )
+        angular.forEach arr, (elem, i) ->
+            ret[i]= elem
         ret
+
+    transformIds = (obj, keys) ->
+        angular.forEach keys, (key,i) ->
+            substr = key.substring(0,key.length-1)
+            if obj[key] and angular.isArray obj[key]
+                arr = obj[key]
+                delete obj[key]
+                obj[substr+'_ids'] = arr  
+        if angular.isObject obj or angular.isArray obj
+            angular.forEach obj, (value, key) ->
+                transformIds value, keys 
+
     {
-        prepare:prepare	
+        transformNested:transformNested
+        transformIds:transformIds
     }

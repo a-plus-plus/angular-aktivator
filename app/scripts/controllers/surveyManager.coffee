@@ -62,18 +62,8 @@ angular.module('angularAktivatorApp')
 		console.log(survey)
 
 	$scope.submit = (survey) ->
-		survey = angular.copy survey
-		survey.user_id = 1 # @TODO USE REAL USER ID
-		
-		delete survey.tags
-		survey = {survey:RailsFormatter.prepare(survey)}
-		survey.survey.tag_ids = []
-		$scope.tags.forEach (tag) ->
-			if (tag.selected)
-				survey.survey.tag_ids.push(tag.id)
-		console.log survey
-		if (survey.survey.id)
-			Survey.update id:survey.survey.id, survey, (->
+		if (survey.id)
+			Survey.update id:survey.id, survey, (->
 				redirectToListing() #$scope.message = "Survey added!"
 				$scope.survey = {questions:[]}
 			), (err) -> 
