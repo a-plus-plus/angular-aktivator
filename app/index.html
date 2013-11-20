@@ -22,15 +22,17 @@
       <nav ng-controller="NavigationCtrl" class="navbar">
         <div class="navbar-inner">
           <ul class="nav">
-            <li ng-repeat="link in links" ng-class="{active:isActive(link.link)}"><a ng-href="#{{link.link}}" >{{link.text}}</a></li>
-            <li><a href="#/logout" ng-click="logout()">Logout</a></li>
+            <li ng-repeat="link in links" ng-class="{active:isActive(link.link)}"><a ng-href="#{{link.link}}" >{{link.text}}</a></li>     
           </ul>
           <div ng-controller="LoginCtrl" >
+            <form name="logoutForm" class="navbar-form pull-right" data-ng-submit="logout()">
+              <input class="btn btn-warning" type="submit" value="Logout">
+            </form>            
             <form name="loginForm" class="navbar-form pull-right" data-ng-submit="login(user)">
               <input type="text" ng-model="user.name" placeholder="Username" required />
               <input type="password" ng-model="user.password" placeholder="Password" required />
               <input class="btn btn-success" type="submit" value="Login">
-            </form>
+            </form>            
           </div>
         </div>
       </nav>
