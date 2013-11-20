@@ -65,7 +65,7 @@ angular.module('angularAktivatorApp')
     # Redirects the browser to the results page
     redirectToResults = () ->
         $rootScope.responseSuccessMessage = "Your response was saved successfully!"
-        $location.path('/results')
+        $location.path('/results/' + $routeParams.id)
 
 
     # Functions for defining question kind for ng-ifs

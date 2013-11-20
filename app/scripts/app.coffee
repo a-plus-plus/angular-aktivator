@@ -19,7 +19,7 @@ angular.module('angularAktivatorApp', [
 		.when '/answer/:id', 
 			templateUrl: '/views/answer.html'
 			controller: 'AnswerCtrl'
-		.when '/results', 
+		.when '/results/:id', 
 			templateUrl: '/views/results.html'
 			controller: 'ResultsCtrl'
 		.when '/tags', 
