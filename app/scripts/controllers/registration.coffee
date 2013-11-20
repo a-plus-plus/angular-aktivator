@@ -11,7 +11,6 @@ angular.module('angularAktivatorApp')
     console.log($scope.users);
 
   $scope.errorMsg = () ->
-    alert("lolwut")
     $scope.message.length > 0
 
   $scope.submit = (user) ->
