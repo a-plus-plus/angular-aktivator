@@ -19,7 +19,7 @@ angular.module('angularAktivatorApp')
             })
         } 
         console.log(response)
-        Response.save(response, redirectToResults, (err) ->
+        Response.save(response, redirectToResults, (err) ->            
             $scope.message = "Something went wrong - your response was not saved!"
         )
 
@@ -78,7 +78,9 @@ angular.module('angularAktivatorApp')
     $scope.isTextfield = (kind) ->
         kind == "Textfield"
 
-     
+    # Returns true if scope has an error message - used by ng-if
+    $scope.errorMsg = () ->
+        $scope.message.length > 0     
             
             
   ]
