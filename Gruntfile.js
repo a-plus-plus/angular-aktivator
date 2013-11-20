@@ -111,7 +111,8 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      e2e:'.tmp/e2e'
     },
     jshint: {
       options: {
@@ -125,15 +126,16 @@ module.exports = function (grunt) {
     coffee: {
       options: {
         sourceMap: true,
-        sourceRoot: ''
+        sourceRoot: '',
+        ext:'.js'
       },
       dist: {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/scripts',
           src: '{,*/}*.coffee',
-          dest: '.tmp/scripts',
-          ext: '.js'
+          ext:'.js',
+          dest: '.tmp/scripts'
         }]
       },
       test: {
@@ -141,8 +143,18 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'test/spec',
           src: '{,*/}*.coffee',
-          dest: '.tmp/spec',
-          ext: '.js'
+          ext:'.js',
+          dest: '.tmp/spec'
+        }]
+      },
+      e2e: {
+        files:[{
+          expand:true,
+          sourceMap:false,
+          cwd: 'test/e2e',
+          src: '{,*/}*.coffee',
+          ext:'.js',
+          dest: '.tmp/e2e'
         }]
       }
     },
@@ -339,7 +351,24 @@ module.exports = function (grunt) {
           ]
         }
       }
-    }
+    },
+    protractor: {
+      options: {
+        configFile: "node_modules/protractor/referenceConf.js", // Default config file
+        keepAlive: true, // If false, the grunt process stops when the test fails.
+        args: {
+          // Arguments passed to the command
+        }
+      },
+      e2e: {
+        configFile: "protractor.conf.js", // Target-specific config file
+        options: {
+          args: {
+            
+          } // Target-specific arguments
+        }
+      },
+    },
   });
 
   grunt.registerTask('server', function (target) {
@@ -366,6 +395,12 @@ module.exports = function (grunt) {
     'notify:testsPass'
   ]);
   
+
+  grunt.registerTask('e2e', [
+    'clean:e2e',
+    'coffee:e2e',
+    'protractor:e2e'
+  ]);
 
   grunt.registerTask('travis', [
     'concurrent:test',
