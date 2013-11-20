@@ -2,30 +2,31 @@
 
 angular.module('angularAktivatorApp')
 .controller('UserCtrl', ['$scope','User', 'RailsFormatter','$location', ($scope, User, RailsFormatter, $location) ->
-	
-	$scope.users = User.query()
-	$scope.user = {}
+  
+  $scope.users = User.query()
+  $scope.user = {}
+  $scope.message = ''
 
-	$scope.info = (event) ->
-		console.log($scope.users);
-
-	$scope.submit = (user) ->
-		user = {user:user}
-		console.log(user)
-		User.save(user, redirectToLogin , (obj) ->
-			$scope.response = "Username " + obj.data.name[0] + "!"
-		)
-
-	redirectToLogin = () ->
-		alert "Kirjautuminen onnistui"
-		$location.path('/login')
+  $scope.info = (event) ->
+    console.log($scope.users);
 
   $scope.errorMsg = () ->
-    if $scope.response != null
-      true
-    else
-      alert($scope.response)
-      false
+    alert("lolwut")
+    $scope.message.length > 0
+
+  $scope.submit = (user) ->
+    user = {user:user}
+    console.log(user)
+    User.save(user, redirectToLogin , (obj) ->
+      if obj.data.email
+        $scope.message = "E-mail " + obj.data.email[0] + "!"
+      if obj.data.name
+        $scope.message = "Username " + obj.data.name[0] + "!"
+    )
+
+  redirectToLogin = () ->
+    alert "Kirjautuminen onnistui"
+    $location.path('/login')    
     
 ]
 
