@@ -19,7 +19,6 @@ angular.module('angularAktivatorApp')
 	redirectToLogin = () ->
 		alert "Kirjautuminen onnistui"
 		$location.path('/login')
-    
 ]
 
 ).directive( "passwordVerify", ->
