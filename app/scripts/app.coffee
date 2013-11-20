@@ -31,9 +31,6 @@ angular.module('angularAktivatorApp', [
 		.when '/surveys/:id',
 			templateUrl:'/views/surveyManager.html'
 			controller: 'SurveyManagerCtrl'
-		.when '/login',
-  			templateUrl: 'views/login.html',
-  			controller: 'LoginCtrl'
 		.otherwise
 			redirectTo: '/'
 ]

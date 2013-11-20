@@ -1,5 +1,5 @@
 <h3 ng-if="isNew()">New survey</h3>
-<h3 ng-if="!isNew()">Editing survey</h3>
+<h3 ng-if="!isNew()">Editing a survey</h3>
 <div>
 	<form>
 		<fieldset>
@@ -13,7 +13,7 @@
 			</select><br>
 			<h4>tags:</h4>
 			<div ng-repeat="tag in tags">
-				<input type="checkbox" ng-model="tag.selected">{{tag.title}}</input>
+				<input type="checkbox" ng-checked="isSelected(tag)" ng-click="tagSave(tag.id, tag.title)">{{tag.title}}</input>
 			</div>
 			[<span ng-repeat="tag in tags">{{tag.id}},</span>]
 			[<span ng-repeat="tag in survey.tags">{{tag.id}},</span>]

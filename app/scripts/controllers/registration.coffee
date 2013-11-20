@@ -13,12 +13,19 @@ angular.module('angularAktivatorApp')
 		user = {user:user}
 		console.log(user)
 		User.save(user, redirectToLogin , (obj) ->
-			$scope.response = obj.data
+			$scope.response = "Username " + obj.data.name[0] + "!"
 		)
 
 	redirectToLogin = () ->
 		alert "Kirjautuminen onnistui"
 		$location.path('/login')
+
+  $scope.errorMsg = () ->
+    if $scope.response != null
+      true
+    else
+      alert($scope.response)
+      false
     
 ]
 

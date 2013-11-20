@@ -13,17 +13,5 @@ angular.module('angularAktivatorApp')
 	$scope.isActive = (viewLocation) ->
 		viewLocation == $location.path()
 
-	$scope.logout = ->
-
-		success = (response) ->
-			storageService.logout()
-			$location.path('/')
-
-		error = (response) ->
-			console.log response
-			storageService.logout()
-
-		promise = webService.logout()
-		promise.then success, error
 
   ]
