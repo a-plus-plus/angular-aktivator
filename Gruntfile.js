@@ -43,7 +43,7 @@ module.exports = function (grunt) {
         tasks: ['coffee:dist']
       },
       protractorTest:{
-         files: ['test/protractor/{.*/}*.coffee'],
+         files: ['test/protractor/{,*/}*.coffee'],
          tasks: ['e2e-test']
       } ,
       coffeeTest: {
