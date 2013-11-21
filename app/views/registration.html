@@ -6,7 +6,7 @@
 <h3>Please fill in the following fields</h3>
 
 
-	<form name="registration_form" novalidate ng-submit="registrationForm()">
+	<form name="registration_form" novalidate ng-submit="registrationForm()" class ="registration_form">
 		<fieldset>
 
 			<div class="form-section">
@@ -42,14 +42,12 @@
 			<input type="password" placeholder="Password" name="password" ng-model="user.password" ng-minlength=8 ng-maxlength=20 required />
 				<div class="error"
         			ng-show="registration_form.password.$dirty && registration_form.password.$invalid">
-    				<small class="error" 
     				<small class="error"
         			ng-show="registration_form.password.$error.required">
         			Your password is required.</small>
     				<small class="error"
             		ng-show="registration_form.password.$error.minlength">
             		Your password is required to be at least 8 characters</small>
-    				<small class="error" 
     				<small class="error"
             		ng-show="registration_form.password.$error.maxlength">
             		Your password cannot be longer than 20 characters</small>
