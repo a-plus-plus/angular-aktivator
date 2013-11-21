@@ -3,7 +3,7 @@
 describe 'Service: Session', () ->
 
   # load the service's module
-  beforeEach module 'AngularaktivatorApp'
+  beforeEach module 'angularAktivatorApp'
 
   # instantiate service
   Session = {}

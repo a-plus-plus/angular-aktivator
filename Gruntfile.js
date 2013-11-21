@@ -34,7 +34,7 @@ module.exports = function (grunt) {
           configFile:'protractor.conf.js',
           options: {
             args: {}
-          } 
+          }
        }
     },
     watch: {
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
       protractorTest:{
          files: ['test/protractor/{.*/}*.coffee'],
          tasks: ['e2e-test']
-      } ,  
+      } ,
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
@@ -336,8 +336,7 @@ module.exports = function (grunt) {
       travis: {
         browsers:['Firefox']
       },
-      e2e: {
-        configFile: 'karma-e2e.conf.js',
+      watch:{
         singleRun:false
       }
     },
@@ -390,7 +389,7 @@ module.exports = function (grunt) {
     'karma:e2e',
     'notify:testsPass'
   ]);
-  
+
 
   grunt.registerTask('e2e-test', [
     'clean:protractor',

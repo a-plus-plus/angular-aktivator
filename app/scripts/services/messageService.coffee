@@ -6,7 +6,7 @@ angular.module('angularAktivatorApp')
   	responseMsg = ""
 
   	getResponseMsg = () ->
-  		responseMsg 
+  		responseMsg
 
   	setResponseMsg = (msg) ->
   		responseMsg = msg

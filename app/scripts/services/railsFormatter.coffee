@@ -24,10 +24,10 @@ angular.module('angularAktivatorApp')
             if obj[key] and angular.isArray obj[key]
                 arr = obj[key]
                 delete obj[key]
-                obj[substr+'_ids'] = arr  
+                obj[substr+'_ids'] = arr
         if angular.isObject obj or angular.isArray obj
             angular.forEach obj, (value, key) ->
-                transformIds value, keys 
+                transformIds value, keys
 
     {
         transformNested:transformNested

@@ -2,7 +2,7 @@
 
 angular.module('angularAktivatorApp')
 .controller('UserCtrl', ['$scope','User', 'RailsFormatter','$location', ($scope, User, RailsFormatter, $location) ->
-  
+
   $scope.users = User.query()
   $scope.user = {}
   $scope.message = ''
@@ -25,7 +25,7 @@ angular.module('angularAktivatorApp')
 
   redirectToLogin = () ->
     alert "Kirjautuminen onnistui"
-    $location.path('/login')        
+    $location.path('/login')
 ]
 
 ).directive( "passwordVerify", ->
@@ -33,7 +33,7 @@ angular.module('angularAktivatorApp')
   scope:
     passwordVerify: "="
 
-  link: (scope, element, attrs, UserCtrl) ->
+  link: (scope, element, attrs, UserCtrl) -> #@TODO remove strict dependency to UserCtrl, directive shouldn't be dependant on any specific controller
     scope.$watch (->
       combined = undefined
       combined = scope.passwordVerify + "_" + UserCtrl.$viewValue  if scope.passwordVerify or UserCtrl.$viewValue

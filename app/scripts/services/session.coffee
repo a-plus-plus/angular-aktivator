@@ -19,7 +19,7 @@ angular.module('angularAktivatorApp')
         okCallb()
 
       error = (response) ->
-        console.log(response)
+        #console.log(response)
         errCallb()
 
 
@@ -43,7 +43,7 @@ angular.module('angularAktivatorApp')
       console.log "logging out"
 
     @isLogged = () ->
-        console.log "is logged in"
+        #console.log "is logged in"
         logged
     this
 ]
