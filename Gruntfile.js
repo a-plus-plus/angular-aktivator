@@ -24,11 +24,30 @@ module.exports = function (grunt) {
         }
       }
     },
+    protractor:{
+       options:{
+           configFile: 'protractor.conf.js',//default config file
+           keepAlive: true,
+           args: {
+
+           }
+       },
+       test:{ //tests are configured in conf.file
+          configFile:'protractor.conf.js',
+          options: {
+            args: {}
+          } 
+       }
+    },
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
         tasks: ['coffee:dist']
       },
+      protractorTest:{
+         files: ['test/protractor/{.*/}*.js'],
+         tasks: ['test-protractor']
+      } ,  
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
@@ -341,6 +360,9 @@ module.exports = function (grunt) {
       }
     }
   });
+  grunt.registerTask('test-protractor',[
+     'protractor:test'
+ ]);
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
