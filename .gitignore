@@ -6,4 +6,4 @@ app/bower_components
 *.orig
 *~
 *.DS_Store
-selenium
+selenium/
