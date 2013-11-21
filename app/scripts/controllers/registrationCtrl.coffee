@@ -24,7 +24,7 @@ angular.module('angularAktivatorApp')
     )
 
   redirectToLogin = () ->
-    alert "Kirjautuminen onnistui"
+    console.log "Kirjautuminen onnistui"
     $location.path('/login')
 ]
 
