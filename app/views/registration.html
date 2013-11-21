@@ -31,10 +31,10 @@
                     ng-show="registration_form.email.$dirty && registration_form.email.$invalid">
                     <small class="error" 
                     ng-show="registration_form.email.$error.required">
-                    Your email is required.</small>
+                    Your e-mail is required.</small>
                     <small class="error" 
                     ng-show="registration_form.email.$error.email">
-                    Not valid email!</small>
+                    Not a valid e-mail address!</small>
                     </div>
             </div>
 			
@@ -65,15 +65,15 @@
 			</div> 
 			
 			<button ng-click="submit(user)" ng-disabled="registration_form.$invalid || isUnchanged(user)">Register</button>
-			{{user}}
-
-            
-                <div ng-if="errorMsg()" class="login succeess">
-                    {{message}}
-                </div>
-            
+			{{user}}           
 					
 		</fieldset>
+        <br>
+        <div ng-if="errorMsg()" class="alert alert-error">                    
+            {{message}}
+        </div>
 	</form>
-	{{response}}
+
+
+
 

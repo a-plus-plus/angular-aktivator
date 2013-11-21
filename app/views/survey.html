@@ -3,7 +3,8 @@
 <div ng-repeat="survey in surveys" ng-init="survey.expand = false">
 	<h3>Survey {{$index+1}}: <a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a>, Status: {{survey.status}} 
 		<button type="button" ng-click="survey.expand=!survey.expand" class="btn"><i class="icon-plus-sign" /></button>
-		<a ng-href="#/surveys/{{survey.id}}">edit</a>
+		<a ng-href="#/surveys/{{survey.id}}"><button><i class="icon-edit"></i> edit</button></a>
+		<a ng-href="#/results/{{survey.id}}"><button><i class="icon-align-left"></i> Results</button></a>
 	</h3>
 	<ul>
 		<div ng-repeat="question in survey.questions" ng-init="index=$index+1" ng-hide="survey.expand">

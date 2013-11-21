@@ -34,7 +34,6 @@ exports.config = {
   // connect to an already running instance of selenium. This usually looks like
   // seleniumAddress: 'http://localhost:4444/wd/hub'
   seleniumAddress: null,
-
   // The timeout for each script run on the browser. This should be longer
   // than the maximum time your application needs to stabilize between tasks.
   allScriptsTimeout: 11000,
@@ -43,7 +42,8 @@ exports.config = {
   //
   // Spec patterns are relative to the location of this config.
   specs: [
-    '.tmp/e2e/*_spec.js',
+    //'spec/*_spec.js',
+    'test/protractor/*Test.js'
   ],
 
   // ----- Capabilities to be passed to the webdriver instance ----
@@ -60,8 +60,8 @@ exports.config = {
   //
   // A base URL for your application under test. Calls to protractor.get()
   // with relative paths will be prepended with this.
-  baseUrl: 'http://localhost:8000',
-
+  //baseUrl: 'http://localhost:8000',
+  baseUrl: 'http://localhost:9000',
   // Selector for the element housing the angular app - this defaults to
   // body, but is necessary if ng-app is on a descendant of <body>  
   rootElement: 'body',
@@ -83,10 +83,10 @@ exports.config = {
   // This can be changed via the command line as:
   //   --params.login.user 'Joe'
   params: {
-    login: {
-      user: 'Jane',
-      password: '1234'
-    }
+    // login: {
+    //   user: 'Jane',
+    //   password: '1234'
+    // }
   },
   
   // ----- Options to be passed to minijasminenode -----

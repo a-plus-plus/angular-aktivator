@@ -19,7 +19,7 @@ angular.module('angularAktivatorApp', [
 		.when '/answer/:id', 
 			templateUrl: '/views/answer.html'
 			controller: 'AnswerCtrl'
-		.when '/results', 
+		.when '/results/:id', 
 			templateUrl: '/views/results.html'
 			controller: 'ResultsCtrl'
 		.when '/tags', 
@@ -31,9 +31,6 @@ angular.module('angularAktivatorApp', [
 		.when '/surveys/:id',
 			templateUrl:'/views/surveyManager.html'
 			controller: 'SurveyManagerCtrl'
-		.when '/login',
-  			templateUrl: 'views/login.html',
-  			controller: 'LoginCtrl'
 		.otherwise
 			redirectTo: '/'
 ]
