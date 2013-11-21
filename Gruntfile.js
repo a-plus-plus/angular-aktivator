@@ -26,7 +26,7 @@ module.exports = function (grunt) {
     },
     protractor:{
        options:{
-           configFile: 'node_modules/protractor/referenceConf.js',//default config file
+           configFile: 'node_modules/protractor/referenceConf.js', //default config file
            keepAlive: true,
            args: {}
        },
@@ -43,16 +43,12 @@ module.exports = function (grunt) {
         tasks: ['coffee:dist']
       },
       protractorTest:{
-         files: ['test/protractor/{.*/}*.js'],
-         tasks: ['test-protractor']
+         files: ['test/protractor/{.*/}*.coffee'],
+         tasks: ['e2e-test']
       } ,  
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
-      },
-      e2eTest:{
-        files: ['test/e2e/{,*/}*.coffee'],
-        tasks: ['connect:test']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -129,7 +125,7 @@ module.exports = function (grunt) {
         }]
       },
       server: '.tmp',
-      e2e:'.tmp/e2e'
+      protractor:'.tmp/protractor'
     },
     jshint: {
       options: {
@@ -164,14 +160,14 @@ module.exports = function (grunt) {
           dest: '.tmp/spec'
         }]
       },
-      e2e: {
+      protractor: {
         files:[{
           expand:true,
           sourceMap:false,
-          cwd: 'test/e2e',
+          cwd: 'test/protractor',
           src: '{,*/}*.coffee',
           ext:'.js',
-          dest: '.tmp/e2e'
+          dest: '.tmp/protractor'
         }]
       }
     },
@@ -370,9 +366,6 @@ module.exports = function (grunt) {
       }
     }
   });
-  grunt.registerTask('test-protractor',[
-     'protractor:test'
- ]);
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
@@ -399,10 +392,10 @@ module.exports = function (grunt) {
   ]);
   
 
-  grunt.registerTask('e2e', [
-    'clean:e2e',
-    'coffee:e2e',
-    'protractor:e2e'
+  grunt.registerTask('e2e-test', [
+    'clean:protractor',
+    'coffee:protractor',
+    'protractor:test'
   ]);
 
   grunt.registerTask('travis', [

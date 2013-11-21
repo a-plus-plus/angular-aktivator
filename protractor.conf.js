@@ -36,14 +36,14 @@ exports.config = {
   seleniumAddress: null,
   // The timeout for each script run on the browser. This should be longer
   // than the maximum time your application needs to stabilize between tasks.
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 5000,
 
   // ----- What tests to run -----
   //
   // Spec patterns are relative to the location of this config.
   specs: [
     //'spec/*_spec.js',
-    'test/protractor/*Test.js'
+    '.tmp/protractor/*Test.js'
   ],
 
   // ----- Capabilities to be passed to the webdriver instance ----
