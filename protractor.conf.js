@@ -43,7 +43,7 @@ exports.config = {
   // Spec patterns are relative to the location of this config.
   specs: [
     //'spec/*_spec.js',
-    '.tmp/protractor/*Test.js'
+    '.tmp/protractor/*.js'
   ],
 
   // ----- Capabilities to be passed to the webdriver instance ----
