@@ -24,11 +24,28 @@ module.exports = function (grunt) {
         }
       }
     },
+    protractor:{
+       options:{
+           configFile: 'node_modules/protractor/referenceConf.js',//default config file
+           keepAlive: true,
+           args: {}
+       },
+       test:{ //tests are configured in conf.file
+          configFile:'protractor.conf.js',
+          options: {
+            args: {}
+          } 
+       }
+    },
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
         tasks: ['coffee:dist']
       },
+      protractorTest:{
+         files: ['test/protractor/{.*/}*.js'],
+         tasks: ['test-protractor']
+      } ,  
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
@@ -351,25 +368,11 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
-    protractor: {
-      options: {
-        configFile: "node_modules/protractor/referenceConf.js", // Default config file
-        keepAlive: true, // If false, the grunt process stops when the test fails.
-        args: {
-          // Arguments passed to the command
-        }
-      },
-      e2e: {
-        configFile: "protractor.conf.js", // Target-specific config file
-        options: {
-          args: {
-            
-          } // Target-specific arguments
-        }
-      },
-    },
+    }
   });
+  grunt.registerTask('test-protractor',[
+     'protractor:test'
+ ]);
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {

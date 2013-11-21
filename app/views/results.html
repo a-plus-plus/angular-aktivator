@@ -1,16 +1,10 @@
-<p>This is the results view.</p>
-
 <div ng-if="giveRootMsgToScope()" class="alert alert-success">
 	{{message}}
 </div>
 
 <ul ng-repeat = "question in result.questions">
-	
-		
-			<li>{{question.title}}</li>
-			
-			<ul ng-repeat = "option in question.options">
-				<li>{{option.value}}</li> 
-			</ul>	
-				
+	<li><h3>{{question.title}}</h3></li>
+		<ul ng-repeat = "option in question.options">
+			<li><h4>{{option.value}}</h4><h5>- {{option.count}}</h5></li>
+		</ul>
 </ul>
