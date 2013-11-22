@@ -24,7 +24,7 @@ angular.module('angularAktivatorApp')
     )
 
   redirectToLogin = () ->
-    console.log "Kirjautuminen onnistui"
+    console.log "Rekisteröinti onnistui"
     $location.path('/login')
 ])
 
@@ -33,50 +33,42 @@ angular.module('angularAktivatorApp')
   scope:
     passwordVerify: "="
 
-  link: (scope, element, attrs, UserCtrl) -> #@TODO remove strict dependency to UserCtrl, directive shouldn't be dependant on any specific controller
+  link: (scope, element, attrs, ngController) ->
     scope.$watch (->
       combined = undefined
-      combined = scope.passwordVerify + "_" + UserCtrl.$viewValue  if scope.passwordVerify or UserCtrl.$viewValue
+      combined = scope.passwordVerify + "_" + ngController.$viewValue  if scope.passwordVerify or ngController.$viewValue
       combined
     ), (value) ->
       if value
-        UserCtrl.$parsers.unshift (viewValue) ->
+        ngController.$parsers.unshift (viewValue) ->
           origin = scope.passwordVerify
           if origin isnt viewValue
-            UserCtrl.$setValidity "passwordVerify", false
+            ngController.$setValidity "passwordVerify", false
             `undefined`
           else
-            UserCtrl.$setValidity "passwordVerify", true
+            ngController.$setValidity "passwordVerify", true
             viewValue
  )
-
-
-
 
 
 .directive( "usernameVerify", ->
   require: "ngModel"
-  scope:
-    usernameVerify: "="
-    users: "@users"
-
-  link: (scope, element, attrs, UserCtrl) ->
+  scope: true
+  link: (scope, element, attrs, ngController) ->
     scope.$watch (->
-      combined = undefined
-      combined = scope.usernameVerify + "_" + UserCtrl.$viewValue  if scope.usernameVerify or UserCtrl.$viewValue
-      combined
+      ngController.$viewValue
     ), (value) ->
       if value
-        UserCtrl.$parsers.unshift (viewValue) ->
-          origin = scope.users
-          console.log origin
-          if true
-            UserCtrl.$setValidity "usernameVerify", false
-            `undefined`
-          else
-            UserCtrl.$setValidity "usernameVerify", true
-            viewValue
+        ngController.$parsers.unshift (viewValue) ->
+          valid = true
+          scope.users.forEach (elem) ->
+            if elem.name == viewValue
+              valid = false
+          ngController.$setValidity 'usernameVerify', valid
+          viewValue
  )
+
+
 
 
 

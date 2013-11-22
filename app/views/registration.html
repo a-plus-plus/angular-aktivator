@@ -10,21 +10,20 @@
         <fieldset>
 
             <div class="form-section">
-                <input type="text" placeholder="Name" name="name" ng-model="user.name" ng-minlength=3 ng-maxlength=20 required ensure-unique="name" data-username-verify="user.name"/>
-                    <div class="error"
-                    ng-show="registration_form.name.$dirty && registration_form.name.$invalid">
-                    <small class="error"
-                    ng-show="registration_form.name.$error.required">
-                    Your name is required.</small>
-                    <small class="error"
-                    ng-show="registration_form.name.$error.minlength">
-                    Your name is required to be at least 3 characters</small>
-                    <small class="error"
-                    ng-show="registration_form.name.$error.maxlength">
-                    Your name cannot be longer than 20 characters</small>
-                    <small class="error" 
-                    ng-show="registration_form.name.$error.usernameVerify">
-                    Username is not availabe!</small>
+                <input type="text" placeholder="Name" name="name" ng-model="user.name" data-username-verify="user.name" ng-minlength=3 ng-maxlength=20 ensure-unique="name" required />
+                    <div class="error" ng-show="registration_form.name.$dirty && registration_form.name.$invalid">
+                        <small class="error" ng-show="registration_form.name.$error.required">
+                            Your name is required.
+                        </small>
+                        <small class="error" ng-show="registration_form.name.$error.minlength">
+                            Your name is required to be at least 3 characters
+                        </small>
+                        <small class="error" ng-show="registration_form.name.$error.maxlength">
+                            Your name cannot be longer than 20 characters
+                        </small>
+                        <small class="error" ng-show="registration_form.name.$error.usernameVerify">
+                            Username has already been taken
+                        </small>
                     </div>
             </div>
 
@@ -76,6 +75,8 @@
             {{message}}
         </div>
     </form>
+
+    {{users}}
 
 
 
