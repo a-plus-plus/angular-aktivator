@@ -27,7 +27,7 @@
 
           <div ng-controller="LoginCtrl" >
             <form  ng-show = "isLogged()" name="logoutForm" class="navbar-form pull-right" data-ng-submit="logout()">
-              <input  class="btn btn-warning" type="submit" value="Logout" id='logout'>
+              Logged in as: {{username}} <input  class="btn btn-warning" type="submit" value="Logout" id='logout'>
             </form>
             <form ng-hide = "isLogged()" name="loginForm" class="navbar-form pull-right" data-ng-submit="login(user)">
               <input type="text" ng-model="user.name" placeholder="Username" required />
