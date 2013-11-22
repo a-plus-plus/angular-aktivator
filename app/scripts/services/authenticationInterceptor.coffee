@@ -5,8 +5,14 @@ angular.module('angularAktivatorApp')
     {
       request: (config)->
         #console.log 'requestInterceptorconfig: ', config
-        config.headers['name'] = storageService.get('name')
-        config.headers['token'] = storageService.get('token')
+        name = storageService.get('name')
+        token = storageService.get('token')
+
+        if name and token
+        	config.headers['name'] = name
+       		config.headers['token'] = token
+
+
         config
     }
 ]
