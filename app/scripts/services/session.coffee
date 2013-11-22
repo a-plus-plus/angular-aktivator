@@ -9,8 +9,9 @@ angular.module('angularAktivatorApp')
       success = (response) ->
         name = response.data.name
         token = response.data.token
-        console.log 'SUCCESS great success!'
-        storageService.saveCredentials(name, token)
+        username = response.data.username
+        console.log 'SUCCESS great success! username:' + username
+        storageService.saveCredentials(name, token, username)
         okCallb()
 
       error = (response) ->
@@ -39,6 +40,7 @@ angular.module('angularAktivatorApp')
     @isLogged = () ->
         name = storageService.get('name')
         token = storageService.get('token')
+        username = storageService.get('username')
         token and name
     this
 ]
