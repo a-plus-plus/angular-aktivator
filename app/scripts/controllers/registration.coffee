@@ -27,9 +27,37 @@ angular.module('angularAktivatorApp')
     alert "Kirjautuminen onnistui"
     $location.path('/login')    
     
-]
+])
 
-).directive( "passwordVerify", ->
+
+
+.directive( "usernameVerify", ->
+  require: "ngModel"
+  scope:
+    usernameVerify: "="
+    users: "@users"
+
+  link: (scope, element, attrs, UserCtrl) ->
+    scope.$watch (->
+      combined = undefined
+      combined = scope.usernameVerify + "_" + UserCtrl.$viewValue  if scope.usernameVerify or UserCtrl.$viewValue
+      combined
+    ), (value) ->
+      if value
+        UserCtrl.$parsers.unshift (viewValue) ->
+          origin = scope.users
+          console.log origin
+          if true
+            UserCtrl.$setValidity "usernameVerify", false
+            `undefined`
+          else
+            UserCtrl.$setValidity "usernameVerify", true
+            viewValue
+ )
+
+
+
+.directive( "passwordVerify", ->
   require: "ngModel"
   scope:
     passwordVerify: "="
@@ -43,6 +71,7 @@ angular.module('angularAktivatorApp')
       if value
         UserCtrl.$parsers.unshift (viewValue) ->
           origin = scope.passwordVerify
+          #console.log viewValue
           if origin isnt viewValue
             UserCtrl.$setValidity "passwordVerify", false
             `undefined`
@@ -50,6 +79,25 @@ angular.module('angularAktivatorApp')
             UserCtrl.$setValidity "passwordVerify", true
             viewValue
  )
+
+
+
+# .directive "passwordVerify", ["$http", ($http) ->
+#   require: "ngModel"
+#   link: (scope, ele, attrs, c) ->
+#     scope.$watch attrs.ngModel, ->
+#       $http(
+#         method: "POST"
+#         url: "/api/check/" + attrs.passwordVerify
+#         data:
+#           field: attrs.passwordVerify
+#       ).success((data, status, headers, cfg) ->
+#         c.$setValidity "unique", data.isUnique
+#       ).error (data, status, headers, cfg) ->
+#         c.$setValidity "unique", false
+
+
+# ]
 
 
 

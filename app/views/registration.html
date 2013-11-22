@@ -10,7 +10,7 @@
 		<fieldset>
 			
 			<div class="form-section">
-				<input type="text" placeholder="Name" name="name" ng-model="user.name" ng-minlength=3 ng-maxlength=20 required ensure-unique="name"/>
+				<input type="text" placeholder="Name" name="name" ng-model="user.name" ng-minlength=3 ng-maxlength=20 data-username-verify="user.name" required/>
 					<div class="error" 
         			ng-show="registration_form.name.$dirty && registration_form.name.$invalid">
     				<small class="error" 
@@ -22,6 +22,9 @@
     				<small class="error" 
             		ng-show="registration_form.name.$error.maxlength">
             		Your name cannot be longer than 20 characters</small>
+                    <small class="error" 
+                    ng-show="registration_form.name.$error.usernameVerify">
+                    Username is not availabe!</small>
   					</div>
 			</div>
 
