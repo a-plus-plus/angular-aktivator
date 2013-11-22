@@ -22,17 +22,18 @@
       <nav ng-controller="NavigationCtrl" class="navbar">
         <div class="navbar-inner">
           <ul class="nav">
-            <li ng-repeat="link in links" ng-class="{active:isActive(link.link)}"><a ng-href="#{{link.link}}" >{{link.text}}</a></li>     
+            <li ng-repeat="link in links" ng-class="{active:isActive(link.link)}"><a ng-href="#{{link.link}}" >{{link.text}}</a></li>
           </ul>
+
           <div ng-controller="LoginCtrl" >
-            <form name="logoutForm" class="navbar-form pull-right" data-ng-submit="logout()">
-              <input class="btn btn-warning" type="submit" value="Logout">
-            </form>            
-            <form name="loginForm" class="navbar-form pull-right" data-ng-submit="login(user)">
+            <form  ng-show = "isLogged()" name="logoutForm" class="navbar-form pull-right" data-ng-submit="logout()">
+              <input  class="btn btn-warning" type="submit" value="Logout" id='logout'>
+            </form>
+            <form ng-hide = "isLogged()" name="loginForm" class="navbar-form pull-right" data-ng-submit="login(user)">
               <input type="text" ng-model="user.name" placeholder="Username" required />
               <input type="password" ng-model="user.password" placeholder="Password" required />
-              <input class="btn btn-success" type="submit" value="Login">
-            </form>            
+              <input class="btn btn-success" type="submit" value="Login" id="login">
+            </form>
           </div>
         </div>
       </nav>
@@ -83,25 +84,36 @@
 
      <!-- build:js({.tmp,app}) scripts/scripts.js -->
      <script src="scripts/app.js"></script>
-     <script src="scripts/controllers/main.js"></script>
-     <script src="scripts/controllers/survey.js"></script>
-     <script src="scripts/services/Survey.js"></script>
-     <script src="scripts/controllers/navigation.js"></script>
-     <script src="scripts/controllers/answer.js"></script>
-     <script src="scripts/services/Response.js"></script>
-     <script src="scripts/services/rails-formatter.js"></script>
-     <script src="scripts/controllers/results.js"></script>
-     <script src="scripts/services/Results.js"></script>     
-     <script src="scripts/controllers/registration.js"></script>
-     <script src="scripts/services/Registration.js"></script>
-     <script src="scripts/services/Tag.js"></script>
-     <script src="scripts/controllers/tag.js"></script>
-     <script src="scripts/controllers/surveyManager.js"></script>
-     <script src="scripts/services/Tagging.js"></script>
-     <script src="scripts/controllers/login.js"></script>
-     <script src="scripts/services/webService.js"></script>
+
+     <!-- Controllers -->
+     <script src="scripts/controllers/mainCtrl.js"></script>
+     <script src="scripts/controllers/surveyCtrl.js"></script>
+     <script src="scripts/controllers/navigationCtrl.js"></script>
+     <script src="scripts/controllers/answerCtrl.js"></script>
+     <script src="scripts/controllers/resultsCtrl.js"></script>
+     <script src="scripts/controllers/registrationCtrl.js"></script>
+     <script src="scripts/controllers/tagCtrl.js"></script>
+     <script src="scripts/controllers/surveyManagerCtrl.js"></script>
+     <script src="scripts/controllers/loginCtrl.js"></script>
+
+     <!-- Services -->
+     <script src="scripts/services/railsFormatter.js"></script>
+     <script src="scripts/services/authenticationService.js"></script>
      <script src="scripts/services/storageService.js"></script>
-     <script src="scripts/services/MsgService.js"></script>
+     <script src="scripts/services/messageService.js"></script>
+     <script src="scripts/services/session.js"></script>
+     <script src="scripts/services/authenticationInterceptor.js"></script>
+
+     <!-- Resources -->
+     <script src="scripts/resources/Tag.js"></script>
+     <script src="scripts/resources/Survey.js"></script>
+     <script src="scripts/resources/Response.js"></script>
+     <script src="scripts/resources/Results.js"></script>
+     <script src="scripts/resources/Registration.js"></script>
+
+
+
+
      <!-- endbuild -->
    </body>
    </html>

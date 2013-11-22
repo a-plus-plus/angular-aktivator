@@ -34,18 +34,16 @@ exports.config = {
   // connect to an already running instance of selenium. This usually looks like
   // seleniumAddress: 'http://localhost:4444/wd/hub'
   seleniumAddress: null,
-   
   // The timeout for each script run on the browser. This should be longer
   // than the maximum time your application needs to stabilize between tasks.
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 5000,
 
   // ----- What tests to run -----
   //
   // Spec patterns are relative to the location of this config.
   specs: [
     //'spec/*_spec.js',
-    'test/protractor/*Test.js',
-    
+    '.tmp/protractor/*.js'
   ],
 
   // ----- Capabilities to be passed to the webdriver instance ----
@@ -85,10 +83,10 @@ exports.config = {
   // This can be changed via the command line as:
   //   --params.login.user 'Joe'
   params: {
-    login: {
-      user: 'Jane',
-      password: '1234'
-    }
+    // login: {
+    //   user: 'Jane',
+    //   password: '1234'
+    // }
   },
   
   // ----- Options to be passed to minijasminenode -----

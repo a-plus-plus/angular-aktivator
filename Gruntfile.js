@@ -26,17 +26,15 @@ module.exports = function (grunt) {
     },
     protractor:{
        options:{
-           configFile: 'protractor.conf.js',//default config file
+           configFile: 'node_modules/protractor/referenceConf.js', //default config file
            keepAlive: true,
-           args: {
-
-           }
+           args: {}
        },
        test:{ //tests are configured in conf.file
           configFile:'protractor.conf.js',
           options: {
             args: {}
-          } 
+          }
        }
     },
     watch: {
@@ -45,16 +43,12 @@ module.exports = function (grunt) {
         tasks: ['coffee:dist']
       },
       protractorTest:{
-         files: ['test/protractor/{.*/}*.js'],
-         tasks: ['test-protractor']
-      } ,  
+         files: ['test/protractor/{,*/}*.coffee'],
+         tasks: ['e2e-test']
+      } ,
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
-      },
-      e2eTest:{
-        files: ['test/e2e/{,*/}*.coffee'],
-        tasks: ['connect:test']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -130,7 +124,8 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      protractor:'.tmp/protractor'
     },
     jshint: {
       options: {
@@ -144,15 +139,16 @@ module.exports = function (grunt) {
     coffee: {
       options: {
         sourceMap: true,
-        sourceRoot: ''
+        sourceRoot: '',
+        ext:'.js'
       },
       dist: {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/scripts',
           src: '{,*/}*.coffee',
-          dest: '.tmp/scripts',
-          ext: '.js'
+          ext:'.js',
+          dest: '.tmp/scripts'
         }]
       },
       test: {
@@ -160,8 +156,18 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'test/spec',
           src: '{,*/}*.coffee',
-          dest: '.tmp/spec',
-          ext: '.js'
+          ext:'.js',
+          dest: '.tmp/spec'
+        }]
+      },
+      protractor: {
+        files:[{
+          expand:true,
+          sourceMap:false,
+          cwd: 'test/protractor',
+          src: '{,*/}*.coffee',
+          ext:'.js',
+          dest: '.tmp/protractor'
         }]
       }
     },
@@ -330,8 +336,7 @@ module.exports = function (grunt) {
       travis: {
         browsers:['Firefox']
       },
-      e2e: {
-        configFile: 'karma-e2e.conf.js',
+      watch:{
         singleRun:false
       }
     },
@@ -360,9 +365,6 @@ module.exports = function (grunt) {
       }
     }
   });
-  grunt.registerTask('test-protractor',[
-     'protractor:test'
- ]);
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
@@ -387,7 +389,13 @@ module.exports = function (grunt) {
     'karma:e2e',
     'notify:testsPass'
   ]);
-  
+
+
+  grunt.registerTask('e2e-test', [
+    'clean:protractor',
+    'coffee:protractor',
+    'protractor:test'
+  ]);
 
   grunt.registerTask('travis', [
     'concurrent:test',
