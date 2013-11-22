@@ -4,18 +4,14 @@ angular.module('angularAktivatorApp')
   .service 'Session',['storageService', 'webService', '$http', '$rootScope','$timeout', (storageService, webService, $http, $rootScope,$timeout) ->
     # AngularJS will instantiate a singleton by calling "new" on this function
 
-    logged = false
-
-
-
     @login = (user, okCallb, errCallb) ->
 
       success = (response) ->
-        logged = true
         name = response.data.name
         token = response.data.token
-        console.log 'SUCCESS great success!'
-        storageService.saveCredentials(name, token)
+        username = response.data.username
+        console.log 'SUCCESS great success! username:' + username
+        storageService.saveCredentials(name, token, username)
         okCallb()
 
       error = (response) ->
@@ -28,7 +24,6 @@ angular.module('angularAktivatorApp')
       console.log "logging in"
 
     @logout = () ->
-      logged = false
       success = (response) ->
         storageService.logout()
         #$location.path('/')
@@ -43,7 +38,9 @@ angular.module('angularAktivatorApp')
       console.log "logging out"
 
     @isLogged = () ->
-        #console.log "is logged in"
-        logged
+        name = storageService.get('name')
+        token = storageService.get('token')
+        username = storageService.get('username')
+        token and name
     this
 ]

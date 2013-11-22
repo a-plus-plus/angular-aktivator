@@ -2,9 +2,10 @@
 
 class StorageService
 
-  saveCredentials: (name, token) ->
+  saveCredentials: (name, token, username) ->
     @store("name",name)
     @store("token",token)
+    @store("username",username)
 
   store: (key, value) ->
     localStorage.setItem(key, value)
@@ -18,6 +19,7 @@ class StorageService
   logout: ->
     @deleteItem("name")
     @deleteItem("token")
+    @deleteItem("username")
 
 angular.module "angularAktivatorApp.storageService", [], ($provide) ->
   $provide.factory "storageService", -> new StorageService()
