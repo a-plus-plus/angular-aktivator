@@ -24,17 +24,19 @@
           <ul class="nav">
             <li ng-repeat="link in links" ng-class="{active:isActive(link.link)}"><a ng-href="#{{link.link}}" >{{link.text}}</a></li>
           </ul>
+          <div ng-controller="LoginCtrl">
 
-          <div ng-controller="LoginCtrl" >
             <form  ng-show = "isLogged()" name="logoutForm" class="navbar-form pull-right" data-ng-submit="logout()">
-              Logged in as: {{username}} <input  class="btn btn-warning" type="submit" value="Logout" id='logout'>
+              <input  class="btn btn-warning" type="submit" value="Logout" id='logout'>
             </form>
+            <p class="navbar-text pull-right" ng-show="isLogged()" style="padding-right:15px">Logged in as: {{username}}</p>
             <form ng-hide = "isLogged()" name="loginForm" class="navbar-form pull-right" data-ng-submit="login(user)">
               <input type="text" ng-model="user.name" placeholder="Username" required />
               <input type="password" ng-model="user.password" placeholder="Password" required />
               <input class="btn btn-success" type="submit" value="Login" id="login">
             </form>
           </div>
+
         </div>
       </nav>
     <!--[if lt IE 9]>
@@ -114,6 +116,7 @@
 
 
 
+     <script src="scripts/directives/passwordConfirmation.js"></script>
      <!-- endbuild -->
    </body>
    </html>
