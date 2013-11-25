@@ -124,8 +124,7 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp',
-      protractor:'.tmp/protractor'
+      server: '.tmp'
     },
     jshint: {
       options: {
@@ -392,7 +391,6 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('e2e-test', [
-    'clean:protractor',
     'coffee:protractor',
     'protractor:test'
   ]);

@@ -1,5 +1,6 @@
 'use strict'
 By = protractor.By
+
 describe 'Logging in', ->
 	describe 'Initially at the main page', ->
 		name = undefined
@@ -40,10 +41,10 @@ describe 'Logging in', ->
 			browser.get('#')
 			element(By.linkText('Registration')).click()
 			#name = element(By.model('user.name'))
-			name = 					$('.registration_form input[ng-model=user\\.name')
-			password = 				$('.registration_form input[ng-model=user\\.password')
-			password_confirmation = $('.registration_form input[ng-model=user\\.password_confirmation')
-			email = 				$('.registration_form input[ng-model=user\\.email')
+			name = 					$('.registration_form input[ng-model="user.name"]')
+			password = 				$('.registration_form input[ng-model="user.password"]')
+			password_confirmation = $('.registration_form input[ng-model="user.password_confirmation"]')
+			email = 				$('.registration_form input[ng-model="user.email"]')
 			submit = 				$('.registration_form button')
 
 
@@ -53,17 +54,25 @@ describe 'Logging in', ->
 			expect(password_confirmation.isDisplayed()).toBe(true)
 			expect(email.isDisplayed()).toBe(true) 
 
-		it 'can be saved to db', ->
+		it 'user can be registered', ->
 			name.sendKeys('matti')
 			email.sendKeys('matti@domain.com')
 			password.sendKeys('matinp455w0rd')
 			password_confirmation.sendKeys('matinp455w0rd')
-			submit.click()
+			ptor.sleep(500)
+			expect(submit.isEnabled()).toBe(false) #TODO expect success message
 
-		# it 'cannot be given a username that already exists', ->
-		# 	name.sendKeys('matti')
-		# 	errField = $('.registration_form small[ng-show=registration_form\\.name\\.$error\\.usernameVerify')
-		# 	expect(errField.isDisplayed()).toBe(true)
+		it 'cannot be given a username that already exists', ->
+			name.sendKeys('matti')
+			errField = $('.registration_form small[ng-show="registration_form.name.$error.usernameVerify"]')
+			expect(errField.getText()).toEqual('Username has already been taken.')
+
+		it 'username cannot be left blank', ->
+			email.sendKeys("ismo@omg.lol")
+			password.sendKeys('t0P53cr3T')
+			password_confirmation.sendKeys('t0P53cr3T')
+			expect(submit.isEnabled()).toBe(false)
+
 
 
 
