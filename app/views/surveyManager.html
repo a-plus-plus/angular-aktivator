@@ -13,7 +13,7 @@
 			</select><br>
 			<h4>tags:</h4>
 			<div ng-repeat="tag in tags">
-				<input type="checkbox" ng-checked="isSelected(tag)" ng-click="tagSave(tag.id, tag.title)">{{tag.title}}</input>
+				<input type="checkbox" ng-checked="isSelected(tag)" ng-click="tagSave(tag)">{{tag.title}}</input>
 			</div>
 			[<span ng-repeat="tag in tags">{{tag.id}},</span>]
 			[<span ng-repeat="tag in survey.tags">{{tag.id}},</span>]
