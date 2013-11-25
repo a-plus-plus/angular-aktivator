@@ -19,7 +19,7 @@ angular.module('angularAktivatorApp')
 
         console.log(response)
         Response.save(response, redirectToResults, (err) ->            
-            $scope.message = "Something went wrong - your response was not saved!"
+            $scope.message = "Something went wrong: " + err.data.message
         )
 
 

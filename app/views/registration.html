@@ -28,13 +28,16 @@
             </div>
 
             <div class="form-section">
-                <input type="email" placeholder="Email" name="email" ng-model="user.email" required />
+                <input type="email" placeholder="Email" name="email" ng-model="user.email" ng-maxlength=60 required />
                     <span class="error" ng-show="registration_form.email.$dirty && registration_form.email.$invalid">
                         <small class="error" ng-show="registration_form.email.$error.required">
                             Your e-mail is required.
                         </small>
                         <small class="error" ng-show="registration_form.email.$error.email">
                             Not a valid e-mail address!
+                        </small>
+                        <small class="error" ng-show="registration_form.email.$error.maxlength">
+                            Your e-mail cannot be longer than 60 characters.
                         </small>
                     </span>
             </div>
@@ -58,7 +61,7 @@
             <input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model ="user.password_confirmation" ng-minlength=8 ng-maxlength=20 data-password-verify="user.password" required/>
                 <span class="error" ng-show="registration_form.password_confirmation.$dirty && registration_form.password_confirmation.$invalid">
                     <small class="error" ng-show="registration_form.password_confirmation.$error.passwordVerify">
-                        Passwords don't match.
+                        Passwords do not match.
                     </small>
                 </span>
             </div>
