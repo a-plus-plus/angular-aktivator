@@ -30,6 +30,33 @@ describe 'Logging in', ->
 			login.click()
 			expect(browser.getCurrentUrl()).toMatch(/#\/$/) # still in same url 
 
+		it 'should not allow an unregistered user to log in', ->
+			name.sendKeys('IDONOTEXIST')
+			password.sendKeys('IDONOTEVENHAVEAPASSWORD')
+			login.click()
+			expect(login.isDisplayed()).toBe(true)
+			expect(logout.isDisplayed()).toBe(false)
+
+		it 'should not allow an existing user to log in if password is wrong', ->
+			name.sendKeys('Arto')
+			password.sendKeys('rateWines123')
+			login.click()
+			expect(login.isDisplayed()).toBe(true)
+			expect(logout.isDisplayed()).toBe(false)
+
+		it 'should allow an existing user to log in', ->
+			name.sendKeys('Arto')
+			password.sendKeys('ratebeeR123')
+			login.click()
+			expect(login.isDisplayed()).toBe(false)
+			expect(logout.isDisplayed()).toBe(true)
+
+		it 'should allow a logged in user to log out', ->
+			logout.click()
+			expect(login.isDisplayed()).toBe(true)
+			expect(logout.isDisplayed()).toBe(false)
+		
+
 	describe 'Registration', ->
 		name = undefined
 		password = undefined
