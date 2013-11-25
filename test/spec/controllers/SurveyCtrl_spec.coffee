@@ -6,13 +6,26 @@ describe 'Controller: SurveyCtrl', () ->
 
   SurveyCtrl = {}
   scope = {}
+  $httpBackend = undefined
 
-  # Initialize the controller and a mock scope
-  beforeEach inject ($controller, $rootScope) ->
+  # Initialize the controller and create mocks
+  beforeEach inject ($controller, $rootScope, $injector) ->
     scope = $rootScope.$new()
     SurveyCtrl = $controller 'SurveyCtrl', {
       $scope: scope
     }
-  # crashing "Unexpected request GET: ..." which is actually to be expected
-  #it 'should attach a list of surveys to scope', () ->
-    #expect(scope.surveys).toBe Array
+    $httpBackend = $injector.get('$httpBackend')
+    $httpBackend.expectGET('http://localhost:3000/surveys').respond([{title:'Hei ihminen', id:1}])
+
+  afterEach ->
+    $httpBackend.verifyNoOutstandingExpectation()
+    $httpBackend.verifyNoOutstandingRequest()
+
+
+
+#   crashing "Unexpected request GET: ..." which is actually to be expected
+  it 'should attach a list of surveys to scope', () ->
+    expect(Array.isArray(scope.surveys)).toBe true
+    #expect(scope.surveys.length).toBe 1
+    $httpBackend.flush()
+    expect(scope.surveys.length).toBe 1
