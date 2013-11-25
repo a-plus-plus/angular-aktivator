@@ -7,7 +7,7 @@ angular.module('angularAktivatorApp')
     # Checks whether $rootScope has a responseSuccessMessage, and, if it does, gives that as a string to $scope.message
     $scope.giveRootMsgToScope = () ->
     	ret = true	   
-    	if $rootScope.responseSuccessMessage != ""
+    	if $rootScope.responseSuccessMessage
     		$scope.message = $rootScope.responseSuccessMessage.toString()    		
 	   		$rootScope.responseSuccessMessage = ""
 	   	if $rootScope.responseSuccessMessage == "" and $scope.message.length == 0
