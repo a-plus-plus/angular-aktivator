@@ -55,14 +55,14 @@ describe 'Logging in', ->
 			expect(email.isDisplayed()).toBe(true) 
 
 		it 'user can be registered', ->
-			name.sendKeys('matti')
-			email.sendKeys('matti@domain.com')
-			password.sendKeys('matinp455w0rd')
-			password_confirmation.sendKeys('matinp455w0rd')
-			expect(submit.isEnabled()).toBe(false) #TODO expect success message
+			name.sendKeys('Ronsupihvi')
+			email.sendKeys('ronsupihvi@domain.com')
+			password.sendKeys('ronsunp455w0rd')
+			password_confirmation.sendKeys('ronsunp455w0rd')
+			expect(submit.isEnabled()).toBe(true) #TODO expect success message
 
 		it 'cannot be given a username that already exists', ->
-			name.sendKeys('matti')
+			name.sendKeys('Sorkka')
 			errField = $('.registration_form small[ng-show="registration_form.name.$error.usernameVerify"]')
 			expect(errField.getText()).toEqual('Username has already been taken.')
 
@@ -73,6 +73,8 @@ describe 'Logging in', ->
 			expect(submit.isEnabled()).toBe(false)
 
 
+
+# name.sendKeys(protractor.Key.TAB) <-- Dis be da wai to send weird-ass keys liek ENTER or CTRL using protractor!!1 \o/
 
 
 
