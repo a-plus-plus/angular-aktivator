@@ -16,12 +16,13 @@
                             Your name is required.
                         </small>
                         <small class="error" ng-show="registration_form.name.$error.minlength">
-                            Your name is required to be at least 3 characters
+                            Your name is required to be at least 3 characters.
                         </small>
                         <small class="error" ng-show="registration_form.name.$error.maxlength">
-                            Your name cannot be longer than 20 characters
+                            Your name cannot be longer than 20 characters.
                         </small>
                         <small class="error" ng-show="registration_form.name.$error.usernameVerify">
+                            Username has already been taken.
                             Username has already been taken
                         </small>
                     </span>
@@ -29,45 +30,42 @@
 
             <div class="form-section">
                 <input type="email" placeholder="Email" name="email" ng-model="user.email" required />
-                    <span class="error"
-                    ng-show="registration_form.email.$dirty && registration_form.email.$invalid">
-                    <small class="error"
-                    ng-show="registration_form.email.$error.required">
-                    Your e-mail is required.</small>
-                    <small class="error"
-                    ng-show="registration_form.email.$error.email">
-                    Not a valid e-mail address!</small>
+                    <span class="error" ng-show="registration_form.email.$dirty && registration_form.email.$invalid">
+                        <small class="error" ng-show="registration_form.email.$error.required">
+                            Your e-mail is required.
+                        </small>
+                        <small class="error" ng-show="registration_form.email.$error.email">
+                            Not a valid e-mail address!
+                        </small>
                     </span>
             </div>
 
             <div>
             <input type="password" placeholder="Password" name="password" ng-model="user.password" ng-minlength=8 ng-maxlength=20 required />
-                <span class="error"
-                    ng-show="registration_form.password.$dirty && registration_form.password.$invalid">
-                    <small class="error"
-                    ng-show="registration_form.password.$error.required">
-                    Your password is required.</small>
-                    <small class="error"
-                    ng-show="registration_form.password.$error.minlength">
-                    Your password is required to be at least 8 characters</small>
-                    <small class="error"
-                    ng-show="registration_form.password.$error.maxlength">
-                    Your password cannot be longer than 20 characters</small>
+                <span class="error" ng-show="registration_form.password.$dirty && registration_form.password.$invalid">
+                    <small class="error" ng-show="registration_form.password.$error.required">
+                        Your password is required.
+                    </small>
+                    <small class="error" ng-show="registration_form.password.$error.minlength">
+                        Your password is required to be at least 8 characters.
+                    </small>
+                    <small class="error" ng-show="registration_form.password.$error.maxlength">
+                        Your password cannot be longer than 20 characters.
+                    </small>
                 </span>
             </div>
 
             <div>
             <input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model ="user.password_confirmation" ng-minlength=8 ng-maxlength=20 data-password-verify="user.password" required/>
-                <span class="error"
-                    ng-show="registration_form.password_confirmation.$dirty && registration_form.password_confirmation.$invalid">
-                    <small class="error"
-                    ng-show="registration_form.password_confirmation.$error.passwordVerify">
-                    Passwords don't match.</small>
+                <span class="error" ng-show="registration_form.password_confirmation.$dirty && registration_form.password_confirmation.$invalid">
+                    <small class="error" ng-show="registration_form.password_confirmation.$error.passwordVerify">
+                        Passwords don't match.
+                    </small>
                 </span>
             </div>
 
             <button ng-click="submit(user)" ng-disabled="registration_form.$invalid || isUnchanged(user)">Register</button>
-            {{user}}
+            
 
         </fieldset>
         <br>
@@ -75,8 +73,6 @@
             {{message}}
         </div>
     </form>
-
-    {{users}}
 
 
 

@@ -60,10 +60,10 @@ describe 'Logging in', ->
 			password_confirmation.sendKeys('matinp455w0rd')
 			submit.click()
 
-		it 'cannot be given a username that already exists', ->
-			#name.sendKeys('matti')
-			#errField = $('.registration_form small[ng-show=registration_form\\.name\\.$error\\.usernameVerify')
-			#expect(errField.isDisplayed()).toBe(true)
+		# it 'cannot be given a username that already exists', ->
+		# 	name.sendKeys('matti')
+		# 	errField = $('.registration_form small[ng-show=registration_form\\.name\\.$error\\.usernameVerify')
+		# 	expect(errField.isDisplayed()).toBe(true)
 
 
 

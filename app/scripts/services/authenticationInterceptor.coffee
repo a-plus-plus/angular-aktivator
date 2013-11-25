@@ -9,8 +9,8 @@ angular.module('angularAktivatorApp')
         token = storageService.get('token')
 
         if name and token
-        	config.headers['name'] = name
-       		config.headers['token'] = token
+          config.headers['name'] = name
+       	  config.headers['token'] = token
 
 
         config

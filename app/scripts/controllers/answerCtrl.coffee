@@ -11,13 +11,12 @@ angular.module('angularAktivatorApp')
 
     # Submits the response to the server
     $scope.submit = () ->
-        clearEmpty()        
-        response = {
-            response:RailsFormatter.prepare({
-                answers:$scope.response
-                survey_id: $scope.survey.id
-            })
-        } 
+        response = {answers:$scope.response}
+        clearEmpty()    
+        response.survey_id = $scope.survey.id
+        RailsFormatter.transformNested(response, ['answers'])    
+        response = { response:response } 
+
         console.log(response)
         Response.save(response, redirectToResults, (err) ->            
             $scope.message = "Something went wrong - your response was not saved!"
@@ -65,7 +64,7 @@ angular.module('angularAktivatorApp')
     # Redirects the browser to the results page
     redirectToResults = () ->
         $rootScope.responseSuccessMessage = "Your response was saved successfully!"
-        $location.path('/results/')# + $routeParams.id)
+        $location.path('/results/' + $routeParams.id)
 
 
     # Functions for defining question kind for ng-ifs
@@ -80,7 +79,7 @@ angular.module('angularAktivatorApp')
 
     # Returns true if scope has an error message - used by ng-if
     $scope.errorMsg = () ->
-        $scope.message.length > 0     
+        $scope.message and $scope.message.length > 0     
             
             
   ]
