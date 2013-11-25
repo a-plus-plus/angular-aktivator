@@ -18,16 +18,21 @@ angular.module('angularAktivatorApp')
             ret[i]= elem
         ret
 
-    transformIds = (obj, keys) ->
+    transformIds = (obj, keys, id) ->
         angular.forEach keys, (key,i) ->
             substr = key.substring(0,key.length-1)
             if obj[key] and angular.isArray obj[key]
                 arr = obj[key]
+                if id then extract(arr, id)
                 delete obj[key]
                 obj[substr+'_ids'] = arr
         if angular.isObject obj or angular.isArray obj
             angular.forEach obj, (value, key) ->
                 transformIds value, keys
+
+    extract = (arr, id) ->
+        angular.forEach arr, (elem, index) ->
+            arr[elem] = arr[elem][id]
 
     {
         transformNested:transformNested
