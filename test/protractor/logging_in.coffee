@@ -59,7 +59,6 @@ describe 'Logging in', ->
 			email.sendKeys('matti@domain.com')
 			password.sendKeys('matinp455w0rd')
 			password_confirmation.sendKeys('matinp455w0rd')
-			ptor.sleep(500)
 			expect(submit.isEnabled()).toBe(false) #TODO expect success message
 
 		it 'cannot be given a username that already exists', ->
