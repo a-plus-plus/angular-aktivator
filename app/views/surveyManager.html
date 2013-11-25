@@ -1,7 +1,7 @@
 <h3 ng-if="isNew()">New survey</h3>
 <h3 ng-if="!isNew()">Editing a survey</h3>
 <div>
-	<form>
+	<form name="survey_management_form" class="survey_management_form">
 		<fieldset>
 			<label>Title:</label>
 			<input ng-model="survey.title" type="text" />
@@ -18,10 +18,11 @@
 			[<span ng-repeat="tag in tags">{{tag.id}},</span>]
 			[<span ng-repeat="tag in survey.tags">{{tag.id}},</span>]
 
-			
+
 
 			<div ng-repeat="question in survey.questions" style="padding-left:50px">
 				<fieldset ng-hide="question._destroy">
+          <label>Question</label>
 					<textarea ng-model="question.title" ></textarea>
 					<button ng-click="removeQuestion(question, $event, $index, survey)" class="btn btn-small btn-danger" style="float:right">
 						<i  class="icon-minus-sign"/>
@@ -43,19 +44,19 @@
 							<label >Option</label><br />
 							<textarea ng-model="option.value"></textarea>
 							<input type="hidden" value="{{option.id}}"/>
-							<input type="hidden" value="{{option.destroy}}">        
+							<input type="hidden" value="{{option.destroy}}">
 						</fieldset>
 					</div>
 					<button ng-click="newOption($event, question)" class="btn btn-small btn-success">
 						<i class="icon-plus-sign"></i>
 					</button>
 				</fieldset>
-			</div>	
+			</div>
 			<br>
 			<button ng-click="newQuestion($event)" class="btn btn-small btn-success">
 				<i class="icon-plus-sign"></i>
-			</button>							
-		</fieldset>	
+			</button>
+		</fieldset>
 	</div>
 	<div class="actions">
 		<button ng-click="submit(survey)" class="btn ">Submit</button> {{message}}
