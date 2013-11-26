@@ -1,19 +1,22 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .service 'messageService', () ->
+  .service 'messageService', ['$timeout',($timeout) ->
 
-    responseMsg = {}
+    messages = []
 
-    getResponseMsg = () ->
-        responseMsg
+    getMessages = () ->
+        messages
 
     setResponseMsg = (msg) ->
-        responseMsg = msg
+        messages.push msg
+        $timeout ->
+          messages.shift()
+        ,5000
 
 
     {
-        getResponseMsg:getResponseMsg
+        getMessages:getMessages
         setResponseMsg:setResponseMsg
-    }   
-    # Not in use currently, was supposed to be used by answer.coffee, but injecting won't work for some reason
+    }
+]
