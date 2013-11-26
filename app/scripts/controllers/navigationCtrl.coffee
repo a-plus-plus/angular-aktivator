@@ -1,17 +1,30 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .controller 'NavigationCtrl', ['$scope', '$location', 'webService', 'storageService', ($scope, $location, webService, storageService) ->
-	$scope.links = [
-		{text:'Home',			link:'/'}
-		{text:'Surveys', 		link:'/surveys'}
-		{text:'Tags',			link:'/tags'}
-		{text:'Registration', 	link:'/registration'}
-		{text:'Create Survey',	link:'/surveys/new'}
-	]
+  .controller 'NavigationCtrl', ['$scope', '$location', 'webService', 'storageService', 'Session', ($scope, $location, webService, storageService , Session) ->
+    
 
-	$scope.isActive = (viewLocation) ->
-		viewLocation == $location.path()
+
+    setNavigationBars = () ->
+        if Session.isLogged() then (
+            $scope.links = [
+                {text:'Home',           link:'/'}
+                {text:'Surveys',        link:'/surveys'}
+                {text:'Create Survey',  link:'/surveys/new'}
+                {text:'Tags',           link:'/tags'}
+            ]
+        )else (
+            $scope.links = [
+                {text:'Home',           link:'/'}
+                {text:'Surveys',        link:'/surveys'}
+                {text:'Registration',   link:'/registration'}
+            ]
+        )
+
+    $scope.$watch setNavigationBars
+    setNavigationBars()
+    $scope.isActive = (viewLocation) ->
+        viewLocation == $location.path()
 
 
   ]
