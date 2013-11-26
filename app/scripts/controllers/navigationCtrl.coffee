@@ -24,7 +24,9 @@ angular.module('angularAktivatorApp')
     $scope.$watch () ->
       Session.isLogged()
     ,setNavigationBars
+
     setNavigationBars()
+    
     $scope.isActive = (viewLocation) ->
         viewLocation == $location.path()
 

@@ -39,6 +39,10 @@
 
         </div>
       </nav>
+      <div ng-controller="messageController">
+        <div class="alert alert-success" ng-if="message.type=='success'">{{message.value}}</div>
+        <div class="alert alert-error" ng-if="message.type=='error'">{{message.value}}</div>
+      </div>
     <!--[if lt IE 9]>
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -117,6 +121,7 @@
 
 
      <script src="scripts/directives/passwordConfirmation.js"></script>
+     <script src="scripts/controllers/messageController.js"></script>
      <!-- endbuild -->
    </body>
    </html>
