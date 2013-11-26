@@ -9,31 +9,59 @@ html, body {
 }
 
 body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
+  background: #fafafa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
 }
 
 .hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
-    font-size: 18px;
-    font-weight: 200;
-    line-height: 30px;
-    background-color: #eee;
-    border-radius: 6px;
-    padding: 60px;
+  margin: 50px auto 0 auto;
+  width: 300px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 60px;
 }
 
 .hero-unit h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
 }
 fieldset {
-    border: 1px solid gray;
-    padding:5px;
-    border-radius: 8px;
-    margin-top:5px;
-    position:relative;
+  border: 1px solid gray;
+  padding:5px;
+  border-radius: 8px;
+  margin-top:5px;
+  position:relative;
+}
+.message-animation {
+  &.ng-enter {
+    -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
+    animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
+  }
+
+  &.ng-leave {
+    -webkit-animation: leave_sequence 1s linear; /* Safari/Chrome */
+    animation: leave_sequence 1s linear; /* IE10+ and Future Browsers */
+  }
+  position:relative;
+}
+@-webkit-keyframes enter_sequence {
+  from { opacity:0; line-height:0%;left:150px;}
+  to { opacity:1;line-height:100%;left:0px; }
+}
+@keyframes enter_sequence {
+  from { opacity:0; height:0%;}
+  to { opacity:1;height:100%; }
+}
+@-webkit-keyframes leave_sequence {
+  from { opacity:1; line-height:100%;left:0px;}
+  to { opacity:0;line-height:0%; left:-150px;}
+}
+@keyframes leave_sequence {
+  from { opacity:1; height:100%;left:0px;}
+  to { opacity:0;height:0%; left:-150px;}
 }
