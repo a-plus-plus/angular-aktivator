@@ -1,7 +1,3 @@
-<div ng-if="giveRootMsgToScope()" class="alert alert-success">
-	{{message}}
-</div>
-
 <ul ng-repeat = "question in result.questions">
 	<li><h3>{{question.title}}</h3></li>
 		<ul ng-repeat = "option in question.options">

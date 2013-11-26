@@ -47,7 +47,7 @@
 							<input type="hidden" value="{{option.destroy}}">
 						</fieldset>
 					</div>
-					<button ng-click="newOption($event, question)" class="btn btn-small btn-success">
+					<button ng-if="question.kind=='Radiobutton' || question.kind=='Checkbox'" ng-click="newOption($event, question)" class="btn btn-small btn-success">
 						<i class="icon-plus-sign"></i>
 					</button>
 				</fieldset>
