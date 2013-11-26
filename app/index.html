@@ -40,8 +40,9 @@
         </div>
       </nav>
       <div ng-controller="messageController">
-        <div class="alert alert-success" ng-if="message.type=='success'">{{message.value}}</div>
-        <div class="alert alert-error" ng-if="message.type=='error'">{{message.value}}</div>
+        <div ng-repeat="message in messages" class="message-animation">
+          <div class="alert alert-{{message.type}}">{{message.value}}</div>
+        </div>
       </div>
     <!--[if lt IE 9]>
       <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -79,6 +80,7 @@
      <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
      <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
      <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
+
      <!-- endbuild -->
 
      <!-- build:js scripts/modules.js -->
