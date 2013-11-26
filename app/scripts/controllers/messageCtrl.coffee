@@ -1,11 +1,11 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .controller 'messageController', ['$scope', 'messageService', ($scope, messageService) ->
+  .controller 'messageCtrl', ['$scope', 'messageService', ($scope, messageService) ->
 
     $scope.$watch () ->
         messageService.getMessages()
     , (messages) ->
         $scope.messages = messages
-
+    $scope.messages = messageService.getMessages()
   ]
