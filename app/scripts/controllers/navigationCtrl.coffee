@@ -2,7 +2,7 @@
 
 angular.module('angularAktivatorApp')
   .controller 'NavigationCtrl', ['$scope', '$location', 'webService', 'storageService', 'Session', ($scope, $location, webService, storageService , Session) ->
-    
+
 
 
     setNavigationBars = () ->
@@ -21,7 +21,9 @@ angular.module('angularAktivatorApp')
             ]
         )
 
-    $scope.$watch setNavigationBars
+    $scope.$watch () ->
+      $scope.isActive()
+    ,setNavigationBars
     setNavigationBars()
     $scope.isActive = (viewLocation) ->
         viewLocation == $location.path()
