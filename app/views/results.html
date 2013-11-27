@@ -1,6 +1,7 @@
+<h1>Results for {{survey.title}}</h1>
 <ul ng-repeat = "question in result.questions">
 	<li><h3>{{question.title}}</h3></li>
 		<ul ng-repeat = "option in question.options">
-			<li><h4>{{option.value}}</h4><h5>- {{option.count}}</h5></li>
+			<li><h4>{{option.value}}</h4><h5>{{option.count}}</h5></li>
 		</ul>
 </ul>

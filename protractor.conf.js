@@ -36,7 +36,7 @@ exports.config = {
   seleniumAddress: null,
   // The timeout for each script run on the browser. This should be longer
   // than the maximum time your application needs to stabilize between tasks.
-  allScriptsTimeout: 5000,
+  allScriptsTimeout: 10000,
 
   // ----- What tests to run -----
   //

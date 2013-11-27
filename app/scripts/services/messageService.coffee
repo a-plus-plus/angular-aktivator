@@ -1,22 +1,23 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .service 'messageService', ['$timeout',($timeout) ->
+  .service 'messageService', ['$interval', ($interval) ->
 
     messages = []
 
     getMessages = () ->
         messages
 
-    setResponseMsg = (msg) ->
+    addMessage = (msg) ->
         messages.push msg
-        $timeout ->
-          messages.shift()
-        ,5000
+    $interval ->
+        if messages.length
+            messages.shift()
+    ,5000
 
 
     {
         getMessages:getMessages
-        setResponseMsg:setResponseMsg
+        setResponseMsg:addMessage
     }
 ]
