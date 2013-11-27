@@ -23,10 +23,11 @@ angular.module('angularAktivatorApp')
       promise.then success, error
       console.log "logging in"
 
-    @logout = () ->
+    @logout = (okCallb) ->
       success = (response) ->
         storageService.logout()
         #$location.path('/')
+        okCallb()
 
 
       error = (response) ->

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-.controller('UserCtrl', ['$scope','User', 'RailsFormatter','$location', ($scope, User, RailsFormatter, $location) ->
+.controller('UserCtrl', ['$scope','User', 'RailsFormatter','$location', 'messageService', ($scope, User, RailsFormatter, $location, messageService) ->
 
   $scope.users = User.query()
   $scope.user = {}
@@ -16,6 +16,7 @@ angular.module('angularAktivatorApp')
   $scope.submit = (user) ->
     user = {user:user}
     console.log(user)
+    messageService.setResponseMsg({value:"Created new user, please login using your username and password", type:"success"})
     User.save(user, redirectToLogin , (obj) ->
       if obj.data.email
         $scope.message = "E-mail " + obj.data.email[0] + "!"
