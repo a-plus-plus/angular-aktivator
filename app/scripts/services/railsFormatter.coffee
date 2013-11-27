@@ -7,16 +7,10 @@ angular.module('angularAktivatorApp')
         if obj[key] and angular.isArray obj[key]
           arr = obj[key]
           delete obj[key]
-          obj[key+'_attributes'] = fakeArray(arr)
+          obj[key+'_attributes'] = arr
       if deep and (angular.isObject obj or angular.isArray obj)
         angular.forEach obj, (value, key) ->
           transformNested value, keys, deep
-
-    fakeArray = (arr) ->
-      ret = {}
-      angular.forEach arr, (elem, i) ->
-        ret[i]= elem
-      ret
 
     transformIds = (obj, keys, id) ->
       angular.forEach keys, (key,i) ->
