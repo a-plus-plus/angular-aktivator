@@ -12,7 +12,7 @@ angular.module('angularAktivatorApp')
         messages.push msg
         $timeout ->
           messages.shift()
-        ,5000
+        ,3000
 
 
     {
