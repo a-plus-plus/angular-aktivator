@@ -39,7 +39,7 @@
 
         </div>
       </nav>
-      <div ng-controller="messageController">
+      <div ng-controller="messageCtrl">
         <div ng-repeat="message in messages" class="message-animation">
           <div class="alert alert-{{message.type}}">{{message.value}}</div>
         </div>
@@ -105,6 +105,7 @@
      <script src="scripts/controllers/tagCtrl.js"></script>
      <script src="scripts/controllers/surveyManagerCtrl.js"></script>
      <script src="scripts/controllers/loginCtrl.js"></script>
+     <script src="scripts/controllers/messageCtrl.js"></script>
 
      <!-- Services -->
      <script src="scripts/services/railsFormatter.js"></script>
@@ -125,7 +126,6 @@
 
 
      <script src="scripts/directives/passwordConfirmation.js"></script>
-     <script src="scripts/controllers/messageController.js"></script>
-     <!-- endbuild -->
+          <!-- endbuild -->
    </body>
    </html>
