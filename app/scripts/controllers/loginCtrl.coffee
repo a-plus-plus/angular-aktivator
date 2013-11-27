@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-.controller 'LoginCtrl', ['$scope','Session', "storageService", 'messageService', ($scope, Session, storageService, messageService) ->
+.controller 'LoginCtrl', ['$scope','Session', "storageService", 'messageService','$route', ($scope, Session, storageService, messageService, $route) ->
 
   $scope.username = storageService.get("username")
   $scope.$watch ->
@@ -12,12 +12,15 @@ angular.module('angularAktivatorApp')
   $scope.login = (user) ->
     Session.login(user, ->
       $scope.user = {}
+      $route.reload()
     , ->
       messageService.setResponseMsg({value:"invalid login", type:"error"})
     )
 
   $scope.logout = ->
-    Session.logout()
+    Session.logout(->
+      $route.reload()
+    )
 
   $scope.isLogged = ->
     Session.isLogged()
