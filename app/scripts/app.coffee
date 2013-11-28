@@ -28,6 +28,7 @@ angular.module('angularAktivatorApp', [
     .when '/tags',
       templateUrl: '/views/tag.html'
       controller: 'TagCtrl'
+      requireLogin: true
     .when '/registration',
       templateUrl: '/views/registration.html'
       controller: 'UserCtrl'
