@@ -23,7 +23,7 @@ describe 'Registration', ->
 		expect(name.isDisplayed()).toBe(true)
 		expect(password.isDisplayed()).toBe(true)
 		expect(password_confirmation.isDisplayed()).toBe(true)
-		expect(email.isDisplayed()).toBe(true) 
+		expect(email.isDisplayed()).toBe(true)
 
 	it 'user can be registered', ->
 		name.sendKeys('Ronsupihvi')
@@ -73,7 +73,7 @@ describe 'Registration', ->
 		email.sendKeys('jeejee@domain.com')
 		password.sendKeys('roflp455w0rd')
 		password_confirmation.sendKeys('roflp455w0rd')
-		expect(submit.isEnabled()).toBe(true)		
+		expect(submit.isEnabled()).toBe(true)
 
 	it 'cannot be given an e-mail that is arbitrarily long', ->
 		name.sendKeys('EmailDude')
@@ -143,8 +143,17 @@ describe 'Registration', ->
 		expect(submit.isEnabled()).toBe(false)
 
 	it 'cannot be given an e-mail that is already in use', ->
-		# View does not check this yet, so writing this test is pending!
-		expect('pending').toEqual('completed')
+    name.sendKeys('batman')
+    email.sendKeys('trolol@yay.lol') # Arto's e-mail in seeds.rb
+    password.sendKeys('aaaaaaaa')
+    password_confirmation.sendKeys('aaaaaaaa')
+    submit.click()
+    msg = $('.alert-error').getText()
+    msg.then () ->
+      expect(msg).toEqual('E-mail has already been taken!')
+
+  it 'allows a new user to log in after registration', ->
+    expect('pending').toEqual('completed')
 
 
 

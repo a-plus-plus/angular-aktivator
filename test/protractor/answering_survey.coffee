@@ -10,7 +10,7 @@ describe 'Answering a survey', ->
 	cCheckbox = undefined
 	textbox = undefined
 	submit = undefined
-	
+
 	beforeEach ->
 		browser.get('#')
 		element(By.linkText('Surveys')).click()
@@ -26,7 +26,7 @@ describe 'Answering a survey', ->
 
 
 	# Radio button
-	it 'allows choosing an answer to a radio button question', ->		
+	it 'allows choosing an answer to a radio button question', ->
 		bRadio.click()
 		# protractor.getInstance().findElement(By.css('body')).getDriver().sleep(5000)
 		expect(aRadio.isSelected()).toBe(false)
@@ -75,7 +75,7 @@ describe 'Answering a survey', ->
 		expect(cCheckbox.isSelected()).toBe(false)
 
 
-	# Textbox	
+	# Textbox
 	it 'allows answering to a textbox question', ->
 		box = element(By.name('3'))
 		box.click()
@@ -116,7 +116,7 @@ describe 'Answering a survey', ->
 	it 'changes the results of a survey after a successful submit', ->
 
 		# Going to results view
-		browser.get('#/results/1')	
+		browser.get('#/results/1')
 
 		# Saving current radio answer values
 		radio1 = $('.container ul:nth-child(2) ul:nth-child(2) li:nth-child(1) h5:nth-child(2)').getText()
@@ -149,7 +149,7 @@ describe 'Answering a survey', ->
 		# Comparing original values to updated ones
 		expect(radio1Updated).toBe(radio1)
 		radio2.then (bR)->
-			expect(radio2Updated).toEqual(getIncrement(bR))		
+			expect(radio2Updated).toEqual(getIncrement(bR))
 		expect(radio3Updated).toBe(radio3)
 		check1.then (aC)->
 			expect(check1Updated).toEqual(getIncrement(aC))
@@ -164,7 +164,4 @@ getIncrement = (str) ->
 
 
 
-
-
-
-	# TODO tests for submitting a radio button, checkboxes and text (allow leaving textbox or checkbox blank, don't allow leaving radio button blank) etc.
+	# TODO a test that check's that a radio button question must be answered - code doesn't have this validation yet!
