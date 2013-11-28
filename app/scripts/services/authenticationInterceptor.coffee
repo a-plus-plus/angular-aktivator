@@ -14,5 +14,13 @@ angular.module('angularAktivatorApp')
 
 
         config
+
+      response: (config) ->
+        console.log 'response', config
+        config
+
+      responseError: (config) ->
+        console.log 'responseErr', config
+        config
     }
 ]
