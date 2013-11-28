@@ -28,7 +28,7 @@ describe 'Logging in', ->
 			name.sendKeys('matti')
 			password.sendKeys('mattikävikalassa')
 			login.click()
-			expect(browser.getCurrentUrl()).toMatch(/#\/$/) # still in same url 
+			expect(browser.getCurrentUrl()).toMatch(/#\/$/) # still in same url
 
 		it 'should not allow an unregistered user to log in', ->
 			name.sendKeys('IDONOTEXIST')
