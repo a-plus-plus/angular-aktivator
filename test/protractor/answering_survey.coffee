@@ -28,7 +28,6 @@ describe 'Answering a survey', ->
 	# Radio button
 	it 'allows choosing an answer to a radio button question', ->
 		bRadio.click()
-		# protractor.getInstance().findElement(By.css('body')).getDriver().sleep(5000)
 		expect(aRadio.isSelected()).toBe(false)
 		expect(bRadio.isSelected()).toBe(true)
 		expect(cRadio.isSelected()).toBe(false)
