@@ -11,7 +11,20 @@ angular.module('angularAktivatorApp')
     $scope.tagList = []
 
     $scope.addTag = (tag) ->
-        $scope.tagList.push(tag)
+        found = false
+        for Tag in $scope.tagList
+            if tag.id == Tag.id
+                found = true
+        if !found
+            $scope.tagList.push(tag)
+
+
+    $scope.deleteChoice = (index) -> 
+        $scope.tagList.splice(index,1)
+
+
+    $scope.total = ->
+        $scope.tagList.length
 
     $scope.destroy = (survey) ->
         Survey.delete id:survey.id

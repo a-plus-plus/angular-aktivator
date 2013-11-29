@@ -15,7 +15,7 @@ angular.module('angularAktivatorApp')
   ]).then ()->
     $scope.survey.tags.forEach (elem) ->
       $scope.tags.forEach (elem2) ->
-        console.log 'id1', elem.id, 'id2', elem2.id
+        #console.log 'id1', elem.id, 'id2', elem2.id
         if elem.id == elem2.id
           elem2.selected = true
 
@@ -41,6 +41,7 @@ angular.module('angularAktivatorApp')
     event.preventDefault()
     if (question.id)
       question._destroy = 1
+      console.log 'added field to', question
     else
       survey.questions.splice(index, 1)
 
