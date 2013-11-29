@@ -42,8 +42,8 @@ exports.config = {
   //
   // Spec patterns are relative to the location of this config.
   specs: [
-    //'spec/*_spec.js',
     '.tmp/protractor/*.js'
+    //'.tmp/protractor/survey_editing.js'
   ],
 
   // ----- Capabilities to be passed to the webdriver instance ----
@@ -63,7 +63,7 @@ exports.config = {
   //baseUrl: 'http://localhost:8000',
   baseUrl: 'http://localhost:9000',
   // Selector for the element housing the angular app - this defaults to
-  // body, but is necessary if ng-app is on a descendant of <body>  
+  // body, but is necessary if ng-app is on a descendant of <body>
   rootElement: 'body',
 
   // A callback function called once protractor is ready and available, and
@@ -88,7 +88,7 @@ exports.config = {
     //   password: '1234'
     // }
   },
-  
+
   // ----- Options to be passed to minijasminenode -----
   //
   // See the full list at https://github.com/juliemr/minijasminenode
