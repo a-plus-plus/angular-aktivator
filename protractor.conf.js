@@ -44,7 +44,10 @@ exports.config = {
   specs: [
     //'spec/*_spec.js',
     '.tmp/protractor/*.js'
-    //'.tmp/protractor/logging_in.js'
+
+    //'.tmp/protractor/survey_creation.js',
+    //'.tmp/protractor/survey_editing.js'
+
   ],
 
   // ----- Capabilities to be passed to the webdriver instance ----

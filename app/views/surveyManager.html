@@ -24,7 +24,7 @@
 				<fieldset ng-hide="question._destroy">
           <label>Question</label>
 					<textarea ng-model="question.title" ></textarea>
-					<button ng-click="removeQuestion(question, $event, $index, survey)" class="btn btn-small btn-danger" style="float:right">
+					<button ng-click="removeQuestion(question, $event, $index, survey)" class="btn btn-small btn-danger" style="float:right" id="removeQuestion">
 						<i  class="icon-minus-sign"/>
 					</button>
 					<label>Kind</label>
@@ -38,7 +38,7 @@
 
 					<div ng-repeat="option in question.options" style="padding-left:50px">
 						<fieldset ng-hide="option._destroy">
-							<button ng-click="removeOption(option, $event, $index, question)" class="btn btn-small btn-danger" style="float:right">
+							<button ng-click="removeOption(option, $event, $index, question)" class="btn btn-small btn-danger" style="float:right" id="removeOption">
 								<i class="icon-minus-sign" />
 							</button>
 							<label >Option</label><br />
@@ -47,19 +47,20 @@
 							<input type="hidden" value="{{option.destroy}}">
 						</fieldset>
 					</div>
-					<button ng-if="question.kind=='Radiobutton' || question.kind=='Checkbox'" ng-click="newOption($event, question)" class="btn btn-small btn-success">
+					<button ng-if="question.kind=='Radiobutton' || question.kind=='Checkbox'" ng-click="newOption($event, question)" class="btn btn-small btn-success" id ="newOption">
 						<i class="icon-plus-sign"></i>
 					</button>
 				</fieldset>
 			</div>
 			<br>
-			<button ng-click="newQuestion($event)" class="btn btn-small btn-success">
+			<button ng-click="newQuestion($event)" class="btn btn-small btn-success" id="newQuestion">
 				<i class="icon-plus-sign"></i>
 			</button>
 		</fieldset>
 	</div>
+  <button ng-click="" id ="removeSurvey" class="btn">Remove survey</button>
 	<div class="actions">
-		<button ng-click="submit(survey)" class="btn ">Submit</button> {{message}}
+		<button ng-click="submit(survey)" class="btn " id="submit">Submit</button> {{message}}
 		<br />
 		{{survey}}
 	</div>
