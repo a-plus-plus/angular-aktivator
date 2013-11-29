@@ -1,6 +1,6 @@
 'use strict'
 By = protractor.By
-
+ptor = protractor.getInstance()
 describe 'Logging in', ->
   describe 'Initially at the main page', ->
     name = undefined
@@ -55,3 +55,13 @@ describe 'Logging in', ->
       logout.click()
       expect(login.isDisplayed()).toBe(true)
       expect(logout.isDisplayed()).toBe(false)
+
+    it 'should allow an existing user to log in', ->
+    name.sendKeys('Arto')
+    password.sendKeys('ratebeeR123')
+    login.click()
+    ptor.waitForAngular()
+    browser.get('#/surveys')
+    ptor.waitForAngular()
+    status = $('.container div:nth-child(2) h3:nth-child(1) span:nth-child(2)')
+    expect(status.getText()).toBe('Status: Unpublished')

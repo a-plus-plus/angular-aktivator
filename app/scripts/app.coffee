@@ -7,7 +7,8 @@ angular.module('angularAktivatorApp', [
   'ngRoute'
   'angularAktivatorApp.webService',
   'angularAktivatorApp.storageService',
-  'ngAnimate'
+  'ngAnimate',
+  'chartjs-directive'
 ])
 .config ['$routeProvider', '$locationProvider','$httpProvider', ($routeProvider, $locationProvider, $httpProvider) ->
   #$locationProvider.html5Mode true
@@ -18,6 +19,9 @@ angular.module('angularAktivatorApp', [
       controller: 'MainCtrl'
     .when '/surveys',
       templateUrl: '/views/survey.html'
+      controller: 'SurveyCtrl'
+    .when '/surveyUI',
+      templateUrl: '/views/surveyUI.html'
       controller: 'SurveyCtrl'
     .when '/answer/:id',
       templateUrl: '/views/answer.html'
