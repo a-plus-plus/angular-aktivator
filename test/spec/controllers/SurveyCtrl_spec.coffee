@@ -18,6 +18,7 @@ describe 'Controller: SurveyCtrl', () ->
     backend.expectGET('http://localhost:3000/surveys').respond([{title:'Hei ihminen', id:1}])
     backend.expectGET('http://localhost:3000/tags').respond([{title:'Matematiikka', id:1}])
 
+
   afterEach ->
     backend.verifyNoOutstandingExpectation()
     backend.verifyNoOutstandingRequest()
