@@ -28,7 +28,7 @@ describe 'Logging in', ->
 			name.sendKeys('matti')
 			password.sendKeys('mattikävikalassa')
 			login.click()
-			expect(browser.getCurrentUrl()).toMatch(/#\/$/) # still in same url 
+			expect(browser.getCurrentUrl()).toMatch(/#\/$/) # still in same url
 
 		it 'should not allow an unregistered user to log in', ->
 			name.sendKeys('IDONOTEXIST')
@@ -55,12 +55,3 @@ describe 'Logging in', ->
 			logout.click()
 			expect(login.isDisplayed()).toBe(true)
 			expect(logout.isDisplayed()).toBe(false)
-
-		it 'Logged in user can see unpublished surveys', ->
-			name.sendKeys('Arto')
-			password.sendKeys('ratebeeR123')
-			login.click()
-			protractor.getInstance().waitForAngular()
-			browser.get('#/surveys')
-			surveyText = $('.container div:nth-child(2) h3:nth-child(1) span:nth-child(2)')
-			expect(surveyText.getText()).toBe("Status: Unpublished")

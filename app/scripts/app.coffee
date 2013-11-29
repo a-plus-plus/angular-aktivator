@@ -31,12 +31,16 @@ angular.module('angularAktivatorApp', [
     .when '/tags',
       templateUrl: '/views/tag.html'
       controller: 'TagCtrl'
+      requireLogin: true
     .when '/registration',
       templateUrl: '/views/registration.html'
       controller: 'UserCtrl'
     .when '/surveys/:id',
       templateUrl:'/views/surveyManager.html'
       controller: 'SurveyManagerCtrl'
+      requireLogin: true
     .otherwise
-      redirectTo: '/'
+      templateUrl:'views/404.html'
 ]
+
+
