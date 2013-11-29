@@ -23,6 +23,12 @@ describe 'Edit survey', ->
         edit = undefined
 
         afterEach ->
+          browser.get('#/surveys')
+          surveys = ptor.findElements(By.repeater('survey in surveys'))
+          surveys.then (surveys) ->
+              destroy = surveys[(surveys.length-1)].findElement(By.id('destroy'))
+              destroy.click()
+
           logout()
         beforeEach ->
             ptor = protractor.getInstance()
