@@ -6,7 +6,7 @@ documents @[Google Drive](https://drive.google.com/folderview?id=0B5-DiiaR_VNIc0
 
 [![Heroku](https://d1lpkba4w1baqt.cloudfront.net/heroku-logo-light-88x31.png)]()
 # Setup
-### Requirements
+## Requirements
 * grunt-cli
 to download grunt client use following
 ```bash
@@ -35,7 +35,7 @@ Update frontend-dependencies defined in bower.json (update build)
   bower prune
 ```
 
-### Starting server
+## Starting server
 ``` bash
 	grunt server
 ```
