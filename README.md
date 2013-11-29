@@ -6,7 +6,7 @@ documents @[Google Drive](https://drive.google.com/folderview?id=0B5-DiiaR_VNIc0
 
 [![Heroku](https://d1lpkba4w1baqt.cloudfront.net/heroku-logo-light-88x31.png)]()
 # Setup
-### Requirements
+## Requirements
 * grunt-cli
 to download grunt client use following
 ```bash
@@ -19,13 +19,44 @@ if you don't have access to /usr/local/bin you need to install it on your home f
 ```
 
 ### Downloading dependencies
-Downloads dependencies defined in package.json
+Download Node-dependencies defined in package.json
 ``` bash
 	npm install
 ```
 
-### Starting server
+Download frontend-dependencies defined in bower.json (clean build)
+``` bash
+  bower install
+```
+
+Update frontend-dependencies defined in bower.json (update build)
+``` bash
+  bower update
+  bower prune
+```
+
+## Starting server
 ``` bash
 	grunt server
 ```
 this will also watch any changes made on the files and update app accordingly 
+
+## Running tests
+### End-to-End tests
+after loading node-dependencies you need to install selenium by running
+``` bash 
+  ./node_modules/protractor/bin/install_selenium_standalone/
+```
+after installing selenium you need to start server
+``` bash
+  grunt server
+```
+open up a new terminal and run
+``` bash
+  grunt e2e-test
+```
+### Unit tests
+``` bash
+  grunt test
+```
+
