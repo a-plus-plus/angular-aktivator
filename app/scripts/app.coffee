@@ -7,7 +7,8 @@ angular.module('angularAktivatorApp', [
   'ngRoute'
   'angularAktivatorApp.webService',
   'angularAktivatorApp.storageService',
-  'ngAnimate'
+  'ngAnimate',
+  'chartjs-directive'
 ])
 .config ['$routeProvider', '$locationProvider','$httpProvider', ($routeProvider, $locationProvider, $httpProvider) ->
   #$locationProvider.html5Mode true

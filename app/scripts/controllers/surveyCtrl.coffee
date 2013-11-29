@@ -12,6 +12,10 @@ angular.module('angularAktivatorApp')
 
     $scope.addTag = (tag) ->
         $scope.tagList.push(tag)
+
+$scope.destroy = (survey) ->
+    Survey.delete id:survey.id
+    console.log "deleted, reload page"
           
 
     ]
