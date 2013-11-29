@@ -12,6 +12,7 @@ angular.module('angularAktivatorApp')
                 {text:'Surveys',        link:'/surveys'}
                 {text:'Create Survey',  link:'/surveys/new'}
                 {text:'Tags',           link:'/tags'}
+                {text:'SurveyUI',        link:'/surveyUI'}
             ]
         )else (
             $scope.links = [

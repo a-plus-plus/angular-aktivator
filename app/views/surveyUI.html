@@ -1,0 +1,41 @@
+
+
+<h2>Choose your surveys</h2>
+
+<div>
+    <input type="checkbox" name="vehicle" value="Bike"> own surveys 
+    <input type="checkbox" name="vehicle" value="Bike"> unpublished surveys 
+    <input type="checkbox" name="vehicle" value="Bike"> published surveys 
+    <input type="checkbox" name="vehicle" value="Bike"> finished surveys <br>
+</div>
+<br>
+ Choose survey by tag <br>
+<input type="search">
+<br>
+<div> Chosen Tags 
+    <div>
+        <button value="tag1"> Tag1 </button>
+        <button value="tag1"> Tag2 </button>
+
+    </div>
+
+</div>
+----------------------------------------------- <br>
+ Search tags by tagname: <br>
+     <input ng-model="searchText">
+
+
+<br>
+<p>Poista tagi valinnat clickaamalla tag-buttonia</p>
+
+<p>------------------------------------------------------------------------------</p>
+
+<h1>Surveys</h1>
+<div ng-repeat="survey in surveys" ng-init="survey.expand = false" ng-controller="LoginCtrl">
+    <h3>Survey {{$index+1}}: <a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a>, Status: {{survey.status}} 
+        <a ng-show="isLogged()" ng-href="#/surveys/{{survey.id}}"><button><i class="icon-edit"></i> edit</button></a>
+        <a ng-href="#/results/{{survey.id}}"><button><i class="icon-align-left"></i> Results</button></a>
+    </h3>
+</div>
+
+
