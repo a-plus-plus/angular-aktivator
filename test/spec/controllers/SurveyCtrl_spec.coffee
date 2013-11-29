@@ -16,6 +16,7 @@ describe 'Controller: SurveyCtrl', () ->
     }
     $httpBackend = $injector.get('$httpBackend')
     $httpBackend.expectGET('http://localhost:3000/surveys').respond([{title:'Hei ihminen', id:1}])
+    $httpBackend.expectGET('http://localhost:3000/tags').respond([{title:'Matematiikka', id:1}])
 
   afterEach ->
     $httpBackend.verifyNoOutstandingExpectation()
