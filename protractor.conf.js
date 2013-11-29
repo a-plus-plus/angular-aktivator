@@ -44,7 +44,7 @@ exports.config = {
   specs: [
     //'spec/*_spec.js',
     //'.tmp/protractor/*.js'
-    '.tmp/protractor/*.js'
+    '.tmp/protractor/viewing_results.js'
 
     //'.tmp/protractor/survey_creation.js',
     //'.tmp/protractor/survey_editing.js'

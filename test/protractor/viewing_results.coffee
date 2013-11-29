@@ -55,3 +55,12 @@ describe 'Answering a survey', ->
     first_survey_name.then (first_survey_name) ->
       title_should_be = 'Results for ' + first_survey_name
       expect(result_title).toBe(title_should_be)
+
+  it 'shows the results to a radio button question', ->
+
+  it 'shows the results to a checkbox question', ->
+
+  it 'shows the results to a textbox question', ->
+
+  it 'shows a diagram with results', ->
+
