@@ -6,4 +6,5 @@ angular.module('angularAktivatorApp')
 
   $scope.destroy = (survey) ->
     Survey.delete id:survey.id
+    console.log "deleted, reload page"
 ]
