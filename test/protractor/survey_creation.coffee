@@ -1,9 +1,16 @@
 'use strict'
    #element.getDriver().sleep(15000) # sleeps 15s
 By = protractor.By
-ptor = undefined
+ptor = protractor.getInstance()
+
+login = ->
+  element(By.model('user.name')).sendKeys('Arto')
+  element(By.model('user.password')).sendKeys('ratebeeR123')
+  element(By.id('login')).click()
+logout = ->
+  element(By.id('logout')).click()
 describe 'Create survey', ->
-    logged = false
+
 
 
     describe 'Survey', ->
@@ -17,14 +24,14 @@ describe 'Create survey', ->
 
 
         beforeEach ->
-            ptor = protractor.getInstance()
+            #ptor = protractor.getInstance()
             browser.get('#')
-            if !logged
-              element(By.model('user.name')).sendKeys('Arto')
-              element(By.model('user.password')).sendKeys('ratebeeR123')
-              element(By.id('login')).click()
-              logged = true
-
+            # loginArr = ptor.findElements(By.id('login'))
+            # loginArr.then (loginArr) ->
+            #   ptor.waitForAngular()
+            #   if loginArr.length and loginArr[0].isDisplayed() # @TODO this no works, fix pls
+            #     login()
+            login()
             element(By.linkText('Create Survey')).click()
             title =                 element(By.model('survey.title'))
             status =                element(By.select('survey.status'))
@@ -33,6 +40,9 @@ describe 'Create survey', ->
             removeQuestion =        element(By.id('removeQuestion'))
             newOption =             element(By.id('newOption'))
             removeOption =          element(By.id('removeOption'))
+
+        afterEach ->
+          logout()
 
 
 

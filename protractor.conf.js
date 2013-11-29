@@ -43,7 +43,10 @@ exports.config = {
   // Spec patterns are relative to the location of this config.
   specs: [
     '.tmp/protractor/*.js'
+
+    //'.tmp/protractor/survey_creation.js',
     //'.tmp/protractor/survey_editing.js'
+
   ],
 
   // ----- Capabilities to be passed to the webdriver instance ----

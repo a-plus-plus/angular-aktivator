@@ -1,7 +1,13 @@
 'use strict'
    #element.getDriver().sleep(15000) # sleeps 15s
 By = protractor.By
-ptor = undefined
+ptor = protractor.getInstance()
+login = ->
+  element(By.model('user.name')).sendKeys('Arto')
+  element(By.model('user.password')).sendKeys('ratebeeR123')
+  element(By.id('login')).click()
+logout = ->
+  element(By.id('logout')).click()
 describe 'Edit survey', ->
     logged = false
 
@@ -16,17 +22,13 @@ describe 'Edit survey', ->
         removeOption = undefined
         edit = undefined
 
-
+        afterEach ->
+          logout()
         beforeEach ->
             ptor = protractor.getInstance()
             browser.get('#')
             #login if not logged in already
-            if !logged #!element(By.id('login')).isVisible()
-              element(By.model('user.name')).sendKeys('Arto')
-              element(By.model('user.password')).sendKeys('ratebeeR123')
-              element(By.id('login')).click()
-              logged = true
-            #move to survey creation and create new survey
+            login()
             element(By.linkText('Create Survey')).click()
             newQuestion =           element(By.id('newQuestion'))
             newOption =             element(By.id('newOption'))
@@ -48,11 +50,11 @@ describe 'Edit survey', ->
                 optionvalue = options[0].findElement(By.textarea('option.value'))
                 optionvalue.sendKeys('Ei varmasti.')
 
-
             submit.click()
 
             #move to surveys view after submitting newly created survey
             element(By.linkText('Surveys')).click()
+
 
             surveys = ptor.findElements(By.repeater('survey in surveys'))
             surveys.then (surveys) ->
@@ -66,7 +68,6 @@ describe 'Edit survey', ->
 
 
          it 'question can be removed', ->
-          protractor.getInstance().sleep(15000)
           removeQuestion.click()
           submit =                element(By.id('submit'))
           submit.click()
@@ -76,25 +77,24 @@ describe 'Edit survey', ->
               edit = surveys[(surveys.length-1)].findElement(By.id('edit'))
                #move to survey edit view
               edit.click()
-
           questions = ptor.findElements(By.repeater('question in survey.questions'))
           questions.then (questions) ->
               expect(questions.length).toBe 0
 
-         # it 'option can be removed', ->
-         #  removeOption.click()
-         #  submit =                element(By.id('submit'))
-         #  submit.click()
+         it 'option can be removed', ->
+          removeOption.click()
+          submit =                element(By.id('submit'))
+          submit.click()
 
-         #  surveys = ptor.findElements(By.repeater('survey in surveys'))
-         #  surveys.then (surveys) ->
-         #       edit = surveys[(surveys.length-1)].findElement(By.id('edit'))
-         #         #move to survey edit view
-         #       edit.click()
+          surveys = ptor.findElements(By.repeater('survey in surveys'))
+          surveys.then (surveys) ->
+               edit = surveys[(surveys.length-1)].findElement(By.id('edit'))
+                 #move to survey edit view
+               edit.click()
 
-         #  options = ptor.findElements(By.repeater('option in question.options'))
-         #  options.then (options) ->
-         #      expect(options.length).toBe 0
+          options = ptor.findElements(By.repeater('option in question.options'))
+          options.then (options) ->
+              expect(options.length).toBe 0
 
 
 
