@@ -28,10 +28,9 @@
 <p>------------------------------------------------------------------------------</p>
 
 <h1>Tags</h1>
-<div ng-repeat="tag in tagList">
-    <button><h5>{{tag.title}}</h5></button>
+<div ng-repeat="tag in tagList track by $index">
+    <button ng-click="deleteChoice($index)"><h5 >{{tag.title}}</h5></button>
 </div>
-
 
 <p>------------------------------------------------------------------------------</p>
 
