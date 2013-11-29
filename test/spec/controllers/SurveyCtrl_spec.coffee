@@ -6,21 +6,21 @@ describe 'Controller: SurveyCtrl', () ->
 
   SurveyCtrl = {}
   scope = {}
-  $httpBackend = undefined
+  backend = undefined
 
   # Initialize the controller and create mocks
-  beforeEach inject ($controller, $rootScope, $injector) ->
+  beforeEach inject ($controller, $rootScope, $httpBackend) ->
     scope = $rootScope.$new()
     SurveyCtrl = $controller 'SurveyCtrl', {
       $scope: scope
     }
-    $httpBackend = $injector.get('$httpBackend')
-    $httpBackend.expectGET('http://localhost:3000/surveys').respond([{title:'Hei ihminen', id:1}])
-    $httpBackend.expectGET('http://localhost:3000/tags').respond([{title:'Matematiikka', id:1}])
+    backend = $httpBackend
+    backend.expectGET('http://localhost:3000/surveys').respond([{title:'Hei ihminen', id:1}])
+    backend.expectGET('http://localhost:3000/tags').respond([{title:'Matematiikka', id:1}])
 
   afterEach ->
-    $httpBackend.verifyNoOutstandingExpectation()
-    $httpBackend.verifyNoOutstandingRequest()
+    backend.verifyNoOutstandingExpectation()
+    backend.verifyNoOutstandingRequest()
 
 
 
@@ -28,5 +28,5 @@ describe 'Controller: SurveyCtrl', () ->
   it 'should attach a list of surveys to scope', () ->
     expect(Array.isArray(scope.surveys)).toBe true
     #expect(scope.surveys.length).toBe 1
-    $httpBackend.flush()
+    backend.flush()
     expect(scope.surveys.length).toBe 1
