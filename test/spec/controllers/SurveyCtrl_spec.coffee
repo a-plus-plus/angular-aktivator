@@ -1,5 +1,5 @@
 'use strict'
-describe 'Controller: SurveyCtrl', () ->
+describe 'SurveyCtrl', () ->
 
   # load the controller's module
   beforeEach module 'angularAktivatorApp'
@@ -16,7 +16,7 @@ describe 'Controller: SurveyCtrl', () ->
     }
     backend = $httpBackend
     backend.expectGET('http://localhost:3000/surveys').respond([{title:'Hei ihminen', id:1}])
-    backend.expectGET('http://localhost:3000/tags').respond([{title:'Matematiikka', id:1}])
+    backend.expectGET('http://localhost:3000/tags').respond([{title:'Matematiikka', id:1}, {title:'Tietojenkäsittely', id:2}])
 
   afterEach ->
     backend.verifyNoOutstandingExpectation()
@@ -30,3 +30,6 @@ describe 'Controller: SurveyCtrl', () ->
     #expect(scope.surveys.length).toBe 1
     backend.flush()
     expect(scope.surveys.length).toBe 1
+  it 'should attach a list of tags to scope',  ->
+    backend.flush()
+    expect(scope.tags.length).toBe 2
