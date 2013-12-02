@@ -6,9 +6,6 @@ describe 'Controller: LoginCtrl', () ->
   # load the controller's module
   beforeEach module 'angularAktivatorApp'
 
-  LoginCtrl = {}
-  scope = {}
-
   module ($provide) ->
     $provide.value 'storageService', new MockStorageService()
     $provide.value 'Session', new MockSession()
@@ -42,7 +39,7 @@ describe 'Controller: LoginCtrl', () ->
   it 'should provide a login function', ->
     expect(typeof scope.login).toBe 'function'
 
-  it 'login function should call Session', ->
+  it 'login function should call Session.login', ->
     user = {name: 'Arto', password: '12345678'}
     scope.login(user)
     expect(Session.login.callCount).toBe(1)
@@ -51,7 +48,7 @@ describe 'Controller: LoginCtrl', () ->
   it 'should provide a logout function', ->
     expect(typeof scope.logout).toBe 'function'
 
-  it 'logout function should call Session', ->
+  it 'logout function should call Session.logout', ->
     scope.logout()
     expect(Session.logout.callCount).toBe(1)
     expect(Session.logout).toHaveBeenCalledWith(jasmine.any(Function))
@@ -59,7 +56,7 @@ describe 'Controller: LoginCtrl', () ->
   it 'should provide a isLogged function', ->
     expect(typeof scope.isLogged).toBe 'function'
 
-  it 'isLogged function should call Session', ->
+  it 'isLogged function should call Session.isLogged', ->
     scope.isLogged()
     expect(Session.isLogged.callCount).toBe(1)
     expect(Session.isLogged).toHaveBeenCalledWith()
