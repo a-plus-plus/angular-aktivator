@@ -7,6 +7,7 @@ angular.module('angularAktivatorApp')
     @login = (user, okCallb, errCallb) ->
 
       success = (response) ->
+        console.log 'We are at success'
         name = response.data.name
         token = response.data.token
         username = response.data.username
@@ -15,6 +16,7 @@ angular.module('angularAktivatorApp')
         okCallb()
 
       error = (response) ->
+        console.log 'we are at error!'
         #console.log(response)
         errCallb()
 
