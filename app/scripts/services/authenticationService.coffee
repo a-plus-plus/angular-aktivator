@@ -7,7 +7,6 @@ class WebService
 
   login: (user) ->
     @$http.post(@baseUrl + "login", {user: {name: user.name, password: user.password}})
-    console.log 'TOUCHING ORIGINAL SHIT'
 
   getAuthHeaders: () ->
     {name: @storageService.get("name"), token: @storageService.get("token")}
