@@ -7,7 +7,7 @@ describe 'Answering a survey', ->
   password = undefined
   logout = undefined
   login = undefined
-  survey = ""
+  survey_name = ""
 
 
   beforeEach ->
@@ -92,7 +92,7 @@ describe 'Answering a survey', ->
         optionvalue.sendKeys('C')
 
     submit.click()
-    survey = newSurvey
+    survey_name = newSurvey
 
 
   it 'shows the result button for each survey', ->
@@ -113,7 +113,6 @@ describe 'Answering a survey', ->
 
 
   it 'redirects the browser to the result view after pressing the Results button', ->
-
     surveys = ptor.findElements(By.repeater('survey in surveys'))
     surveys.then (surveys) ->
       index = surveys.length - 1
@@ -122,9 +121,11 @@ describe 'Answering a survey', ->
       my_survey_results.click()
       result_title = $('h1.ng-scope').getText()
       my_survey_name.then (my_survey_name) ->
+        expect(my_survey_name).toEqual(survey_name) # Checking that we're viewing the survey the test made in the beginning
         title_should_be = 'Results for ' + my_survey_name
-        expect(result_title).toBe(title_should_be)
+        expect(result_title).toEqual(title_should_be)
         protractor.getInstance().findElement(By.css('body')).getDriver().sleep(5000)
+
 
   it 'shows the results to all questions in a survey', ->
     # Navigating to last survey
@@ -151,6 +152,7 @@ describe 'Answering a survey', ->
     expect($('.container > ul:nth-child(3) > ul:nth-child(3) > li:nth-child(1) > h5:nth-child(2)').getText()).toEqual(zeroString)
     expect($('.container > ul:nth-child(3) > ul:nth-child(4) > li:nth-child(1) > h5:nth-child(2)').getText()).toEqual(zeroString)
 
+
   it 'shows a diagram with the results', ->
     # Navigating to last survey
     surveys = ptor.findElements(By.repeater('survey in surveys'))
@@ -164,7 +166,8 @@ describe 'Answering a survey', ->
     expect(chart.isDisplayed()).toBe(true)
 
 
-  # it 'shows the results to a textbox question', ->
+  it 'shows the results to a textbox question', ->
+   # PENDING - textbox results aren't showed anywhere yet!
 
 
 
