@@ -14,7 +14,7 @@ angular.module('angularAktivatorApp')
 
       responseError: (config) ->
         console.log 'responseErr', config
-        if config.status == 401 and config.data.user
+        if config.status == 401 and !config.data.user
           messageService.setResponseMsg {value:"You don't seem to have access to that!", type:'error'}
           $location.path('/404')
         $q.reject(config)
