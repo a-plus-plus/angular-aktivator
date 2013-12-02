@@ -26,7 +26,6 @@ angular.module('angularAktivatorApp')
     @logout = (okCallb) ->
       success = (response) ->
         storageService.logout()
-        #$location.path('/')
         okCallb()
 
 

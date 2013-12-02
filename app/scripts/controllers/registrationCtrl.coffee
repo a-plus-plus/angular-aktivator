@@ -25,8 +25,8 @@ angular.module('angularAktivatorApp')
     )
 
   redirectToLogin = () ->
+    $location.path('/index')
     console.log "Rekisteröinti onnistui"
-    $location.path('/login')
 ])
 
 .directive( "passwordVerify", ->
