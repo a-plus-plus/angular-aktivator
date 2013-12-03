@@ -37,14 +37,16 @@
 
  <table class="table table-hover table-striped" ng-init="colors = {Unpublished:'warning', Published:'success', Finished:'info'}">
   <thead>
-    <th>Name</th>
-    <th>Status</th>
+    <th><a href="" ng-click="predicate = 'title'; reverse=false">Name</a>
+              (<a href="" ng-click="predicate = '-title'; reverse=false">^</a>)</th>
+    <th><a href="" ng-click="predicate = 'status'; reverse=false">Status</a>
+              (<a href="" ng-click="predicate = '-status'; reverse=false">^</a>)</th>
     <th></th>
     <th></th>
     <th></th>
   </thead>
   <tbody>
-    <tr ng-repeat="survey in surveys" ng-class="colors[survey.status]" class="survey_{{$index}}" survey-title="{{survey.title}}" >
+    <tr ng-repeat="survey in surveys | orderBy:predicate:reverse" ng-class="colors[survey.status]" class="survey_{{$index}}" survey-title="{{survey.title}}" >
       <td class="title"><a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a></td>
 
       <td class="status">{{survey.status}}</td>

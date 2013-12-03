@@ -9,6 +9,17 @@ angular.module('angularAktivatorApp')
   $scope.message = ""
 
   $scope.tagList = []
+  $scope.surveyIdList = []
+
+  $scope.$watchCollection 'tagList', (tagList, oldList)->
+    $scope.surveyIdList = []
+    angular.forEach tagList, (tag, i) ->
+      angular.forEach tag.surveys, (survey, i) ->
+        if $scope.surveyIdList.indexOf(survey.survey_id)== -1
+          $scope.surveyIdList.push(survey.survey_id)
+
+  $scope.myFilter = (survey) ->
+    $scope.surveyIdList.indexOf(survey.id) != -1
 
   $scope.addTag = (tag) ->
     found = false
@@ -19,16 +30,19 @@ angular.module('angularAktivatorApp')
       $scope.tagList.push(tag)
 
 
-  $scope.deleteChoice = (index) ->
+  $scope.deleteChoice = (index) -> 
     $scope.tagList.splice(index,1)
 
-
+  
   $scope.total = ->
     $scope.tagList.length
+
+    
 
   $scope.destroy = (survey) ->
     Survey.delete id:survey.id, -> $route.reload()
 
+  
 
   $scope.isLogged = ->
     Session.isLogged()
