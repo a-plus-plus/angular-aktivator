@@ -14,7 +14,7 @@ angular.module('angularAktivatorApp')
     id == 'new'
 
   $scope.color = (i) ->
-    colors = ['info', 'error', 'success', 'warning', 'important', 'inverse']
+    colors = ['info', 'success', 'warning', 'important', 'error', 'inverse']
     colors[i % colors.length]
 
   redirectToListing = () ->
