@@ -36,9 +36,9 @@ describe 'Answering a survey', ->
 
     # Navigating to survey creation
     element(By.linkText('Create Survey')).click()
-    newQuestion = element(By.id('newQuestion'))
+    newQuestion = element(By.css('.newQuestion'))
     title =       element(By.model('survey.title'))
-    submit =      element(By.id('submit'))
+    submit =      element(By.css('.submit'))
 
     newSurvey = uniqueString(15)
     title.sendKeys(newSurvey)
@@ -54,7 +54,7 @@ describe 'Answering a survey', ->
     radioOption.click()
     radioOption.click()
 
-    # Checkbox question and option
+    # Checkbox question and options
     newQuestion.click()
 
     kindSelector = $('.question_1 .kind_selector [value="Checkbox"]')
