@@ -29,10 +29,7 @@ describe 'Answering a survey', ->
 
   it 'creates a new survey for tests below', ->
 
-    # Logging in...
-    element(By.model('user.name')).sendKeys('Arto')
-    element(By.model('user.password')).sendKeys('ratebeeR123')
-    element(By.id('login')).click()
+    login()
 
     # Navigating to survey creation
     element(By.linkText('Create Survey')).click()
@@ -100,9 +97,7 @@ describe 'Answering a survey', ->
 
     submit.click()
     survey = newSurvey
-
-    logout = element(By.id('logout'))
-    logout.click()
+    logout()
 
 
 
@@ -194,13 +189,10 @@ describe 'Answering a survey', ->
   # TODO textbox answers!
   it 'changes the results of a survey after a successful submit', ->
 
-    # Navigating to last survey's results
+    # Navigating to our survey's results
     browser.get('#')
     element(By.linkText('Surveys')).click()
-    surveys = ptor.findElements(By.repeater('survey in surveys'))
-    surveys.then (surveys) ->
-      index = surveys.length - 1
-      surveys[index].findElement(By.css('.results a')).click()
+    $('[survey-title="' + survey + '"] .results a').click()
 
     # Saving current radio answer values
     radio1 = $('.container .question_0 .option_0 .option_count').getText()
@@ -245,9 +237,15 @@ describe 'Answering a survey', ->
       expect(check3Updated).toEqual(getIncrement(cC))
 
 
-#   it 'does not allow leaving a radio button answer blank', ->
-#     # Code has no such validation yet!
-#     #expect('pending').toBe('completed')
+  it 'does not allow leaving a radio button answer blank', ->
+    # Code has no such validation yet!
+    #expect('pending').toBe('completed')
+
+  it 'deletes the survey created for these tests', ->
+    element(By.linkText('Surveys')).click()
+    login()
+    $('[survey-title="' + survey + '"] .destroy a').click()
+    logout()
 
 
 # Helper function for it 'changes the results of a survey after a successful submit'
@@ -259,6 +257,14 @@ uniqueString = (length) ->
   str = ""
   str += Math.random().toString(36).substr(2) while str.length < length
   str.substr 0, length
+
+login = () ->
+  element(By.model('user.name')).sendKeys('Arto')
+  element(By.model('user.password')).sendKeys('ratebeeR123')
+  element(By.id('login')).click()
+
+logout = () ->
+  element(By.id('logout')).click()
 
 
 

@@ -16,7 +16,7 @@ class StorageService
   deleteItem: (key) ->
     localStorage.removeItem(key)
 
-  logout: ->
+  deleteCredentials: ->
     @deleteItem("name")
     @deleteItem("token")
     @deleteItem("username")

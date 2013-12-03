@@ -25,7 +25,7 @@ angular.module('angularAktivatorApp')
     )
 
   redirectToLogin = () ->
-    $location.path('/index')
+    $location.path('/')
 ])
 
 .directive( "passwordVerify", ->

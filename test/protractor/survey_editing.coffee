@@ -13,6 +13,7 @@ describe 'Edit survey', ->
         newOption = undefined
         removeOption = undefined
         edit = undefined
+        survey_name = ''
 
         afterEach ->
           browser.get('#/surveys')
@@ -20,9 +21,7 @@ describe 'Edit survey', ->
           surveys.then (surveys) ->
               destroy = surveys[(surveys.length - 1)].findElement(By.css('.destroy a'))
               destroy.click()
-
           logout()
-
 
 
         beforeEach ->
@@ -42,7 +41,9 @@ describe 'Edit survey', ->
                 expect(questions.length).toBe 1
                 qtitle = questions[0].findElement(By.textarea('question.title'))
                 qtitle.sendKeys('Toimiiko testi?')
-            title.sendKeys("Testikysely")
+            survey_name = uniqueString(20)
+            title.sendKeys(survey_name)
+
 
             options = ptor.findElements(By.repeater('option in question.options'))
             options.then (options) ->
@@ -97,6 +98,7 @@ describe 'Edit survey', ->
               expect(options.length).toBe 0
 
 
+
 login = ->
   element(By.model('user.name')).sendKeys('Arto')
   element(By.model('user.password')).sendKeys('ratebeeR123')
@@ -104,6 +106,11 @@ login = ->
 
 logout = ->
   element(By.id('logout')).click()
+
+uniqueString = (length) ->
+  str = ""
+  str += Math.random().toString(36).substr(2) while str.length < length
+  str.substr 0, length
 
 
 

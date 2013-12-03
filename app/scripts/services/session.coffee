@@ -24,12 +24,12 @@ angular.module('angularAktivatorApp')
 
     @logout = (okCallb) ->
       success = (response) ->
-        storageService.logout()
+        storageService.deleteCredentials()
         okCallb and okCallb()
 
 
       error = (response) ->
-        storageService.logout()
+        storageService.deleteCredentials()
 
       promise = webService.logout()
       promise.then success, error
