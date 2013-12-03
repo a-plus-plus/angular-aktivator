@@ -9,6 +9,7 @@ angular.module('angularAktivatorApp')
     $scope.message = ""
 
     $scope.tagList = []
+    $scope.surveyIdList = []
 
     $scope.addTag = (tag) ->
         found = false
@@ -18,7 +19,8 @@ angular.module('angularAktivatorApp')
         if !found
             $scope.tagList.push(tag)
 
-
+            # hae kaikki surveyt functiolla ja pistä ne joihin viitataan surveyIdListassa niin
+            # pistä ne omaan listaan ja hae niitä ng-repeat
     $scope.deleteChoice = (index) -> 
         $scope.tagList.splice(index,1)
 
@@ -29,5 +31,15 @@ angular.module('angularAktivatorApp')
     $scope.destroy = (survey) ->
         Survey.delete id:survey.id
         console.log "deleted, reload page"
+
+    $scope.tagFilter = (tag) ->
+        found = false
+        for id in $scope.surveyIdList
+            if tag.surveys[0].survey_id == id
+                found = true
+        if !found
+            $scope.surveyIdList.push(tag.surveys[0].survey_id)
+
+
 
     ]
