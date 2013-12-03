@@ -10,19 +10,100 @@ describe 'Answering a survey', ->
   cCheckbox = undefined
   textbox = undefined
   submit = undefined
+  survey = ''
 
   beforeEach ->
     browser.get('#')
     element(By.linkText('Surveys')).click()
-    element(By.linkText('Linis 1')).click()
-    aRadio =    $('.question:nth-of-type(1) div div:nth-of-type(1) input')
-    bRadio =    $('.question:nth-of-type(1) div div:nth-of-type(2) input')
-    cRadio =    $('.question:nth-of-type(1) div div:nth-of-type(3) input')
-    aCheckbox = $('.question:nth-of-type(2) div div:nth-of-type(1) input')
-    bCheckbox = $('.question:nth-of-type(2) div div:nth-of-type(2) input')
-    cCheckbox = $('.question:nth-of-type(2) div div:nth-of-type(3) input')
-    textbox =   $('.question:nth-of-type(3) div div textarea')
-    submit =    $('.response_form button')
+    if survey.length > 0
+      element(By.linkText(survey)).click()
+      aRadio =    $('.question:nth-of-type(1) div div:nth-of-type(1) input')
+      bRadio =    $('.question:nth-of-type(1) div div:nth-of-type(2) input')
+      cRadio =    $('.question:nth-of-type(1) div div:nth-of-type(3) input')
+      aCheckbox = $('.question:nth-of-type(2) div div:nth-of-type(1) input')
+      bCheckbox = $('.question:nth-of-type(2) div div:nth-of-type(2) input')
+      cCheckbox = $('.question:nth-of-type(2) div div:nth-of-type(3) input')
+      textbox =   $('.question:nth-of-type(3) div div textarea')
+      submit =    $('.response_form button')
+
+
+  it 'creates a new survey for tests below', ->
+
+    # Logging in...
+    element(By.model('user.name')).sendKeys('Arto')
+    element(By.model('user.password')).sendKeys('ratebeeR123')
+    element(By.id('login')).click()
+
+    # Navigating to survey creation
+    element(By.linkText('Create Survey')).click()
+    newQuestion = element(By.id('newQuestion'))
+    title =       element(By.model('survey.title'))
+    submit =      element(By.id('submit'))
+
+    newSurvey = uniqueString(15)
+    title.sendKeys(newSurvey)
+
+    # Selecting status
+    statusSelector = $('#survey_status option:nth-child(1)')
+    statusSelector.click()
+
+    # Radio question and options
+    newQuestion.click()
+    radioOption = $('div.ng-scope:nth-child(11) fieldset:nth-child(1) #newOption')
+    radioOption.click()
+    radioOption.click()
+    radioOption.click()
+
+    # Checkbox question and option
+    newQuestion.click()
+
+    kindSelector = $('div.ng-scope:nth-child(12) fieldset:nth-child(1) select:nth-child(5) option:nth-child(2)')
+    kindSelector.click()
+
+    checkOption = $('div.ng-scope:nth-child(12) fieldset:nth-child(1) #newOption')
+    checkOption.click()
+    checkOption.click()
+    checkOption.click()
+
+    # Textbox question
+    newQuestion.click()
+    kindSelector = $('div.ng-scope:nth-child(13) fieldset:nth-child(1) select:nth-child(5) option:nth-child(3)')
+    kindSelector.click()
+
+    # Typing the questions
+    questions = ptor.findElements(By.repeater('question in survey.questions'))
+    questions.then (questions) ->
+      expect(questions.length).toBe 3
+      qtitle = questions[0].findElement(By.textarea('question.title'))
+      qtitle.sendKeys('Radio button question?')
+      qtitle = questions[1].findElement(By.textarea('question.title'))
+      qtitle.sendKeys('Checkbox question?')
+      qtitle = questions[2].findElement(By.textarea('question.title'))
+      qtitle.sendKeys('Textbox question?')
+
+      # Typing the options
+      options = ptor.findElements(By.repeater('option in question.options'))
+      options.then (options) ->
+        expect(options.length).toBe 6
+        optionvalue = options[0].findElement(By.textarea('option.value'))
+        optionvalue.sendKeys('A')
+        optionvalue = options[1].findElement(By.textarea('option.value'))
+        optionvalue.sendKeys('B')
+        optionvalue = options[2].findElement(By.textarea('option.value'))
+        optionvalue.sendKeys('C')
+        optionvalue = options[3].findElement(By.textarea('option.value'))
+        optionvalue.sendKeys('A')
+        optionvalue = options[4].findElement(By.textarea('option.value'))
+        optionvalue.sendKeys('B')
+        optionvalue = options[5].findElement(By.textarea('option.value'))
+        optionvalue.sendKeys('C')
+
+    submit.click()
+    survey = newSurvey
+
+    logout = element(By.id('logout'))
+    logout.click()
+
 
 
   # Radio button
@@ -46,9 +127,6 @@ describe 'Answering a survey', ->
     expect(bRadio.isSelected()).toBe(false)
     expect(cRadio.isSelected()).toBe(true)
 
-  it 'does not allow leaving a radio button answer blank', ->
-    # Code has no such validation yet!
-    #expect('pending').toBe('completed')
 
 
   # Checkbox
@@ -74,9 +152,10 @@ describe 'Answering a survey', ->
     expect(cCheckbox.isSelected()).toBe(false)
 
 
+
   # Textbox
   it 'allows answering to a textbox question', ->
-    box = element(By.name('3'))
+    box = element(By.tagName('textarea'))
     box.click()
     box.sendKeys('Joo, emt. Kotona ehkä tai sitten ei.')
     expect(box.getAttribute('value')).toEqual('Joo, emt. Kotona ehkä tai sitten ei.')
@@ -85,7 +164,7 @@ describe 'Answering a survey', ->
     str = ""
     for i in [1..1000] by 1
       str+="a"
-    box = element(By.name('3'))
+    box = element(By.tagName('textarea'))
     box.click()
     box.sendKeys(str)
     expect(box.getAttribute('value')).toEqual(str)
@@ -94,10 +173,11 @@ describe 'Answering a survey', ->
     str = ""
     for i in [1..1000] by 1
       str+="a"
-    box = element(By.name('3'))
+    box = element(By.tagName('textarea'))
     box.click()
     box.sendKeys(str + "a")
     expect(box.getAttribute('value')).toEqual(str)
+
 
 
   # General tests
@@ -114,8 +194,13 @@ describe 'Answering a survey', ->
   # TODO textbox answers!
   it 'changes the results of a survey after a successful submit', ->
 
-    # Going to results view
-    browser.get('#/results/1')
+    # Navigating to last survey's results
+    browser.get('#')
+    element(By.linkText('Surveys')).click()
+    surveys = ptor.findElements(By.repeater('survey in surveys'))
+    surveys.then (surveys) ->
+      index = surveys.length - 1
+      surveys[index].findElement(By.className('result_button')).click()
 
     # Saving current radio answer values
     radio1 = $('.container ul:nth-child(2) ul:nth-child(2) li:nth-child(1) h5:nth-child(2)').getText()
@@ -127,8 +212,9 @@ describe 'Answering a survey', ->
     check2 = $('.container ul:nth-child(3) ul:nth-child(3) li:nth-child(1) h5:nth-child(2)').getText()
     check3 = $('.container ul:nth-child(3) ul:nth-child(4) li:nth-child(1) h5:nth-child(2)').getText()
 
-    # Answering a survey
-    browser.get('#/answer/1')
+    # Answering the last survey
+    element(By.linkText('Surveys')).click()
+    element(By.linkText(survey)).click()
     bRadio.click()
     aCheckbox.click()
     cCheckbox.click()
@@ -157,9 +243,20 @@ describe 'Answering a survey', ->
       expect(check3Updated).toEqual(getIncrement(cC))
 
 
+  it 'does not allow leaving a radio button answer blank', ->
+    # Code has no such validation yet!
+    #expect('pending').toBe('completed')
+
+
 # Helper function for it 'changes the results of a survey after a successful submit'
 getIncrement = (str) ->
   (parseInt(str)+1)+""
+
+
+uniqueString = (length) ->
+  str = ""
+  str += Math.random().toString(36).substr(2) while str.length < length
+  str.substr 0, length
 
 
 

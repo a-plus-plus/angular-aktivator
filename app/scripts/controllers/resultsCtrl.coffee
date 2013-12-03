@@ -5,12 +5,11 @@ angular.module('angularAktivatorApp')
     $scope.result = Results.get(id: $routeParams.id)
     $scope.survey = Survey.get(id: $routeParams.id)
 
-    console.log("results ctrl kk")
-    console.log($routeParams)
-    console.log($rootScope)
-    console.log($scope)
+    # console.log("results ctrl kk")
+    # console.log($routeParams)
+    # console.log($rootScope)
+    # console.log($scope)
 
-    # Checks whether $rootScope has a responseSuccessMessage, and, if it does, gives that as a string to $scope.message
 
     $scope.MyChart = {
         width : 500,

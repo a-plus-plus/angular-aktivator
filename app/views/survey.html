@@ -1,6 +1,6 @@
 
 <h1>Surveys</h1>
-<div ng-repeat="survey in surveys" ng-init="survey.expand = false" ng-controller="LoginCtrl">
+<!-- <div ng-repeat="survey in surveys" ng-init="survey.expand = false" ng-controller="LoginCtrl">
 	<h3>Survey {{$index+1}}:
     <a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a>,
     <span>Status: {{survey.status}} </span>
@@ -8,16 +8,16 @@
       <i class="icon-plus-sign" />
     </button>
 		<a ng-show="isLogged()" ng-href="#/surveys/{{survey.id}}">
-      <button>
+      <button class="btn">
         <i class="icon-edit" id="edit"></i> edit
       </button>
     </a>
 		<a ng-href="#/results/{{survey.id}}">
-      <button class="result_button">
+      <button class="result_button btn">
         <i class="icon-align-left"></i> Results
       </button>
     </a>
-		<button ng-click="destroy(survey)" id="destroy">
+		<button ng-click="destroy(survey)" id="destroy" class="btn">
       <i class="icon-align-left"></i> Destroy
     </button>
 	</h3>
@@ -33,4 +33,43 @@
 	</ul>
 </div>
 
+ -->
 
+ <table class="table table-hover table-striped" ng-init="colors = {Unpublished:'warning', Published:'success', Finished:'info'}">
+  <thead>
+    <th>Name</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="survey in surveys" ng-class="colors[survey.status]" >
+      <td class="title">{{survey.title}}</td>
+
+      <td class="status">{{survey.status}}</td>
+
+      <td class="results">
+        <a ng-href="#/results/{{survey.id}}" class="label label-info" ng-hide="survey.status == 'Unpublished'">
+          <i class="icon-align-left icon-white" style="padding-right:2px"></i>
+          Results
+        </a>
+      </td>
+
+      <td class="edit">
+        <a ng-href="#/surveys/{{survey.id}}" class="label label-warning" ng-show="isLogged()" >
+          <i class="icon-edit icon-white"></i>
+          Edit
+        </a>
+      </td>
+
+      <td class="destroy">
+        <a class="label label-important" ng-show="isLogged()" ng-click="destroy(survey)">
+          <i class="icon-trash icon-white"></i>
+          Destroy
+        </a>
+      </td>
+
+    </tr>
+  </tbody>
+ </table>

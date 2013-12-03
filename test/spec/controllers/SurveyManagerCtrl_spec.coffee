@@ -30,22 +30,24 @@ describe 'Controller: SurveymanagerCtrl', () ->
     backend.expectGET('http://localhost:3000/tags').respond([{title: 'Vektorit'}])
     backend.flush()
 
-  it 'matches the corresponding tags with selected attribute', ->
-    backend.expectGET('http://localhost:3000/surveys/1').respond({title: 'Joku kysely', questions: [{title: 'Onko kivaa?'}], id: 1, tags: [{title:'Vektorit', id:1}]})
-    backend.expectGET('http://localhost:3000/tags').respond([{title: 'Vektorit', id:1}])
-    backend.flush()
-    expect(Array.isArray(scope.tags)).toBe true
-    expect(scope.tags.length).toBe 1
-    expect(scope.tags[0].selected).toBe true
+    # controller no longer matches the tags, but we might roll back, so @TODO remove
 
-  it 'matches only the corresponding tags with selected attribute and keeps the not corresponding in the array', ->
-    backend.expectGET('http://localhost:3000/surveys/1').respond({title: 'Joku kysely', questions: [{title: 'Onko kivaa?'}], id: 1, tags: [{title:'Vektorit', id:1}]})
-    backend.expectGET('http://localhost:3000/tags').respond([{title: 'Vektorit', id:1}, {title:'Matriisit', id:2}])
-    backend.flush()
-    expect(Array.isArray(scope.tags)).toBe true
-    expect(scope.tags.length).toBe 2
-    expect(scope.tags[0].selected).toBe true
-    expect(scope.tags[1].selected).toBe undefined
+  # it 'matches the corresponding tags with selected attribute', ->
+  #   backend.expectGET('http://localhost:3000/surveys/1').respond({title: 'Joku kysely', questions: [{title: 'Onko kivaa?'}], id: 1, tags: [{title:'Vektorit', id:1}]})
+  #   backend.expectGET('http://localhost:3000/tags').respond([{title: 'Vektorit', id:1}])
+  #   backend.flush()
+  #   expect(Array.isArray(scope.tags)).toBe true
+  #   expect(scope.tags.length).toBe 1
+  #   expect(scope.tags[0].selected).toBe true
+
+  # it 'matches only the corresponding tags with selected attribute and keeps the not corresponding in the array', ->
+  #   backend.expectGET('http://localhost:3000/surveys/1').respond({title: 'Joku kysely', questions: [{title: 'Onko kivaa?'}], id: 1, tags: [{title:'Vektorit', id:1}]})
+  #   backend.expectGET('http://localhost:3000/tags').respond([{title: 'Vektorit', id:1}, {title:'Matriisit', id:2}])
+  #   backend.flush()
+  #   expect(Array.isArray(scope.tags)).toBe true
+  #   expect(scope.tags.length).toBe 2
+  #   expect(scope.tags[0].selected).toBe true
+  #   expect(scope.tags[1].selected).toBe undefined
 
   it 'removes question with removeQuestion method', ->
     backend.expectGET('http://localhost:3000/surveys/1').respond({title: 'Joku kysely', questions: [{title: 'Onko kivaa?', id:1}], id: 1, tags: [{}]})

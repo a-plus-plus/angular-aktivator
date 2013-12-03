@@ -27,6 +27,7 @@ module.exports = function(config) {
       'app/scripts/**/*.coffee',
       'test/mock/**/*.coffee',
       'test/spec/**/*.coffee'
+      // 'test/spec/controllers/SurveyCtrl_spec.coffee'
     ],
 
     // list of files / patterns to exclude

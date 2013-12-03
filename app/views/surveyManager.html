@@ -1,26 +1,25 @@
 <h3 ng-if="isNew()">New survey</h3>
 <h3 ng-if="!isNew()">Editing a survey</h3>
 <div>
-	<form name="survey_management_form" class="survey_management_form">
+	<form name="survey_management_form" class="survey_management_form form-search">
 		<fieldset>
-			<label>Title:</label>
+			<label style="font-weight:bold">Title:</label>
 			<input ng-model="survey.title" type="text" />
-			<label>Status:</label>
+			<label style="font-weight:bold">Status:</label>
 			<select ng-model="survey.status" id="survey_status" ng-init="survey.status='Unpublished'">
 				<option value="Published">Published</option>
 				<option value="Unpublished">Unpublished</option>
 				<option ng-if="!isNew()" value="Finished">Finished</option>
 			</select><br>
-			<h4>tags:</h4>
-			<div ng-repeat="tag in tags">
-				<input type="checkbox" ng-checked="isSelected(tag)" ng-click="tagSave(tag)">{{tag.title}}</input>
-			</div>
-			[<span ng-repeat="tag in tags">{{tag.id}},</span>]
-			[<span ng-repeat="tag in survey.tags">{{tag.id}},</span>]
+      <span style="margin:4px" class="label label-{{color($index)}}" ng-repeat="tag in survey.tags" >{{tag.title}}<i style="padding-left=4px;cursor:pointer" ng-click="removeTag($index)" class="icon-remove icon-white"></i></span>
+      <br>
+
+      <input class="input" type="text" autocomplete="tags" pluck="title" options="list" ng-model="tag" ><button class="btn btn-success btn-small" ng-click="addTag(tag)">Add Tag</button>
 
 
 
-			<div ng-repeat="question in survey.questions" style="padding-left:50px">
+
+			<div ng-repeat="question in survey.questions" style="padding-left:50px" class = "question_{{$index}}">
 				<fieldset ng-hide="question._destroy">
           <label>Question</label>
 					<textarea ng-model="question.title" ></textarea>
@@ -28,7 +27,7 @@
 						<i  class="icon-minus-sign"/>
 					</button>
 					<label>Kind</label>
-					<select ng-model="question.kind">
+					<select ng-model="question.kind" class="kind_selector">
 						<option value="Radiobutton">Radiobutton</option>
 						<option value="Checkbox">Checkbox</option>
 						<option value="Textfield">Textfield</option>
@@ -47,7 +46,7 @@
 							<input type="hidden" value="{{option.destroy}}">
 						</fieldset>
 					</div>
-					<button ng-if="question.kind=='Radiobutton' || question.kind=='Checkbox'" ng-click="newOption($event, question)" class="btn btn-small btn-success" id ="newOption">
+					<button ng-if="question.kind=='Radiobutton' || question.kind=='Checkbox'" ng-click="newOption($event, question)" class="btn btn-small btn-success newOption" >
 						<i class="icon-plus-sign"></i>
 					</button>
 				</fieldset>

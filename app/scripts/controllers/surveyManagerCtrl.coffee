@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-.controller 'SurveyManagerCtrl', ['$scope','Survey', 'RailsFormatter', '$routeParams','Tag','filterFilter', '$location', '$q',($scope, Survey, RailsFormatter, $routeParams,Tag, filterFilter, $location,$q) ->
+.controller 'SurveyManagerCtrl', ['$scope','Survey', 'RailsFormatter', '$routeParams','Tag', '$location', '$q',($scope, Survey, RailsFormatter, $routeParams,Tag, $location,$q) ->
 
   id = $routeParams.id
 
@@ -9,29 +9,16 @@ angular.module('angularAktivatorApp')
 
   $scope.tags = Tag.query()
 
-  $q.all([
-    $scope.survey.$promise,
-    $scope.tags.$promise
-  ]).then ()->
-    $scope.survey.tags.forEach (elem) ->
-      $scope.tags.forEach (elem2) ->
-        #console.log 'id1', elem.id, 'id2', elem2.id
-        if elem.id == elem2.id
-          elem2.selected = true
-
-
-
-
-
   # Returns true when creating a new survey and false when editing an existing survey, used by ng-ifs
   $scope.isNew = () ->
     id == 'new'
 
+  $scope.color = (i) ->
+    colors = ['info', 'error', 'success', 'warning', 'important', 'inverse']
+    colors[i % colors.length]
+
   redirectToListing = () ->
     $location.path('/surveys')
-
-  $scope.info = (event) ->
-    console.log($scope.survey);
 
   $scope.newQuestion = (event) ->
     event.preventDefault()
@@ -39,15 +26,25 @@ angular.module('angularAktivatorApp')
 
   $scope.removeQuestion = (question, event, index, survey) ->
     event.preventDefault()
-    if (question.id)
+    if question.id
       question._destroy = 1
-      console.log 'added field to', question
     else
       survey.questions.splice(index, 1)
 
-  $scope.isSelected = (tag) ->
-    tag.selected
+  $scope.removeTag = (i) ->
+    $scope.survey.tags.splice(i,1)
 
+  $scope.addTag = (name) ->
+    tag = findBy('title',$scope.tags, name)
+    if !findBy('title', $scope.survey.tags,tag.title)
+      $scope.survey.tags.push(tag)
+
+  findBy = (key, arr, comp) ->
+    found = undefined
+    angular.forEach arr, (elem, i)->
+      if elem[key]==comp
+        found = elem
+    found
 
   $scope.saveTag = (tag) ->
     $scope.survey.tags.push tag

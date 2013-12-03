@@ -7,35 +7,32 @@ angular.module('angularAktivatorApp')
     @login = (user, okCallb, errCallb) ->
 
       success = (response) ->
+        #console.log 'We are at success'
         name = response.data.name
         token = response.data.token
         username = response.data.username
-        console.log 'SUCCESS great success! username:' + username
+        #console.log 'SUCCESS great success! username:' + username
         storageService.saveCredentials(name, token, username)
-        okCallb()
+        okCallb and okCallb()
 
       error = (response) ->
-        #console.log(response)
-        errCallb()
+        errCallb and errCallb()
 
 
       promise = webService.login(user)
       promise.then success, error
-      console.log "logging in"
 
     @logout = (okCallb) ->
       success = (response) ->
         storageService.logout()
-        okCallb()
+        okCallb and okCallb()
 
 
       error = (response) ->
-        console.log response
         storageService.logout()
 
       promise = webService.logout()
       promise.then success, error
-      console.log "logging out"
 
     @isLogged = () ->
         name = storageService.get('name')

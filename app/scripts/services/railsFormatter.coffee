@@ -25,10 +25,8 @@ angular.module('angularAktivatorApp')
           transformIds value, keys
 
     extract = (arr, id) ->
-      console.log arr
       angular.forEach arr, (elem, index) ->
-        console.log 'arr',arr,'elem', elem, 'index', index
-        arr[elem] = elem[id]
+        arr[index] = elem[id]
 
     {
       transformNested:transformNested
