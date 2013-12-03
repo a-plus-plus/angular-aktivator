@@ -17,57 +17,54 @@ describe 'Answering a survey', ->
     element(By.linkText('Surveys')).click()
     if survey.length > 0
       element(By.linkText(survey)).click()
-      aRadio =    $('.question:nth-of-type(1) div div:nth-of-type(1) input')
-      bRadio =    $('.question:nth-of-type(1) div div:nth-of-type(2) input')
-      cRadio =    $('.question:nth-of-type(1) div div:nth-of-type(3) input')
-      aCheckbox = $('.question:nth-of-type(2) div div:nth-of-type(1) input')
-      bCheckbox = $('.question:nth-of-type(2) div div:nth-of-type(2) input')
-      cCheckbox = $('.question:nth-of-type(2) div div:nth-of-type(3) input')
-      textbox =   $('.question:nth-of-type(3) div div textarea')
-      submit =    $('.response_form button')
+      aRadio =    $('.question_0 .option_0 input')
+      bRadio =    $('.question_0 .option_1 input')
+      cRadio =    $('.question_0 .option_2 input')
+      aCheckbox = $('.question_1 .option_0 input')
+      bCheckbox = $('.question_1 .option_1 input')
+      cCheckbox = $('.question_1 .option_2 input')
+      textbox =   $('.question_2 textarea')
+      submit =    $('.response_form .submit')
 
 
   it 'creates a new survey for tests below', ->
 
-    # Logging in...
-    element(By.model('user.name')).sendKeys('Arto')
-    element(By.model('user.password')).sendKeys('ratebeeR123')
-    element(By.id('login')).click()
+    login()
 
     # Navigating to survey creation
     element(By.linkText('Create Survey')).click()
-    newQuestion = element(By.id('newQuestion'))
+    newQuestion = element(By.css('.newQuestion'))
     title =       element(By.model('survey.title'))
-    submit =      element(By.id('submit'))
+    submit =      element(By.css('.submit'))
 
     newSurvey = uniqueString(15)
     title.sendKeys(newSurvey)
 
     # Selecting status
-    statusSelector = $('#survey_status option:nth-child(1)')
+    statusSelector = $('#survey_status [value="Published"]')
     statusSelector.click()
 
     # Radio question and options
     newQuestion.click()
-    radioOption = $('div.ng-scope:nth-child(11) fieldset:nth-child(1) #newOption')
+    radioOption = $('.question_0 .newOption')
     radioOption.click()
     radioOption.click()
     radioOption.click()
 
-    # Checkbox question and option
+    # Checkbox question and options
     newQuestion.click()
 
-    kindSelector = $('div.ng-scope:nth-child(12) fieldset:nth-child(1) select:nth-child(5) option:nth-child(2)')
+    kindSelector = $('.question_1 .kind_selector [value="Checkbox"]')
     kindSelector.click()
 
-    checkOption = $('div.ng-scope:nth-child(12) fieldset:nth-child(1) #newOption')
+    checkOption = $('.question_1 .newOption')
     checkOption.click()
     checkOption.click()
     checkOption.click()
 
     # Textbox question
     newQuestion.click()
-    kindSelector = $('div.ng-scope:nth-child(13) fieldset:nth-child(1) select:nth-child(5) option:nth-child(3)')
+    kindSelector = $('.question_2 .kind_selector [value="Textfield"]')
     kindSelector.click()
 
     # Typing the questions
@@ -100,9 +97,7 @@ describe 'Answering a survey', ->
 
     submit.click()
     survey = newSurvey
-
-    logout = element(By.id('logout'))
-    logout.click()
+    logout()
 
 
 
@@ -180,7 +175,7 @@ describe 'Answering a survey', ->
 
 
 
-  # General tests
+#   # General tests
   it 'allows the submitting of the response form', ->
     aRadio.click()
     bCheckbox.click()
@@ -189,28 +184,25 @@ describe 'Answering a survey', ->
     textbox.sendKeys('gooby pls')
     submit.click()
     msg = $('.message:first-child')
-    #expect(msg.getText()).toBe('Your response was saved successfully!')
+    expect(msg.getText()).toBe('Your response was saved successfully!')
 
   # TODO textbox answers!
   it 'changes the results of a survey after a successful submit', ->
 
-    # Navigating to last survey's results
+    # Navigating to our survey's results
     browser.get('#')
     element(By.linkText('Surveys')).click()
-    surveys = ptor.findElements(By.repeater('survey in surveys'))
-    surveys.then (surveys) ->
-      index = surveys.length - 1
-      surveys[index].findElement(By.className('result_button')).click()
+    $('[survey-title="' + survey + '"] .results a').click()
 
     # Saving current radio answer values
-    radio1 = $('.container ul:nth-child(2) ul:nth-child(2) li:nth-child(1) h5:nth-child(2)').getText()
-    radio2 = $('.container ul:nth-child(2) ul:nth-child(3) li:nth-child(1) h5:nth-child(2)').getText()
-    radio3 = $('.container ul:nth-child(2) ul:nth-child(4) li:nth-child(1) h5:nth-child(2)').getText()
+    radio1 = $('.container .question_0 .option_0 .option_count').getText()
+    radio2 = $('.container .question_0 .option_1 .option_count').getText()
+    radio3 = $('.container .question_0 .option_2 .option_count').getText()
 
     # Saving current checkbox answer values
-    check1 = $('.container ul:nth-child(3) ul:nth-child(2) li:nth-child(1) h5:nth-child(2)').getText()
-    check2 = $('.container ul:nth-child(3) ul:nth-child(3) li:nth-child(1) h5:nth-child(2)').getText()
-    check3 = $('.container ul:nth-child(3) ul:nth-child(4) li:nth-child(1) h5:nth-child(2)').getText()
+    check1 = $('.container .question_1 .option_0 .option_count').getText()
+    check2 = $('.container .question_1 .option_1 .option_count').getText()
+    check3 = $('.container .question_1 .option_2 .option_count').getText()
 
     # Answering the last survey
     element(By.linkText('Surveys')).click()
@@ -223,13 +215,15 @@ describe 'Answering a survey', ->
     submit.click()
 
     # Saving updated radio values from results view
-    radio1Updated = $('.container ul:nth-child(2) ul:nth-child(2) li:nth-child(1) h5:nth-child(2)').getText()
-    radio2Updated = $('.container ul:nth-child(2) ul:nth-child(3) li:nth-child(1) h5:nth-child(2)').getText()
-    radio3Updated = $('.container ul:nth-child(2) ul:nth-child(4) li:nth-child(1) h5:nth-child(2)').getText()
+
+    radio1Updated = $('.container .question_0 .option_0 .option_count').getText()
+    radio2Updated = $('.container .question_0 .option_1 .option_count').getText()
+    radio3Updated = $('.container .question_0 .option_2 .option_count').getText()
+
     # Saving updated checkbox values from results view
-    check1Updated = $('.container ul:nth-child(3) ul:nth-child(2) li:nth-child(1) h5:nth-child(2)').getText()
-    check2Updated = $('.container ul:nth-child(3) ul:nth-child(3) li:nth-child(1) h5:nth-child(2)').getText()
-    check3Updated = $('.container ul:nth-child(3) ul:nth-child(4) li:nth-child(1) h5:nth-child(2)').getText()
+    check1Updated = $('.container .question_1 .option_0 .option_count').getText()
+    check2Updated = $('.container .question_1 .option_1 .option_count').getText()
+    check3Updated = $('.container .question_1 .option_2 .option_count').getText()
 
     # Comparing original values to updated ones
     expect(radio1Updated).toBe(radio1)
@@ -247,6 +241,12 @@ describe 'Answering a survey', ->
     # Code has no such validation yet!
     #expect('pending').toBe('completed')
 
+  it 'deletes the survey created for these tests', ->
+    element(By.linkText('Surveys')).click()
+    login()
+    $('[survey-title="' + survey + '"] .destroy a').click()
+    logout()
+
 
 # Helper function for it 'changes the results of a survey after a successful submit'
 getIncrement = (str) ->
@@ -257,6 +257,14 @@ uniqueString = (length) ->
   str = ""
   str += Math.random().toString(36).substr(2) while str.length < length
   str.substr 0, length
+
+login = () ->
+  element(By.model('user.name')).sendKeys('Arto')
+  element(By.model('user.password')).sendKeys('ratebeeR123')
+  element(By.id('login')).click()
+
+logout = () ->
+  element(By.id('logout')).click()
 
 
 

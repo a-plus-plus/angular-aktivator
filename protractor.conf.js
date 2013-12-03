@@ -42,10 +42,12 @@ exports.config = {
   //
   // Spec patterns are relative to the location of this config.
   specs: [
-    //'.tmp/protractor/*.js'
-    '.tmp/protractor/viewing_results.js'
+    '.tmp/protractor/*.js'
+    //'.tmp/protractor/unlogged_views.js'
+    //'.tmp/protractor/viewing_results.js'
 
     //'.tmp/protractor/survey_creation.js',
+    //'.tmp/protractor/answering_survey.js'
     //'.tmp/protractor/survey_editing.js'
 
   ],
