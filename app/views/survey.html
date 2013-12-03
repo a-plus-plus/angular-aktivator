@@ -44,8 +44,8 @@
     <th></th>
   </thead>
   <tbody>
-    <tr ng-repeat="survey in surveys" ng-class="colors[survey.status]" >
-      <td class="title">{{survey.title}}</td>
+    <tr ng-repeat="survey in surveys" ng-class="colors[survey.status]" class="survey_{{$index}}" >
+      <td class="title"><a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a></td>
 
       <td class="status">{{survey.status}}</td>
 
