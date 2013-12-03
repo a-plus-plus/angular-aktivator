@@ -126,7 +126,7 @@ describe 'Answering a survey', ->
         expect(my_survey_name).toEqual(survey_name) # Checking that we're viewing the survey the test made in the beginning
         title_should_be = 'Results for ' + my_survey_name
         expect(result_title).toEqual(title_should_be)
-        protractor.getInstance().findElement(By.css('body')).getDriver().sleep(5000)
+        # protractor.getInstance().findElement(By.css('body')).getDriver().sleep(5000)
 
 
   it 'shows the results to all questions in a survey', ->
@@ -138,31 +138,31 @@ describe 'Answering a survey', ->
       my_survey_results = surveys[index].findElement(By.css('.results a'))
       my_survey_results.click()
 
-  #   # Checking that the test-created survey contains three questions and six options
-  #   questions = ptor.findElements(By.repeater('question in result.questions'))
-  #   questions.then (questions) ->
-  #     expect(questions.length).toEqual(3)
-  #     options = ptor.findElements(By.repeater('option in question.options'))
-  #     options.then (options) ->
-  #       expect(options.length).toEqual(6)
+    # Checking that the test-created survey contains three questions and six options
+    questions = ptor.findElements(By.repeater('question in result.questions'))
+    questions.then (questions) ->
+      expect(questions.length).toEqual(3)
+      options = ptor.findElements(By.repeater('option in question.options'))
+      options.then (options) ->
+        expect(options.length).toEqual(6)
 
-  #   zeroString = '0'
-  #   expect($('.container > ul:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > h5:nth-child(2)').getText()).toEqual(zeroString)
-  #   expect($('.container > ul:nth-child(2) > ul:nth-child(3) > li:nth-child(1) > h5:nth-child(2)').getText()).toEqual(zeroString)
-  #   expect($('.container > ul:nth-child(2) > ul:nth-child(4) > li:nth-child(1) > h5:nth-child(2)').getText()).toEqual(zeroString)
-  #   expect($('.container > ul:nth-child(3) > ul:nth-child(2) > li:nth-child(1) > h5:nth-child(2)').getText()).toEqual(zeroString)
-  #   expect($('.container > ul:nth-child(3) > ul:nth-child(3) > li:nth-child(1) > h5:nth-child(2)').getText()).toEqual(zeroString)
-  #   expect($('.container > ul:nth-child(3) > ul:nth-child(4) > li:nth-child(1) > h5:nth-child(2)').getText()).toEqual(zeroString)
+    zeroString = '0'
+    expect($('.container .question_0 .option_0 .option_count').getText()).toEqual(zeroString)
+    expect($('.container .question_0 .option_1 .option_count').getText()).toEqual(zeroString)
+    expect($('.container .question_0 .option_2 .option_count').getText()).toEqual(zeroString)
+    expect($('.container .question_1 .option_0 .option_count').getText()).toEqual(zeroString)
+    expect($('.container .question_0 .option_1 .option_count').getText()).toEqual(zeroString)
+    expect($('.container .question_0 .option_2 .option_count').getText()).toEqual(zeroString)
 
 
-  # it 'shows a diagram with the results', ->
-  #   # Navigating to last survey
-  #   surveys = ptor.findElements(By.repeater('survey in surveys'))
-  #   surveys.then (surveys) ->
-  #     index = surveys.length - 1
-  #     my_survey_name = surveys[index].findElement(By.tagName('a')).getText()
-  #     my_survey_results = surveys[index].findElement(By.className('result_button'))
-  #     my_survey_results.click()
+  it 'shows a diagram with the results', ->
+    # Navigating to last survey
+    surveys = ptor.findElements(By.repeater('survey in surveys'))
+    surveys.then (surveys) ->
+      index = surveys.length - 1
+      my_survey_name = surveys[index].findElement(By.css('.title')).getText()
+      my_survey_results = surveys[index].findElement(By.css('.results a'))
+      my_survey_results.click()
 
   #   chart = $('.ng-isolate-scope > canvas:nth-child(1)')
   #   expect(chart.isDisplayed()).toBe(true)

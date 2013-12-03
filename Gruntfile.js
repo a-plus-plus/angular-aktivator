@@ -28,6 +28,7 @@ module.exports = function (grunt) {
        options:{
            configFile: 'node_modules/protractor/referenceConf.js', //default config file
            keepAlive: true,
+           //debug: true,
            args: {}
        },
        test:{ //tests are configured in conf.file
