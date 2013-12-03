@@ -1,7 +1,7 @@
 'use strict'
 By = protractor.By
 
-describe 'Answering a survey', ->
+describe 'Viewing results', ->
   ptor = undefined
   username = undefined
   password = undefined
@@ -17,7 +17,7 @@ describe 'Answering a survey', ->
     login    = element(By.id('login'))
     password = element(By.model('user.password'))
 
-    # Loggin in...
+    # Logging in...
     username.sendKeys('Arto')
     password.sendKeys('ratebeeR123')
     login.click()
@@ -33,9 +33,9 @@ describe 'Answering a survey', ->
 
   it 'creates a new survey for tests below', ->
     element(By.linkText('Create Survey')).click()
-    newQuestion = element(By.id('newQuestion'))
+    newQuestion = element(By.css('.newQuestion'))
     title =       element(By.model('survey.title'))
-    submit =      element(By.id('submit'))
+    submit =      element(By.css('.submit'))
 
     newSurvey = uniqueString(15)
     title.sendKeys(newSurvey)
@@ -97,21 +97,18 @@ describe 'Answering a survey', ->
     survey_name = newSurvey
 
 
-  it 'shows the result button for each survey', ->
-
-    div_child = 1 # Surveys start from the second div
-    button_string_first = '.container tbody tr:nth-child('
-    button_string_last  = ') .results'
-
+  it 'shows the result button for each finished and published survey', ->
+    survey_index = 0
     surveys = ptor.findElements(By.repeater('survey in surveys'))
     surveys.then (surveys) ->
       for survey in surveys
-        button_string = button_string_first + div_child + button_string_last
-        div_child = div_child + 1
-        button = $(button_string)
-        expect(button.isDisplayed()).toBe(true)
-        #expect(button.isEnabled()).toBe(true) # a can't be enabled
-        #expect(button.getText()).toBe('Results') # getText ain't workin for some reason
+        status = $ '.survey_'+survey_index+' .status'
+        results = $ '.survey_'+survey_index+' .results'
+        status.getText().then (text) ->
+          if text != 'Unpublished'
+            expect(results.isDisplayed()).toBe(true)
+            expect(results.getText()).toBe('Results')
+        survey_index++
 
 
   it 'redirects the browser to the result view after pressing the Results button', ->
@@ -126,8 +123,6 @@ describe 'Answering a survey', ->
         expect(my_survey_name).toEqual(survey_name) # Checking that we're viewing the survey the test made in the beginning
         title_should_be = 'Results for ' + my_survey_name
         expect(result_title).toEqual(title_should_be)
-        # protractor.getInstance().findElement(By.css('body')).getDriver().sleep(5000)
-
 
   it 'shows the results to all questions in a survey', ->
     # Navigating to last survey
@@ -157,21 +152,16 @@ describe 'Answering a survey', ->
 
   it 'shows a diagram with the results', ->
     # Navigating to last survey
-    surveys = ptor.findElements(By.repeater('survey in surveys'))
-    surveys.then (surveys) ->
-      index = surveys.length - 1
-      my_survey_name = surveys[index].findElement(By.css('.title')).getText()
-      my_survey_results = surveys[index].findElement(By.css('.results a'))
-      my_survey_results.click()
-
-  #   chart = $('.ng-isolate-scope > canvas:nth-child(1)')
-  #   expect(chart.isDisplayed()).toBe(true)
+    $('[survey-title="' + survey_name + '"] .results a').click()
+    chart = $('canvas')
+    expect(chart.isDisplayed()).toBe(true)
 
 
-  # it 'shows the results to a textbox question', ->
-  #  # PENDING - textbox results aren't showed anywhere yet!
+  it 'shows the results to a textbox question', ->
+   # PENDING - textbox results aren't showed anywhere yet!
 
-
+  it 'deletes the survey it made for these tests', ->
+    $('[survey-title="' + survey_name + '"] .destroy a').click()
 
 
 uniqueString = (length) ->

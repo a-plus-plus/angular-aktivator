@@ -1,5 +1,4 @@
 'use strict'
-   #element.getDriver().sleep(15000) # sleeps 15s
 By = protractor.By
 ptor = protractor.getInstance()
 
@@ -10,8 +9,6 @@ login = ->
 logout = ->
   element(By.id('logout')).click()
 describe 'Create survey', ->
-
-
 
     describe 'Survey', ->
         title = undefined
@@ -24,27 +21,19 @@ describe 'Create survey', ->
 
 
         beforeEach ->
-            #ptor = protractor.getInstance()
             browser.get('#')
-            # loginArr = ptor.findElements(By.id('login'))
-            # loginArr.then (loginArr) ->
-            #   ptor.waitForAngular()
-            #   if loginArr.length and loginArr[0].isDisplayed() # @TODO this no works, fix pls
-            #     login()
             login()
             element(By.linkText('Create Survey')).click()
             title =                 element(By.model('survey.title'))
             status =                element(By.select('survey.status'))
-            submit =                element(By.id('submit'))
-            newQuestion =           element(By.id('newQuestion'))
-            removeQuestion =        element(By.id('removeQuestion'))
-            newOption =             element(By.id('newOption'))
-            removeOption =          element(By.id('removeOption'))
+            submit =                element(By.css('.submit'))
+            newQuestion =           element(By.css('.newQuestion'))
+            removeQuestion =        element(By.css('.removeQuestion'))
+            newOption =             element(By.css('.newOption'))
+            removeOption =          element(By.css('.removeOption'))
 
         afterEach ->
           logout()
-
-
 
          it 'has appropriate fields', ->
              expect(title.isDisplayed()).toBe(true)
@@ -64,11 +53,6 @@ describe 'Create survey', ->
                 expect(qtitle.isDisplayed()).toBe true
                 qtitle.sendKeys('HEI OLEN MATTI')
 
-            # questionTitle = element(By.repeater('question in survey.questions').row(0).column('title'))
-            # expect(questionTitle.isDisplayed()).toBe(true)
-
-            #commented lines should work according to protractor examples: https://github.com/angular/protractor/blob/master/spec/basic/findelements_spec.js
-            #but they throw element not found error
 
          it 'has appropriate option fields', ->
           newQuestion.click()
@@ -100,15 +84,3 @@ describe 'Create survey', ->
           options = ptor.findElements(By.repeater('option in question.options'))
           options.then (options) ->
             expect(options.length).toBe 0
-
-
-
-
-
-
-
-
-
-
-
-
