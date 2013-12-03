@@ -20,6 +20,7 @@ angular.module('angularAktivatorApp')
 
   $scope.myFilter = (survey) ->
     $scope.surveyIdList.indexOf(survey.id) != -1
+    #if taglist is empty return true
 
   $scope.addTag = (tag) ->
     found = false

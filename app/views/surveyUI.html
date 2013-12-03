@@ -8,6 +8,15 @@
     <input type="checkbox" > published surveys 
     <input type="checkbox" > finished surveys <br>
 </div>
+
+<div ng-controller="LoginCtrl">
+  <div>
+    <select>
+      <option ng-repeat="tag in tags" ng-click="addTag(tag)">{{tag.title}}</option>
+    </select>
+  </div>
+</div>
+
 <br>
  Choose survey by tag <br>
 <input ng-model="searchText">
@@ -15,7 +24,7 @@
     <div> <h5>Click on tag to show/hide related surveys</h5>
           <div>
             <div ng-repeat="tag in tags | filter:searchText | orderBy:'title' | limitTo:5"> 
-               <button type="button" class="btn btn-default" ng-click="addTag(tag)" ng-init="tag.expand = false">{{tag.title}}</button>
+               <button type="button" class="btn btn-default" ng-click="addTag(tag)" ng-init="tag.expand = false">{{tag.title}}</button> {{tag}}
            </div>
           </div>
 
@@ -34,7 +43,7 @@
 
 <p>------------------------------------------------------------------------------</p>
 
-<h1>Surveys</h1> 
+<h1>Surveys</h1> {{surveyIdList}}
 <div ng-repeat="survey in surveys | filter:myFilter" ng-init="survey.expand = false" ng-controller="LoginCtrl">
     <h3>Survey {{$index+1}}: <a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a>, Status: {{survey.status}} 
         <a ng-show="isLogged()" ng-href="#/surveys/{{survey.id}}"><button><i class="icon-edit"></i> edit</button></a>
