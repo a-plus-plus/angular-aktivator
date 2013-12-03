@@ -8,8 +8,18 @@ angular.module('angularAktivatorApp')
   $scope.tag = {}
   $scope.message = ""
 
-    $scope.tagList = []
+  $scope.tagList = []
+  $scope.surveyIdList = []
+
+  $scope.$watchCollection 'tagList', (tagList, oldList)->
     $scope.surveyIdList = []
+    angular.forEach tagList, (tag, i) ->
+      angular.forEach tag.surveys, (survey, i) ->
+        if $scope.surveyIdList.indexOf(survey.survey_id)== -1
+          $scope.surveyIdList.push(survey.survey_id)
+
+  $scope.myFilter = (survey) ->
+    $scope.surveyIdList.indexOf(survey.id) != -1
 
   $scope.addTag = (tag) ->
     found = false
@@ -19,28 +29,20 @@ angular.module('angularAktivatorApp')
     if !found
       $scope.tagList.push(tag)
 
-            # hae kaikki surveyt functiolla ja pistä ne joihin viitataan surveyIdListassa niin
-            # pistä ne omaan listaan ja hae niitä ng-repeat
-    $scope.deleteChoice = (index) -> 
-        $scope.tagList.splice(index,1)
+
+  $scope.deleteChoice = (index) -> 
+    $scope.tagList.splice(index,1)
 
   
-    $scope.total = ->
-        $scope.tagList.length
+  $scope.total = ->
+    $scope.tagList.length
 
     
 
   $scope.destroy = (survey) ->
     Survey.delete id:survey.id, -> $route.reload()
 
-    $scope.tagFilter = (tag) ->
-        found = false
-        for id in $scope.surveyIdList
-            if tag.surveys[0].survey_id == id
-                found = true
-        if !found
-            $scope.surveyIdList.push(tag.surveys[0].survey_id)
-
+  
 
   $scope.isLogged = ->
     Session.isLogged()

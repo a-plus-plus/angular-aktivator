@@ -15,7 +15,7 @@
     <div> <h5>Click on tag to show/hide related surveys</h5>
           <div>
             <div ng-repeat="tag in tags | filter:searchText | orderBy:'title' | limitTo:5"> 
-               <button type="button" class="btn btn-default" ng-click="addTag(tag); tagFilter(tag)" ng-init="tag.expand = false">{{tag.title}}</button> {{tag}}
+               <button type="button" class="btn btn-default" ng-click="addTag(tag)" ng-init="tag.expand = false">{{tag.title}}</button>
            </div>
           </div>
 
@@ -29,57 +29,16 @@
 
 <h1>Tags</h1> 
 <div ng-repeat="tag in tagList track by $index">
-    <button ng-click="deleteChoice($index)"><h5 >{{tag.title}}</h5></button>{{tag.surveys[0].survey_id}}
+    <button ng-click="deleteChoice($index)"><h5>{{tag.title}}</h5></button>
 </div>
 
 <p>------------------------------------------------------------------------------</p>
 
-<h1>Surveys</h1>  surveys_id:s{{surveyIdList}} 
-<p>{{surveys}}</p>
-<div ng-repeat="survey in surveys | orderBy:'title'" ng-init="survey.expand = false" ng-controller="LoginCtrl">
-    <h3>Survey {{$index+1}}: <a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a>, Status: {{survey.status}} 
-        <a ng-show="isLogged()" ng-href="#/surveys/{{survey.id}}"><button><i class="icon-edit"></i> edit</button></a>
-        <a ng-href="#/results/{{survey.id}}"><button><i class="icon-align-left"></i> Results</button></a>
-    </h3>
-</div>
-<p>----------------------------------------------------------------------------------</p>
-
-<input ng-model="search.title">
-<div ng-repeat="survey in surveys | filter:{ id: '4'}" ng-init="survey.expand = false" ng-controller="LoginCtrl">
+<h1>Surveys</h1> 
+<div ng-repeat="survey in surveys | filter:myFilter" ng-init="survey.expand = false" ng-controller="LoginCtrl">
     <h3>Survey {{$index+1}}: <a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a>, Status: {{survey.status}} 
         <a ng-show="isLogged()" ng-href="#/surveys/{{survey.id}}"><button><i class="icon-edit"></i> edit</button></a>
         <a ng-href="#/results/{{survey.id}}"><button><i class="icon-align-left"></i> Results</button></a>
     </h3>
 </div>
 
-
-
-<p>------------------------------------------------------------------------------</p>
-
-                        <div ng-init="friends = [{name:'John', phone:'555-1276'},
-                             {name:'Mary', phone:'800-BIG-MARY'},
-                             {name:'Mike', phone:'555-4321'},
-                             {name:'Adam', phone:'555-5678'},
-                             {name:'Julie', phone:'555-8765'},
-                             {name:'Juliette', phone:'555-5678'}]"></div>
-    
-    Search: <input ng-model="searchText">
-    <table id="searchTextResults">
-      <tr><th>Name</th><th>Phone</th></tr>
-      <tr ng-repeat="friend in friends | filter:searchText">
-        <td>{{friend.name}}</td>
-        <td>{{friend.phone}}</td>
-      </tr>
-    </table>
-    <hr>
-    Any: <input ng-model="search.$"> <br>
-    Name only <input ng-model="search.name"><br>
-    Phone only <input ng-model="search.phone"><br>
-    Equality <input type="checkbox" ng-model="strict"><br>
-    <table id="searchObjResults">
-      <tr><th>Name</th><th>Phone</th></tr>
-      <tr ng-repeat="friend in friends | filter:search:strict">
-        <td>{{friend.name}}</td>
-        <td>{{friend.phone}}</td>
-      </tr>
-    </table>
