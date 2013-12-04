@@ -34,12 +34,24 @@ angular.module('angularAktivatorApp')
   $scope.removeTag = (i) ->
     $scope.survey.tags.splice(i,1)
 
-  $scope.addTag = (name) ->
-    tag = findBy('title',$scope.tags, name)
-    if !findBy('title', $scope.survey.tags,tag.title)
-      $scope.survey.tags.push(tag)
+  $scope.addTag = (title) ->
+    tag = findBy('title',$scope.tags, title)
+    if tag
+      if !findBy('title', $scope.survey.tags,tag.title)
+        $scope.survey.tags.push(tag)
+    else if confirm('No such tag, create one?')
+      Tag.save({title:title}).$promise.then (tag)->
+        $scope.tags.push tag
+        $scope.survey.tags.push tag
+    else
+      return
+    $scope.tag = ''
+
 
   findBy = (key, arr, comp) ->
+    if !comp
+      return false
+
     found = undefined
     angular.forEach arr, (elem, i)->
       if elem[key]==comp
