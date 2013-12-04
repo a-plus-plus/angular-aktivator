@@ -21,5 +21,5 @@ class StorageService
     @deleteItem("token")
     @deleteItem("username")
 
-angular.module "angularAktivatorApp.storageService", [], ($provide) ->
-  $provide.factory "storageService", -> new StorageService()
+angular.module("angularAktivatorApp")
+.factory 'storageService', [-> new StorageService()]

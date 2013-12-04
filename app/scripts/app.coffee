@@ -6,7 +6,6 @@ angular.module('angularAktivatorApp', [
   'ngSanitize',
   'ngRoute'
   'angularAktivatorApp.webService',
-  'angularAktivatorApp.storageService',
   'ngAnimate',
   'chartjs-directive'
 ])
