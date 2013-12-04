@@ -19,8 +19,8 @@ angular.module('angularAktivatorApp')
           $scope.surveyIdList.push(survey.survey_id)
 
   $scope.myFilter = (survey) ->
+    return true if $scope.tagList.length is 0
     $scope.surveyIdList.indexOf(survey.id) != -1
-    #if taglist is empty return true
 
   $scope.addTag = (tag) ->
     found = false
@@ -29,6 +29,12 @@ angular.module('angularAktivatorApp')
         found = true
     if !found
       $scope.tagList.push(tag)
+
+  $scope.myOwn = (survey) ->
+    if $scope.onlyOwn
+      survey.isMy
+    else
+      true
 
 
   $scope.deleteChoice = (index) -> 
