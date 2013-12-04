@@ -186,7 +186,7 @@ describe 'Answering a survey', ->
     msg = $('.message:first-child')
     expect(msg.getText()).toBe('Your response was saved successfully!')
 
-  # TODO textbox answers!
+
   it 'changes the results of a survey after a successful submit', ->
 
     # Navigating to our survey's results
@@ -204,6 +204,9 @@ describe 'Answering a survey', ->
     check2 = $('.container .question_1 .option_1 .option_count').getText()
     check3 = $('.container .question_1 .option_2 .option_count').getText()
 
+    # Saving current textbox answer count
+    text_button = $('.container .question_2 .btn .count').getText()
+
     # Answering the last survey
     element(By.linkText('Surveys')).click()
     element(By.linkText(survey)).click()
@@ -215,7 +218,6 @@ describe 'Answering a survey', ->
     submit.click()
 
     # Saving updated radio values from results view
-
     radio1Updated = $('.container .question_0 .option_0 .option_count').getText()
     radio2Updated = $('.container .question_0 .option_1 .option_count').getText()
     radio3Updated = $('.container .question_0 .option_2 .option_count').getText()
@@ -224,6 +226,9 @@ describe 'Answering a survey', ->
     check1Updated = $('.container .question_1 .option_0 .option_count').getText()
     check2Updated = $('.container .question_1 .option_1 .option_count').getText()
     check3Updated = $('.container .question_1 .option_2 .option_count').getText()
+
+    # Saving updated textbox answer count from results view
+    text_button_updated = $('.container .question_2 .btn .count').getText()
 
     # Comparing original values to updated ones
     expect(radio1Updated).toBe(radio1)
@@ -235,6 +240,8 @@ describe 'Answering a survey', ->
     expect(check2Updated).toBe(check2)
     check3.then (cC)->
       expect(check3Updated).toEqual(getIncrement(cC))
+    text_button.then (txt) ->
+      expect(text_button_updated).toBe(getIncrement(txt))
 
 
   it 'does not allow leaving a radio button answer blank', ->
@@ -252,7 +259,6 @@ describe 'Answering a survey', ->
 getIncrement = (str) ->
   (parseInt(str)+1)+""
 
-
 uniqueString = (length) ->
   str = ""
   str += Math.random().toString(36).substr(2) while str.length < length
@@ -266,7 +272,4 @@ login = () ->
 logout = () ->
   element(By.id('logout')).click()
 
-
-
   # TODO a test that checks that a radio button question must be answered - code doesn't have this validation yet!
-  # TODO a test/an update to an existing test that checks that submitting a textbox answer saves it in results

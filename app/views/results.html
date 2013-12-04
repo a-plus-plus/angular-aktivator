@@ -12,12 +12,12 @@
   <ul>
     <li ng-show="question.kind == 'Textfield'">
       <button type="button" class="btn btn-default" ng-click="textbox.expand=!textbox.expand" ng-init="textbox.expand = true">
-        Show text answers (<small>{{question.answer_count}}</small>)
+        Show text answers (<small class="count">{{question.answer_count}}</small>)
       </button>
       <br><br>
-      <fieldset ng-hide="textbox.expand">
+      <fieldset class="text_answers_view" ng-hide="textbox.expand">
         <br>
-        <p ng-repeat="answer in question.answers">
+        <p ng-repeat="answer in question.answers" class="text_{{$index}}">
           - {{answer.value}}
           <br><br>
         </p>

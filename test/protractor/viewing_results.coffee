@@ -151,14 +151,29 @@ describe 'Viewing results', ->
 
 
   it 'shows a diagram with the results', ->
-    # Navigating to last survey
+    # Navigating to our survey
     $('[survey-title="' + survey_name + '"] .results a').click()
     chart = $('canvas')
     expect(chart.isDisplayed()).toBe(true)
 
 
   it 'shows the results to a textbox question', ->
-   # PENDING - textbox results aren't showed anywhere yet!
+    # Creating a textbox answer to our survey
+    element(By.linkText(survey_name)).click()
+    textbox = $('.question_2 textarea')
+    textbox.sendKeys('testingtesting')
+    $('.response_form .submit').click()
+
+    # Navigating to our survey and clicking the text results button
+    element(By.linkText('Surveys')).click()
+    $('[survey-title="' + survey_name + '"] .results a').click()
+    $('.container .question_2 .btn').click()
+
+    # Checking that the opened area contains our answer
+    saved_answer = $('.container .question_2 .text_answers_view .text_0').getText()
+    expect(saved_answer).toBe('- testingtesting')
+
+
 
   it 'deletes the survey it made for these tests', ->
     $('[survey-title="' + survey_name + '"] .destroy a').click()
