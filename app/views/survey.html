@@ -59,7 +59,7 @@
 <input ng-model="search.title">
 
   <tbody>
-    <tr ng-repeat="survey in surveys | orderBy:predicate:reverse | filter:search:strict | filter: myFilter"  ng-class="colors[survey.status]" class="survey_{{$index}}" ng-controller="LoginCtrl">
+    <tr ng-repeat="survey in surveys | orderBy:predicate:reverse | filter:search:strict"  ng-class="colors[survey.status]" class="survey_{{$index}}" ng-controller="LoginCtrl">
       <td class="title"><a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a></td>
 
       <td class="status">{{survey.status}}</td>
