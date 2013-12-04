@@ -30,6 +30,12 @@ angular.module('angularAktivatorApp')
     if !found
       $scope.tagList.push(tag)
 
+  $scope.myOwn = (survey) ->
+    if $scope.onlyOwn
+      survey.isMy
+    else
+      true
+
 
   $scope.deleteChoice = (index) -> 
     $scope.tagList.splice(index,1)

@@ -38,22 +38,20 @@
  <table class="table table-hover table-striped" ng-init="colors = {Unpublished:'warning', Published:'success', Finished:'info'}">
   <thead>
     <th><a href="" ng-click="predicate = 'title'; reverse=false">Name</a> 
-              (<a href="" ng-click="predicate = '-title'; reverse=false">^</a>) 
-              <input ng-model="search.title"></th>
-    <th><a href="" ng-click="predicate = 'status'; reverse=false">Status</a>
-              (<a href="" ng-click="predicate = '-status'; reverse=false">^</a>)
-              <th>Tags
-                <select>
-                    <option ng-repeat="tag in tags" ng-click="addTag(tag)" >{{tag.title}}</option>
-                 </select>
-              </th>
-    
+      (<a href="" ng-click="predicate = '-title'; reverse=false">^</a>) 
+      <input ng-model="search.title"></th>
+      <th><a href="" ng-click="predicate = 'status'; reverse=false">Status</a>
+        (<a href="" ng-click="predicate = '-status'; reverse=false">^</a>)
+        <th>Tags
+          <select>
+            <option ng-repeat="tag in tags" ng-click="addTag(tag)" >{{tag.title}}</option>
+          </select>
+        </th>
+        <th ng-show = "isLogged()"><input type="checkbox" ng-model="onlyOwn" /> My surveys </th>
 
-    </th>
-
-    <th></th>
-    <th></th>
-    <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
   </thead>
 <div ng-controller="LoginCtrl">
   
@@ -65,7 +63,7 @@
 
 
   <tbody>
-    <tr ng-repeat="survey in surveys | orderBy:predicate:reverse | filter:search:strict |filter: myFilter"  ng-class="colors[survey.status]" class="survey_{{$index}}" ng-controller="LoginCtrl" survey-title="{{survey.title}}">
+    <tr ng-repeat="survey in surveys | orderBy:predicate:reverse | filter:search:strict | filter: myFilter | filter: myOwn"  ng-class="colors[survey.status]" class="survey_{{$index}}" ng-controller="LoginCtrl" survey-title="{{survey.title}}">
       <td class="title"><a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a></td>
 
       <td class="status">{{survey.status}}</td>
