@@ -39,15 +39,15 @@ fieldset {
   position:relative;
 }
 .message-animation {
-  &.ng-enter {
-    -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
-    animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
-  }
+ //&.ng-enter {
+ //   -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
+ //   animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
+ // }
 
   &.ng-leave {
     -webkit-animation: leave_sequence 1s linear; /* Safari/Chrome */
     animation: leave_sequence 1s linear; /* IE10+ and Future Browsers */
-  }
+  } 
   position:relative;
 }
 @-webkit-keyframes enter_sequence {

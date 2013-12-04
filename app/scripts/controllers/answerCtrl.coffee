@@ -21,7 +21,7 @@ angular.module('angularAktivatorApp')
 
         console.log(response)
         Response.save(response, redirectToResults, (err) ->
-            $scope.message = "Something went wrong: " + err.data.message
+            messageService.setResponseMsg {value:"Something went wrong: " + err.data.message, type:'error'}
         )
 
 
