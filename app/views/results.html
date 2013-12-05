@@ -1,5 +1,6 @@
 <h1>Results for {{survey.title}}</h1>
 <ul ng-repeat = "question in result.questions" class="question_{{$index}}">
+  <highchart id="chart1" config="startChart(question)" class="span6" style="float:right;"></highchart>
 	<li>
     <h3>{{question.title}}</h3>
   </li>
@@ -25,7 +26,3 @@
     </li>
   </ul>
 </ul>
-<div>
-  chart being
-   <chart value="MyChart" type="Doughnut"></chart>
-</div>

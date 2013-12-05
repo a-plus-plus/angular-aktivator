@@ -7,7 +7,7 @@ angular.module('angularAktivatorApp', [
   'ngRoute'
   'angularAktivatorApp.webService',
   'ngAnimate',
-  'chartjs-directive'
+  'highcharts-ng'
 ])
 .config ['$routeProvider', '$locationProvider','$httpProvider', ($routeProvider, $locationProvider, $httpProvider) ->
   #$locationProvider.html5Mode true
