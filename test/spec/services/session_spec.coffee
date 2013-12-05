@@ -1,7 +1,7 @@
 'use strict'
 
 describe 'Service: Session', () ->
-  Session = storageService = webService = $q = $rootScope = user = deferred = errorCallback = okCallback = null
+  Session = storageService = webService = $q  = $rootScope = user = deferred = errorCallback = okCallback = null
 
   # load the service's module
   beforeEach module 'angularAktivatorApp'
@@ -14,12 +14,13 @@ describe 'Service: Session', () ->
 
   # instantiate service
   Session = {}
-  beforeEach inject (_Session_ , _storageService_, _webService_, _$q_, _$rootScope_) ->
+  beforeEach inject (_Session_, _storageService_, _webService_, _$q_, _$rootScope_) ->
     Session = _Session_
     storageService = _storageService_
     webService = _webService_
     $q = _$q_
     $rootScope = _$rootScope_
+
 
 
   beforeEach ->
@@ -55,6 +56,7 @@ describe 'Service: Session', () ->
       expect(webService.login).toHaveBeenCalledWith(user)
       expect(errorCallback).not.toHaveBeenCalledWith()
       expect(okCallback).toHaveBeenCalledWith()
+
 
   describe "Session logout tests", ->
     beforeEach ->

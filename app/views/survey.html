@@ -37,9 +37,9 @@
 
  <table class="table table-hover table-striped" ng-init="colors = {Unpublished:'warning', Published:'success', Finished:'info'}">
   <thead>
-    <th><a href="" ng-click="predicate = 'title'; reverse=false">Name</a> 
-      (<a href="" ng-click="predicate = '-title'; reverse=false">^</a>) 
-      <input ng-model="search.title"></th>
+    <th><a href="" ng-click="predicate = 'title'; reverse=false">Name</a>
+      (<a href="" ng-click="predicate = '-title'; reverse=false">^</a>)
+      <input ng-model="search.title" class= "searchTitle"></th>
       <th><a href="" ng-click="predicate = 'status'; reverse=false">Status</a>
         (<a href="" ng-click="predicate = '-status'; reverse=false">^</a>)
         <th>Tags
@@ -47,14 +47,14 @@
             <option ng-repeat="tag in tags" ng-click="addTag(tag)" >{{tag.title}}</option>
           </select>
         </th>
-        <th ng-show = "isLogged()"><input type="checkbox" ng-model="onlyOwn" /> My surveys </th>
+        <th ng-show = "isLogged()"><input type="checkbox" ng-model="onlyOwn" class="MySurveys"/> My surveys </th>
 
       <th></th>
       <th></th>
       <th></th>
   </thead>
 <div ng-controller="LoginCtrl">
-  
+
 </div>
 
 <div ng-repeat="tag in tagList track by $index" style="display:inline-block">

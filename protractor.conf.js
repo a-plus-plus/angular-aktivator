@@ -48,6 +48,7 @@ exports.config = {
     //'.tmp/protractor/survey_creation.js',
     //'.tmp/protractor/answering_survey.js'
     //'.tmp/protractor/survey_editing.js'
+    //'.tmp/protractor/viewing_surveys.js'
 
   ],
 
