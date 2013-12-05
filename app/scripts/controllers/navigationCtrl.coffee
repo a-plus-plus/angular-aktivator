@@ -8,15 +8,13 @@ angular.module('angularAktivatorApp')
     setNavigationBars = () ->
         if Session.isLogged() then (
             $scope.links = [
-                {text:'Home',           link:'/'}
-                {text:'Surveys',        link:'/surveys'}
+                {text:'Surveys',        link:'/'}
                 {text:'Create Survey',  link:'/surveys/new'}
                 {text:'Tags',           link:'/tags'}
             ]
         )else (
             $scope.links = [
-                {text:'Home',           link:'/'}
-                {text:'Surveys',        link:'/surveys'}
+                {text:'Surveys',        link:'/'}
                 {text:'Registration',   link:'/registration'}
             ]
         )

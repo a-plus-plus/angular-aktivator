@@ -16,7 +16,7 @@ describe 'Edit survey', ->
         survey_name = ''
 
         afterEach ->
-          browser.get('#/surveys')
+          browser.get('#')
           surveys = ptor.findElements(By.repeater('survey in surveys'))
           surveys.then (surveys) ->
               destroy = surveys[(surveys.length - 1)].findElement(By.css('.destroy a'))

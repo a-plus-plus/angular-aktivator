@@ -18,7 +18,7 @@ angular.module('angularAktivatorApp')
     colors[i % colors.length]
 
   redirectToListing = () ->
-    $location.path('/surveys')
+    $location.path('/')
 
   $scope.newQuestion = (event) ->
     event.preventDefault()
