@@ -14,7 +14,7 @@
       <span style="margin:4px" class="label label-{{color($index)}}" ng-repeat="tag in survey.tags" >{{tag.title}}<i style="padding-left=4px;cursor:pointer" ng-click="removeTag($index)" class="icon-remove icon-white"></i></span>
       <br>
 
-      <input class="input" type="text" autocomplete="tags" pluck="title" options="list" ng-model="tag" ><button class="btn btn-success btn-small" ng-click="addTag(tag)">Add Tag</button>
+      <input class="input" type="text" autocomplete="tags" pluck="title" options="list" ng-model="tag" ><button class="btn btn-success btn-small addTag" ng-click="addTag(tag)">Add Tag</button>
 
 
 

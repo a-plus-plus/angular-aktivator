@@ -32,7 +32,14 @@ describe 'Edit survey', ->
             newQuestion =           element(By.css('.newQuestion'))
             newOption =             element(By.css('.newOption'))
             title =                 element(By.model('survey.title'))
+            tagInput =              element(By.css('.input'))
+            addTag =                element(By.css('.addTag'))
+
+            tagInput.sendKeys('Vektorit')
             submit =                element(By.css('.submit'))
+
+            addTag.click()
+
             newQuestion.click()
             newOption.click()
 
