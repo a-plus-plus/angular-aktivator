@@ -14,9 +14,6 @@ angular.module('angularAktivatorApp', [
   $httpProvider.interceptors.push( 'authenticationInterceptor')
   $routeProvider
     .when '/',
-      templateUrl: '/views/main.html'
-      controller: 'MainCtrl'
-    .when '/surveys',
       templateUrl: '/views/survey.html'
       controller: 'SurveyCtrl'
     .when '/answer/:id',

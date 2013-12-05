@@ -2,7 +2,7 @@ By = protractor.By
 describe 'Unlogged views', () ->
 
 	it 'show Surveys', () ->
-		browser.get('#/surveys')
+		browser.get('#/')
 		title = element(By.css('h1'))
 		expect(title.getText()).toMatch('Surveys')
 
