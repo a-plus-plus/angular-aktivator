@@ -19,9 +19,6 @@ angular.module('angularAktivatorApp', [
     .when '/surveys',
       templateUrl: '/views/survey.html'
       controller: 'SurveyCtrl'
-    .when '/surveyUI',
-      templateUrl: '/views/surveyUI.html'
-      controller: 'SurveyCtrl'
     .when '/answer/:id',
       templateUrl: '/views/answer.html'
       controller: 'AnswerCtrl'
