@@ -2,29 +2,38 @@
 
 angular.module('angularAktivatorApp')
   .controller 'ResultsCtrl', ['$scope','Results', '$routeParams', 'Survey', ($scope, Results, $routeParams, Survey) ->
-    Results.get(id: $routeParams.id, (data, response) ->
-     $scope.result = data
-     )
+    $scope.result = Results.get(id: $routeParams.id)
 
-    $scope.startChart = (question) ->
-      console.log question
+    $scope.result.$promise.then (obj) ->
+      angular.forEach($scope.result.questions, (question, i) ->
+        question.config = startChart(question)
+      )
+    startChart = (question) ->
       chartConfig =
         options:
           chart:
             type: "pie"
-
+          plotOptions:
+            pie: 
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: 
+                enabled: true,
+                color: '#000000',
+                connectorColor: '#000000',
+                format: '{point.name},  {percentage:.1f} %'  
         series: []
         title:
           text: question.title
-
-        loading: false
+        loading: false      
 
       values = []
       for n in question.options
-        console.log n.value
+        #console.log n.value
         values.push [n.value, n.count]
 
       chartConfig.series.push data: values
+      console.log chartConfig
       chartConfig
 
   ]

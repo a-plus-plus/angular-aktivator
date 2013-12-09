@@ -1,64 +1,30 @@
 
 <h1>Surveys</h1>
-<!-- <div ng-repeat="survey in surveys" ng-init="survey.expand = false" ng-controller="LoginCtrl">
-	<h3>Survey {{$index+1}}:
-    <a ng-href="#/answer/{{survey.id}}">{{survey.title}}</a>,
-    <span>Status: {{survey.status}} </span>
-		<button type="button" ng-click="survey.expand=!survey.expand" class="btn">
-      <i class="icon-plus-sign" />
-    </button>
-		<a ng-show="isLogged()" ng-href="#/surveys/{{survey.id}}">
-      <button class="btn">
-        <i class="icon-edit" id="edit"></i> edit
-      </button>
-    </a>
-		<a ng-href="#/results/{{survey.id}}">
-      <button class="result_button btn">
-        <i class="icon-align-left"></i> Results
-      </button>
-    </a>
-		<button ng-click="destroy(survey)" id="destroy" class="btn">
-      <i class="icon-align-left"></i> Destroy
-    </button>
-	</h3>
-	<ul>
-		<div ng-repeat="question in survey.questions" ng-init="index=$index+1" ng-hide="survey.expand">
-			<li> {{question.title}}</li>
-			<ul>
-				<div ng-repeat="option in question.options" ng-init="index=$index+1">
-					<li>{{index}}: {{option.value}}</li>
-				</div>
-			</ul>
-		</div>
-	</ul>
-</div>
-
- -->
 
  <table class="table table-hover table-striped" ng-init="colors = {Unpublished:'warning', Published:'success', Finished:'info'}">
   <thead>
-    <th><a href="" ng-click="predicate = 'title'; reverse=false">Name</a>
+    <th><a href="" ng-click="predicate = 'title'; reverse=false">Title</a>
       (<a href="" ng-click="predicate = '-title'; reverse=false">^</a>)
       <input ng-model="search.title" class= "searchTitle"></th>
       <th><a href="" ng-click="predicate = 'status'; reverse=false">Status</a>
         (<a href="" ng-click="predicate = '-status'; reverse=false">^</a>)
 
-        <th ng-show = "isLogged()"><input type="checkbox" ng-model="onlyOwn" class="MySurveys"/> My surveys </th>
-
-      <th></th>
+       <th>
+      </th>
       <th></th>
       <th></th>
   </thead>
+  <div ng-show = "isLogged()"><input type="checkbox" ng-model="onlyOwn" class="MySurveys" /> My surveys </div>
 <div ng-controller="LoginCtrl">
-
-</div>
-
-<br>
+  <br>
       <span style="margin:4px" class="label label-{{color($index)}}" ng-repeat="tag in tagList">{{tag.title}}<i style="padding-left=4px;cursor:pointer" ng-click="removeTagFromFilter($index)" class="icon-remove icon-white"></i></span>
       <br>
 
-      <input class="input" type="text" autocomplete="tags" pluck="title" options="list" ng-model="tag" ><button class="btn btn-success btn-small addTag" ng-click="addTagToFilter(tag)">Add Tag</button>
+      <input class="input" type="text" placeholder="Filter view by tags." autocomplete="tags" pluck="title" options="list" ng-model="tag" ><button class="btn btn-success btn-small addTag" ng-click="addTagToFilter(tag)">Add</button>
 
+
+
+</div>
 
   <tbody>
     <tr ng-repeat="survey in surveys | orderBy:predicate:reverse | filter:search:strict | filter: tagFilter | filter: myOwn"  ng-class="colors[survey.status]" class="survey_{{$index}}" ng-controller="LoginCtrl" survey-title="{{survey.title}}">
