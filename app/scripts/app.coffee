@@ -4,8 +4,7 @@ angular.module('angularAktivatorApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
-  'angularAktivatorApp.webService',
+  'ngRoute',
   'ngAnimate',
   'highcharts-ng'
 ])

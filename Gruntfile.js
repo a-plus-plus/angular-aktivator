@@ -340,6 +340,7 @@ module.exports = function (grunt) {
         singleRun:false
       }
     },
+
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
@@ -409,7 +410,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'copy:dist',
-    'cdnify',
+    // 'cdnify',
     'ngmin',
     'cssmin',
     'uglify',

@@ -20,5 +20,5 @@ class WebService
   getPosts: () ->
     @$http.get(@baseUrl + "posts", {headers: @getAuthHeaders()})
 
-angular.module "angularAktivatorApp.webService", [], ($provide) ->
-  $provide.factory "webService", ["$http", "storageService", ($http, storageService) -> new WebService($http, storageService)]
+angular.module( "angularAktivatorApp")
+.factory 'webService',["$http", "storageService", ($http, storageService) -> new WebService($http, storageService)]
