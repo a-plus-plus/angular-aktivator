@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .service 'RailsFormatter', () ->
+  .service 'RailsFormatter', [() ->
     transformNested = (obj,keys,deep) ->
       angular.forEach keys, (key,i) ->
         if obj[key] and angular.isArray obj[key]
@@ -32,3 +32,4 @@ angular.module('angularAktivatorApp')
       transformNested:transformNested
       transformIds:transformIds
     }
+]
