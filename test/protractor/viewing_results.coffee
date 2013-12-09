@@ -153,7 +153,7 @@ describe 'Viewing results', ->
   it 'shows a diagram with the results', ->
     # Navigating to our survey
     $('[survey-title="' + survey_name + '"] .results a').click()
-    chart = $('canvas')
+    chart = $('.highcharts-container')
     expect(chart.isDisplayed()).toBe(true)
 
 
@@ -171,7 +171,7 @@ describe 'Viewing results', ->
 
     # Checking that the opened area contains our answer
     saved_answer = $('.container .question_2 .text_answers_view .text_0').getText()
-    expect(saved_answer).toBe('- testingtesting')
+    expect(saved_answer).toMatch('testingtesting')
 
 
 
