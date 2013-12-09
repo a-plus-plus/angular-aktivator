@@ -10,53 +10,57 @@
 				<option value="Published">Published</option>
 				<option value="Unpublished">Unpublished</option>
 				<option ng-if="!isNew()" value="Finished">Finished</option>
-			</select><br>
-
+			</select>
+      <br>
       <br>
 
       <label style="font-weight:bold">Tags:</label>
-      <input class="input" type="text" autocomplete="tags" pluck="title" options="list" ng-model="tag" > <button class="btn btn-success btn-small addTag" ng-click="addTag(tag)">Add</button>
-
+      <input class="input" type="text" autocomplete="tags" pluck="title" options="list" ng-model="tag" >
+      <button class="btn btn-success btn-small addTag" ng-click="addTag(tag)">Add</button>
 
       <span style="margin:4px" class="label label-{{color($index)}}" ng-repeat="tag in survey.tags" >{{tag.title}}
-        <i style="padding-left=4px;cursor:pointer" ng-click="removeTag($index)" class="icon-remove icon-white">
-        </i>
+        <i style="padding-left=4px;cursor:pointer" ng-click="removeTag($index)" class="icon-remove icon-white"/>
       </span>
       <br>
       <br>
 
-
-
-
 			<div ng-repeat="question in survey.questions" style="padding-left:50px" class = "question_{{$index}}">
-				<fieldset ng-hide="question._destroy" style="padding-top:25px; padding-bottom:25px; padding-left:15px; padding-right:15px; background-color:#DBFFFF">
-          <br>
+        <br>
+        <fieldset ng-hide="question._destroy" style="padding-top:25px; padding-bottom:25px; padding-left:15px; padding-right:15px; background-color:#E2F1FF">
           <label style="font-weight:bold">Question</label> <br>
 					<textarea ng-model="question.title" ></textarea>
 					<button ng-click="removeQuestion(question, $event, $index, survey)" class="btn btn-small btn-danger removeQuestion" style="float:right" >
-						<i  class="icon-minus-sign"/> Delete question
+						<i  class="icon-remove"/> Delete question
 					</button>
-					<label>Type</label>
+          <br>
+          <br>
+
+
+					<label style="font-weight:bold">Type</label>
+          <br>
 					<select ng-model="question.kind" class="kind_selector">
 						<option value="Radiobutton">Radiobutton</option>
 						<option value="Checkbox">Checkbox</option>
 						<option value="Textfield">Textfield</option>
 					</select>
 					<br>
+          <br>
 
 
 					<div ng-repeat="option in question.options" style="padding-left:50px">
 						<fieldset ng-hide="option._destroy" style="background-color:white;">
 							<button ng-click="removeOption(option, $event, $index, question)" class="btn btn-small btn-danger removeOption" style="float:right" >
-								<i class="icon-minus-sign"/> Delete option
+								<i class="icon-remove"/>
 							</button>
-							<label style="font-weight:bold">Option</label><br />
+							<label style="font-weight:bold">Option</label><br>
 							<textarea ng-model="option.value"></textarea>
 							<input type="hidden" value="{{option.id}}"/>
 							<input type="hidden" value="{{option.destroy}}">
 						</fieldset>
 					</div>
           <br>
+
+
 					<button ng-if="question.kind=='Radiobutton' || question.kind=='Checkbox'" ng-click="newOption($event, question)" class="btn btn-small btn-success newOption" >
 						<i class="icon-plus-sign"/> Add option
 					</button>
@@ -68,6 +72,8 @@
 			</button>
 		</fieldset>
 	</div>
+
+
 	<div class="actions">
 		<button ng-click="submit(survey)" class="btn btn-success submit">Save</button> {{message}}
 		<br />
