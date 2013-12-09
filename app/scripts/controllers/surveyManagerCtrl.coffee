@@ -35,6 +35,7 @@ angular.module('angularAktivatorApp')
     $scope.survey.tags.splice(i,1)
 
   $scope.addTag = (title) ->
+    console.log title
     tag = findBy('title',$scope.tags, title)
     if tag
       if !findBy('title', $scope.survey.tags,tag.title)

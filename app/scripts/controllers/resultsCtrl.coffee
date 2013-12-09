@@ -8,6 +8,7 @@ angular.module('angularAktivatorApp')
       angular.forEach($scope.result.questions, (question, i) ->
         question.config = startChart(question)
       )
+
     startChart = (question) ->
       chartConfig =
         options:
@@ -29,11 +30,9 @@ angular.module('angularAktivatorApp')
 
       values = []
       for n in question.options
-        #console.log n.value
         values.push [n.value, n.count]
 
       chartConfig.series.push data: values
-      console.log chartConfig
       chartConfig
 
   ]

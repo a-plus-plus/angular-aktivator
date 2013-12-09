@@ -1,6 +1,6 @@
 <h1>Results for {{survey.title}}</h1>
 <ul ng-repeat = "question in result.questions" class="question_{{$index}}">
-  <highchart id="chart1" config="question.config" class="span6" style="float:right;"></highchart>
+  <highchart config="question.config" class="span6" style="float:right;"></highchart>
 	<li>
     <h3>{{question.title}}</h3>
   </li>

@@ -16,6 +16,6 @@ angular.module('angularAktivatorApp')
           elems = angular.copy scope.autocomplete
 
         element.typeahead({
-          source:elems
+          local:elems
         })
   ]
