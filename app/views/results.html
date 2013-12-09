@@ -1,28 +1,41 @@
 <h1>Results for {{survey.title}}</h1>
-<ul ng-repeat = "question in result.questions" class="question_{{$index}}">
+<br>
+<span ng-repeat = "question in result.questions" class="question_{{$index}}">
   <highchart id="chart1" config="question.config" class="span6" style="float:right;"></highchart>
-	<li>
-    <h3>{{question.title}}</h3>
-  </li>
-	<ul ng-repeat = "option in question.options" class="option_{{$index}}">
-		<li>
-      <h4 class="option_value">{{option.value}}</h4>
-      <h5 class="option_count">{{option.count}}</h5>
-    </li>
-	</ul>
-  <ul>
-    <li ng-show="question.kind == 'Textfield'">
-      <button type="button" class="btn btn-default" ng-click="textbox.expand=!textbox.expand" ng-init="textbox.expand = true">
-        Show text answers (<small class="count">{{question.answer_count}}</small>)
-      </button>
-      <br><br>
-      <fieldset class="text_answers_view" ng-hide="textbox.expand">
-        <br>
-        <p ng-repeat="answer in question.answers" class="text_{{$index}}">
-          - {{answer.value}}
+
+  <h2>{{question.title}}</h2>
+  <fieldset style="border:0">
+	<div ng-repeat = "option in question.options" class="option_{{$index}}">
+    <label ng-if="isRadio(question.kind)" class="radio">
+        <input type="radio" checked disabled>
+        <span style="font-weight:bold; font-size:17px;" class="option_value">{{option.value}}:</span>
+        <span class="option_count">{{option.count}}</span>
+    </label>
+    <label ng-if="isCheckbox(question.kind)" class="checkbox">
+        <input type="checkbox" checked disabled>
+        <span style="font-weight:bold; font-size:17px;" class="option_value">{{option.value}}:</span>
+        <span class="option_count">{{option.count}}</span>
+    </label>
+	</div>
+  <div ng-show="question.kind == 'Textfield'">
+    <button type="button" class="btn btn-small btn-info" ng-click="textbox.expand=!textbox.expand" ng-init="textbox.expand = true">
+      <i class="icon-white icon-list-alt"/> Show text answers (<small class="count">{{question.answer_count}}</small>)
+    </button>
+    <br>
+    <br>
+    <fieldset class="text_answers_view" ng-hide="textbox.expand">
+      <br>
+      <ul>
+        <li ng-repeat="answer in question.answers" class="text_{{$index}}">
+          {{answer.value}}
           <br><br>
-        </p>
-      </fieldset>
-    </li>
-  </ul>
-</ul>
+        </li>
+      </ul>
+    </fieldset>
+  </div>
+  </fieldset>
+  <br>
+</span>
+
+
+
