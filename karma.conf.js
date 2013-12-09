@@ -23,6 +23,7 @@ module.exports = function(config) {
       'app/bower_components/angular-animate/angular-animate.js',
       'app/bower_components/chartjs/Chart.min.js',
       'app/bower_components/angular-chartjs-directive/chartjs-directive.js',
+      'app/bower_components/highcharts-ng/src/directives/highcharts-ng.js',
       'app/scripts/*.coffee',
       'app/scripts/**/*.coffee',
       'test/mock/**/*.coffee',

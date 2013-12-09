@@ -40,8 +40,8 @@ describe 'Controller: ResultsCtrl', () ->
   it 'should define a result property', ->
     expect(scope.result).toBeDefined()
 
-  it 'should define a survey property', ->
-    expect(scope.survey).toBeDefined()
+  # it 'should define a survey property', ->
+  #   expect(scope.survey).toBeDefined()
 
   # it 'should call Survey', ->
   #   scope.$digest()
