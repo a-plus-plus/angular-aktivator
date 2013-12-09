@@ -15,6 +15,7 @@ angular.module('angularAktivatorApp')
         options:
           chart:
             type: "pie"
+            backgroundColor: "#fafafa"
           plotOptions:
             pie:
               allowPointSelect: true,

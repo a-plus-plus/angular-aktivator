@@ -1,7 +1,7 @@
 <h1>Results for {{survey.title}}</h1>
 <br>
 <span ng-repeat = "question in result.questions" class="question_{{$index}}">
-  <highchart id="chart1" config="question.config" class="span6" style="float:right;"></highchart>
+  <highchart ng-if="question.kind != 'Textfield'" id="chart1" config="question.config" class="span6" style="float:right;"></highchart>
 
   <h2>{{question.title}}</h2>
   <fieldset style="border:0">
