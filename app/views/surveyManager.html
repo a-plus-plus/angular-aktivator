@@ -29,7 +29,7 @@
 
 			<div ng-repeat="question in survey.questions" style="padding-left:50px" class = "question_{{$index}}">
         <br>
-        <fieldset ng-hide="question._destroy" style="padding-top:25px; padding-bottom:25px; padding-left:15px; padding-right:15px; background-color:#E2F1FF">
+        <fieldset ng-hide="question._destroy" style="padding-top:25px; padding-bottom:25px; padding-left:15px; padding-right:15px; background-color:#c4e3f3">
           <label style="font-weight:bold">Question</label> <br>
 					<textarea ng-model="question.title" ></textarea>
 					<button ng-click="removeQuestion(question, $event, $index, survey)" class="btn btn-small btn-danger removeQuestion" style="float:right" >
