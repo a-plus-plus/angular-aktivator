@@ -30,6 +30,21 @@ angular.module('angularAktivatorApp')
     if !found
       $scope.tagList.push(tag)
 
+  $scope.removeTagFromFilter = (index) ->
+    $scope.tagList.splice(index,1)
+
+  $scope.addTagToFilter = (tag) ->
+    found = false
+    for Tag in $scope.tagList
+      if tag.id == Tag.id
+        found = true
+    if !found
+      $scope.tagList.push(tag)
+
+  $scope.tagFilter = (survey) ->
+    return true if $scope.tagList.length is 0
+    $scope.surveyIdList.indexOf(survey.id) != -1
+
   $scope.myOwn = (survey) ->
     if $scope.onlyOwn
       survey.isMy
@@ -37,19 +52,19 @@ angular.module('angularAktivatorApp')
       true
 
 
-  $scope.deleteChoice = (index) -> 
+  $scope.deleteChoice = (index) ->
     $scope.tagList.splice(index,1)
 
-  
+
   $scope.total = ->
     $scope.tagList.length
 
-    
+
 
   $scope.destroy = (survey) ->
     Survey.delete id:survey.id, -> $route.reload()
 
-  
+
 
   $scope.isLogged = ->
     Session.isLogged()
