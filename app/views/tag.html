@@ -4,8 +4,8 @@
 	<button type="button" class="btn btn-default" ng-click="tag.expand=!tag.expand" ng-init="tag.expand = false">{{tag.title}}</button>
 	<div ng-hide="tag.expand">
 		<div ng-repeat="survey in tag.surveys" >
-			<a ng-href="#/answer/{{survey.survey_id}}">{{survey.survey_title}}</a> 
-		</div>	
+			<a ng-href="#/answer/{{survey.survey_id}}">{{survey.survey_title}}</a>
+		</div>
 	</div>
 </div>
 
@@ -13,7 +13,7 @@
 <h2>New tag</h2>
 <form>
 	<label>Name:</label>
-	<input ng-model="tag.title" type="text" /> 	{{message}}<br />
+	<input ng-model="tag.title" type="text" /> <br />
 	<button ng-click="submit(tag)" type="button" class="btn btn-default">Submit</button>
 </form>
 
