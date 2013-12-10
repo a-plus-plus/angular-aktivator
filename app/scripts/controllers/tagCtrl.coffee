@@ -1,17 +1,17 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-.controller 'TagCtrl', ['$scope','Tag', ($scope, Tag) ->
+.controller 'TagCtrl', ['$scope','Tag','messageService', ($scope, Tag, messageService) ->
 
-	$scope.tags = Tag.query()
-	$scope.tag = {}
-	$scope.message = ""
+  $scope.tags = Tag.query()
+  $scope.tag = {}
 
-	$scope.submit = (tag) ->
-		Tag.save tag, (->
-			$scope.message = tag.title + " added!"
-			$scope.tag = {}
-		), (err) -> 
-			$scope.message = "Error adding tag: " + err.data.title
+  $scope.submit = (tag) ->
+    Tag.save tag, (tag)->
+      messageService.setResponseMsg({value:tag.title + " added!", type:"success"})
+      $scope.tag = {}
+      $scope.tags.push(tag)
+    , (err) ->
+      messageService.setResponseMsg({value:"Error adding tag: " + err.data.title, type:"error"})
 
-	]
+  ]
