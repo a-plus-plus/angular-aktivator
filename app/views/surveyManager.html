@@ -15,7 +15,7 @@
       <br>
 
       <label style="font-weight:bold">Tags:</label>
-      <input class="input" type="text" autocomplete="tags" pluck="title" options="list" ng-model="tag" >
+      <input class="input" type="text" placeholder="Search or create tags." autocomplete="tags" pluck="title" options="list" ng-model="tag" >
       <button class="btn btn-success btn-small addTag" ng-click="addTag(tag)">Add</button>
 
       <span style="margin:4px" class="label label-{{color($index)}}" ng-repeat="tag in survey.tags" >{{tag.title}}
