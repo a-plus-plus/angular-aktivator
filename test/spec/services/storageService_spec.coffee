@@ -20,9 +20,6 @@ describe 'Service: storageService', () ->
       storage = {}
 
 
-  it 'should do something', () ->
-    expect(!!storageService).toBe true
-
   it 'should provide saveCredentials function', ->
     expect(typeof storageService.saveCredentials).toBe('function')
 
