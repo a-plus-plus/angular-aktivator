@@ -13,23 +13,23 @@ angular.module('angularAktivatorApp', [
   $httpProvider.interceptors.push( 'authenticationInterceptor')
   $routeProvider
     .when '/',
-      templateUrl: '/views/survey.html'
+      templateUrl: 'views/survey.html'
       controller: 'SurveyCtrl'
     .when '/answer/:id',
-      templateUrl: '/views/answer.html'
+      templateUrl: 'views/answer.html'
       controller: 'AnswerCtrl'
     .when '/results/:id',
-      templateUrl: '/views/results.html'
+      templateUrl: 'views/results.html'
       controller: 'ResultsCtrl'
     .when '/tags',
-      templateUrl: '/views/tag.html'
+      templateUrl: 'views/tag.html'
       controller: 'TagCtrl'
       requireLogin: true
     .when '/registration',
-      templateUrl: '/views/registration.html'
+      templateUrl: 'views/registration.html'
       controller: 'UserCtrl'
     .when '/surveys/:id',
-      templateUrl:'/views/surveyManager.html'
+      templateUrl:'views/surveyManager.html'
       controller: 'SurveyManagerCtrl'
       requireLogin: true
     .otherwise

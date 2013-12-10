@@ -19,7 +19,7 @@
       <button class="btn btn-success btn-small addTag" ng-click="addTag(tag)">Add</button>
 
       <span style="margin:4px" class="label label-{{color($index)}}" ng-repeat="tag in survey.tags" >{{tag.title}}
-        <i style="padding-left=4px;cursor:pointer" ng-click="removeTag($index)" class="icon-remove icon-white"/>
+        <i style="padding-left=4px;cursor:pointer" ng-click="removeTag($index)" class="icon-remove icon-white"></i>
       </span>
       <br>
       <br>
@@ -33,7 +33,7 @@
           <label style="font-weight:bold">Question</label> <br>
 					<textarea ng-model="question.title" ></textarea>
 					<button ng-click="removeQuestion(question, $event, $index, survey)" class="btn btn-small btn-danger removeQuestion" style="float:right" >
-						<i  class="icon-remove"/> Delete question
+						<i  class="icon-remove"></i> Delete question
 					</button>
           <br>
           <br>
@@ -53,7 +53,7 @@
 					<div ng-repeat="option in question.options" style="padding-left:50px">
 						<fieldset ng-hide="option._destroy" style="background-color:white;">
 							<button ng-click="removeOption(option, $event, $index, question)" class="btn btn-small btn-danger removeOption" style="float:right" >
-								<i class="icon-remove"/>
+								<i class="icon-remove"></i>
 							</button>
 							<label style="font-weight:bold">Option</label><br>
 							<textarea ng-model="option.value"></textarea>
@@ -65,13 +65,13 @@
 
 
 					<button ng-if="question.kind=='Radiobutton' || question.kind=='Checkbox'" ng-click="newOption($event, question)" class="btn btn-small btn-success newOption" >
-						<i class="icon-plus-sign"/> Add option
+						<i class="icon-plus-sign"></i> Add option
 					</button>
 				</fieldset>
 			</div>
 			<br>
 			<button ng-click="newQuestion($event)" class="btn btn-small btn-success newQuestion">
-				<i class="icon-plus-sign"/> Add question
+				<i class="icon-plus-sign"></i> Add question
 			</button>
 		</fieldset>
 	</div>

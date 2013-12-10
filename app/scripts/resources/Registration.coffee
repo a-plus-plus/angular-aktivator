@@ -1,6 +1,6 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .factory 'User', ['$resource',($resource) ->
-    $resource 'http://localhost\\:3000/users/:id', id: '@id'    
+  .factory 'User', ['$resource','databaseUrl',($resource, databaseUrl) ->
+    $resource databaseUrl+'/users/:id', id: '@id'
   ]
