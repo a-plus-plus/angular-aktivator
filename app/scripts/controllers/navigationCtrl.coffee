@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .controller 'NavigationCtrl', ['$scope', '$location', 'webService', 'storageService', 'Session', ($scope, $location, webService, storageService , Session) ->
+  .controller 'NavigationCtrl', ['$scope', '$location', 'Session', ($scope, $location, Session) ->
 
 
 
@@ -24,7 +24,7 @@ angular.module('angularAktivatorApp')
     ,setNavigationBars
 
     setNavigationBars()
-    
+
     $scope.isActive = (viewLocation) ->
         viewLocation == $location.path()
 
