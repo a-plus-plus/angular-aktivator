@@ -14,17 +14,15 @@ angular.module('angularAktivatorApp')
     $scope.message.length > 0
 
   $scope.submit = (user) ->
-    user = {user:user}
-    console.log(user)
-    messageService.setResponseMsg({value:"Created new user, please login using your username and password", type:"success"})
-    User.save(user, redirectToLogin , (obj) ->
+    User.save(user, success , (obj) ->
       if obj.data.email
         $scope.message = "E-mail " + obj.data.email[0] + "!"
       if obj.data.name
         $scope.message = "Username " + obj.data.name[0] + "!"
     )
 
-  redirectToLogin = () ->
+  success = () ->
+    messageService.setResponseMsg({value:"Created new user, please login using your username and password", type:"success"})
     $location.path('/')
 ])
 
