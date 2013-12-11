@@ -6,11 +6,7 @@ describe 'Service: Session', () ->
   # load the service's module
   beforeEach module 'angularAktivatorApp'
 
-  module ($provide) ->
-    $provide.value 'storageService', new MockStorageService()
-    $provide.value 'User', new MockUser()
 
-    null
 
   # instantiate service
   Session = {}
