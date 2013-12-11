@@ -334,7 +334,7 @@ module.exports = function (grunt) {
       },
       unit: {},
       travis: {
-        browsers:['Firefox']
+        browsers:['PhantomJS']
       },
       watch:{
         singleRun:false
