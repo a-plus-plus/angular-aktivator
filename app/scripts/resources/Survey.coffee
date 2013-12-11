@@ -9,7 +9,7 @@ angular.module('angularAktivatorApp')
     RailsFormatter.transformNested(survey, ['questions','options'], true)
     RailsFormatter.transformIds(survey, ['tags'], 'id')
     #console.log 'after', angular.copy survey
-    JSON.stringify {survey:survey}
+    angular.toJson {survey:survey}
 
   $resource databaseUrl+'/surveys/:id', id: '@id', {
     'save':     {method:'POST', transformRequest:transform}
