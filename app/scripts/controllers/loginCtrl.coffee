@@ -12,7 +12,6 @@ angular.module('angularAktivatorApp')
   $scope.login = (user) ->
     Session.login(user, ->
       $scope.user = {}
-      #$location.path('/')
       $route.reload()
     , ->
       messageService.setResponseMsg({value:"invalid login", type:"error"})
@@ -20,7 +19,6 @@ angular.module('angularAktivatorApp')
 
   $scope.logout = ->
     Session.logout(->
-      #$location.path('/')
       $route.reload()
     )
 

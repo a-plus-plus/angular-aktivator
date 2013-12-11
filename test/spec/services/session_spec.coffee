@@ -1,23 +1,23 @@
 'use strict'
 
 describe 'Service: Session', () ->
-  Session = storageService = webService = $q  = $rootScope = user = deferred = errorCallback = okCallback = null
+  Session = storageService = User = $q  = $rootScope = user = deferred = errorCallback = okCallback = null
 
   # load the service's module
   beforeEach module 'angularAktivatorApp'
 
   module ($provide) ->
     $provide.value 'storageService', new MockStorageService()
-    $provide.value 'webService', new MockWebService()
+    $provide.value 'User', new MockUser()
 
     null
 
   # instantiate service
   Session = {}
-  beforeEach inject (_Session_, _storageService_, _webService_, _$q_, _$rootScope_) ->
+  beforeEach inject (_Session_, _storageService_, _User_, _$q_, _$rootScope_) ->
     Session = _Session_
     storageService = _storageService_
-    webService = _webService_
+    User = _User_
     $q = _$q_
     $rootScope = _$rootScope_
 
@@ -28,15 +28,15 @@ describe 'Service: Session', () ->
     storageService.saveCredentials = jasmine.createSpy('saveCredentials')
     storageService.deleteCredentials = jasmine.createSpy('deleteCredentials')
     deferred = $q.defer()
-    webService.login = jasmine.createSpy('login').andReturn(deferred.promise)
-    webService.logout = jasmine.createSpy('logout').andReturn(deferred.promise)
+    User.login = jasmine.createSpy('login').andReturn({$promise:deferred.promise})
+    User.logout = jasmine.createSpy('logout').andReturn({$promise:deferred.promise})
 
   it 'should exist', () ->
     expect(!!Session).toBe yes
 
   describe "Session login tests", ->
     beforeEach ->
-      user = {data:{name: 'Arto', token: '12345678', username: 'Troller'}}
+      user = {name: 'Arto', token: '12345678', username: 'Troller'}
       okCallback = jasmine.createSpy('okCallback')
       errorCallback = jasmine.createSpy('errorCallback')
       Session.login(user, okCallback, errorCallback)
@@ -46,14 +46,14 @@ describe 'Service: Session', () ->
     it 'should provide a login function', ->
       expect(typeof Session.login).toBe('function')
 
-    it 'should call webService.login', ->
-      expect(webService.login).toHaveBeenCalledWith(user)
+    it 'should call User.login', ->
+      expect(User.login).toHaveBeenCalledWith(user)
 
     it 'should call storageService.saveCredentials', ->
-      expect(storageService.saveCredentials).toHaveBeenCalledWith(user.data.name, user.data.token, user.data.username)
+      expect(storageService.saveCredentials).toHaveBeenCalledWith(user.name, user.token, user.username)
 
     it 'promise success should call okCallback', ->
-      expect(webService.login).toHaveBeenCalledWith(user)
+      expect(User.login).toHaveBeenCalledWith(user)
       expect(errorCallback).not.toHaveBeenCalledWith()
       expect(okCallback).toHaveBeenCalledWith()
 
@@ -68,8 +68,8 @@ describe 'Service: Session', () ->
     it 'should provide a logout function', ->
       expect(typeof Session.logout).toBe('function')
 
-    it 'should call webService.logout', ->
-      expect(webService.logout).toHaveBeenCalledWith()
+    it 'should call User.logout', ->
+      expect(User.logout).toHaveBeenCalledWith()
 
     it 'should call storageService.deleteCredentials', ->
       expect(storageService.deleteCredentials).toHaveBeenCalledWith()
