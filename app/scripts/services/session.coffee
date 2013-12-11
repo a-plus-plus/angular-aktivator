@@ -1,17 +1,15 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .service 'Session',['storageService', 'webService', '$http', '$rootScope','$timeout', (storageService, webService, $http, $rootScope,$timeout) ->
+  .service 'Session',['storageService', 'User', '$http', '$rootScope','$timeout', (storageService, User, $http, $rootScope,$timeout) ->
     # AngularJS will instantiate a singleton by calling "new" on this function
 
     @login = (user, okCallb, errCallb) ->
 
       success = (response) ->
-        #console.log 'We are at success'
-        name = response.data.name
-        token = response.data.token
-        username = response.data.username
-        #console.log 'SUCCESS great success! username:' + username
+        name = response.name
+        token = response.token
+        username = response.username
         storageService.saveCredentials(name, token, username)
         okCallb and okCallb()
 
@@ -19,7 +17,7 @@ angular.module('angularAktivatorApp')
         errCallb and errCallb()
 
 
-      promise = webService.login(user)
+      promise = User.login(user).$promise
       promise.then success, error
 
     @logout = (okCallb) ->
@@ -31,7 +29,7 @@ angular.module('angularAktivatorApp')
       error = (response) ->
         storageService.deleteCredentials()
 
-      promise = webService.logout()
+      promise = User.logout().$promise
       promise.then success, error
 
     @isLogged = () ->
