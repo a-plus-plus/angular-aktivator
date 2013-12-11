@@ -10,15 +10,15 @@ describe 'SurveyCtrl', () ->
   route = {}
 
   # Initialize the controller and create mocks
-  beforeEach inject ($controller, $rootScope, $httpBackend) ->
+  beforeEach inject ($controller, $rootScope, $httpBackend, databaseUrl) ->
     scope = $rootScope.$new()
     SurveyCtrl = $controller 'SurveyCtrl', {
       $scope: scope
       $route: route
     }
     backend = $httpBackend
-    backend.expectGET('http://localhost:3000/surveys').respond([{title:'Hei ihminen', id:1}])
-    backend.expectGET('http://localhost:3000/tags').respond([{title:'Matematiikka', id:1}, {title:'Tietojenkäsittely', id:2}])
+    backend.expectGET(databaseUrl+'/surveys').respond([{title:'Hei ihminen', id:1}])
+    backend.expectGET(databaseUrl+'/tags').respond([{title:'Matematiikka', id:1}, {title:'Tietojenkäsittely', id:2}])
 
 
   afterEach ->

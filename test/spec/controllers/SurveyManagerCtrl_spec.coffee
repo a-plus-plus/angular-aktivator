@@ -8,9 +8,10 @@ describe 'Controller: SurveymanagerCtrl', () ->
   SurveymanagerCtrl = {}
   scope = {}
   backend = {}
+  url = ''
 
   # Initialize the controller and a mock scope
-  beforeEach inject ($controller, $rootScope, $httpBackend) ->
+  beforeEach inject ($controller, $rootScope, $httpBackend, databaseUrl) ->
     scope = $rootScope.$new()
     routeParams = {id:1}
     SurveymanagerCtrl = $controller 'SurveyManagerCtrl', {
@@ -18,6 +19,7 @@ describe 'Controller: SurveymanagerCtrl', () ->
       $routeParams: routeParams
     }
     backend = $httpBackend
+    url = databaseUrl
 
   #not sure why these should be used. They also break a few tests.
   # afterEach ->
@@ -26,8 +28,8 @@ describe 'Controller: SurveymanagerCtrl', () ->
 
 
   it 'makes the corresponding request',->
-    backend.expectGET('http://localhost:3000/surveys/1').respond({title: 'Joku kysely', questions: [{title: 'Onko kivaa?'}], id: 1, tags: [{}]})
-    backend.expectGET('http://localhost:3000/tags').respond([{title: 'Vektorit'}])
+    backend.expectGET(url+'/surveys/1').respond({title: 'Joku kysely', questions: [{title: 'Onko kivaa?'}], id: 1, tags: [{}]})
+    backend.expectGET(url+'/tags').respond([{title: 'Vektorit'}])
     backend.flush()
 
     # controller no longer matches the tags, but we might roll back, so @TODO remove
@@ -50,8 +52,8 @@ describe 'Controller: SurveymanagerCtrl', () ->
   #   expect(scope.tags[1].selected).toBe undefined
 
   it 'removes question with removeQuestion method', ->
-    backend.expectGET('http://localhost:3000/surveys/1').respond({title: 'Joku kysely', questions: [{title: 'Onko kivaa?', id:1}], id: 1, tags: [{}]})
-    backend.expectGET('http://localhost:3000/tags').respond([{title: 'Vektorit'}])
+    backend.expectGET(url+'/surveys/1').respond({title: 'Joku kysely', questions: [{title: 'Onko kivaa?', id:1}], id: 1, tags: [{}]})
+    backend.expectGET(url+'/tags').respond([{title: 'Vektorit'}])
     backend.flush()
     scope.removeQuestion(scope.survey.questions[0], {preventDefault:->}, 0, scope.survey)
     expect(Array.isArray(scope.survey.questions)).toBe true
