@@ -1,5 +1,5 @@
 <h1>Results for {{survey.title}}</h1>
-total of {{survey.answer_count}} answers
+Total of {{result.answer_count}} answers
 <br>
 <span ng-repeat = "question in result.questions" class="question_{{$index}}">
   <highchart ng-if="question.kind != 'Textfield'" id="chart1" config="question.config" class="span6" style="float:right;"></highchart>
