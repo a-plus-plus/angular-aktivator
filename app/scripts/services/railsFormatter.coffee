@@ -32,4 +32,4 @@ angular.module('angularAktivatorApp')
       transformNested:transformNested
       transformIds:transformIds
     }
-  ]
+]

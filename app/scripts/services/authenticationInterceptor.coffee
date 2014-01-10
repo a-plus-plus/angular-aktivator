@@ -8,7 +8,7 @@ angular.module('angularAktivatorApp')
         token = storageService.get('token')
         if name and token
           request.headers['name'] = name
-          request.headers['token'] = token
+       	  request.headers['token'] = token
         request
 
       responseError: (response) ->
@@ -18,4 +18,4 @@ angular.module('angularAktivatorApp')
           $location.path('/404')
         $q.reject(response)
     }
-  ]
+]

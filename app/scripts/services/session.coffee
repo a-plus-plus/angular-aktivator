@@ -33,9 +33,9 @@ angular.module('angularAktivatorApp')
       promise.then success, error
 
     @isLogged = () ->
-      name = storageService.get('name')
+        name = storageService.get('name')
         token = storageService.get('token')
         username = storageService.get('username')
         token and name
     this
-  ]
+]

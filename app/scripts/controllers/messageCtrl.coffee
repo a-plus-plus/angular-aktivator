@@ -4,8 +4,8 @@ angular.module('angularAktivatorApp')
   .controller 'messageCtrl', ['$scope', 'messageService', ($scope, messageService) ->
 
     $scope.$watch () ->
-      messageService.getMessages()
+        messageService.getMessages()
     , (messages) ->
-      $scope.messages = messages
+        $scope.messages = messages
     $scope.messages = messageService.getMessages()
   ]

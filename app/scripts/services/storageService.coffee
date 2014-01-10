@@ -22,4 +22,4 @@ class StorageService
     @deleteItem("username")
 
 angular.module("angularAktivatorApp")
-  .factory 'storageService', [-> new StorageService()]
+.factory 'storageService', [-> new StorageService()]

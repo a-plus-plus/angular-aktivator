@@ -1,25 +1,25 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .controller 'SurveyCtrl', ['$scope','Survey', 'Tag', 'Session','$route',($scope, Survey, Tag, Session, $route) ->
+.controller 'SurveyCtrl', ['$scope','Survey', 'Tag', 'Session','$route',($scope, Survey, Tag, Session, $route) ->
   $scope.surveys = Survey.query()
 
-    $scope.tags = Tag.query()
+  $scope.tags = Tag.query()
 
-    $scope.tagList = []
+  $scope.tagList = []
 
 
-    $scope.color = (i) ->
+  $scope.color = (i) ->
     colors = ['info', 'success', 'warning', 'important', 'error', 'inverse']
     colors[i % colors.length]
 
 
-    $scope.removeTagFromFilter = (index) ->
+  $scope.removeTagFromFilter = (index) ->
     $scope.tagList.splice(index,1)
 
 
 
-    $scope.addTagToFilter = (title) ->
+  $scope.addTagToFilter = (title) ->
     tag = findBy('title',$scope.tags, title)
     if tag
       if !findBy('title', $scope.tagList,tag.title)
@@ -29,7 +29,7 @@ angular.module('angularAktivatorApp')
     $scope.tag = ''
 
 
-    findBy = (key, arr, comp) ->
+  findBy = (key, arr, comp) ->
     if !comp
       return false
     found = undefined
@@ -38,7 +38,7 @@ angular.module('angularAktivatorApp')
         found = elem
     found
 
-    $scope.tagFilter = (survey) ->
+  $scope.tagFilter = (survey) ->
     return true if $scope.tagList.length is 0
     found = false
     angular.forEach($scope.tagList, (tag, i) ->
@@ -49,7 +49,7 @@ angular.module('angularAktivatorApp')
     )
     found
 
-    $scope.myOwn = (survey) ->
+  $scope.myOwn = (survey) ->
     if $scope.onlyOwn
       survey.isMy
     else

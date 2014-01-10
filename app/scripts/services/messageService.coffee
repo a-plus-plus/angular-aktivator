@@ -6,18 +6,18 @@ angular.module('angularAktivatorApp')
     messages = []
 
     getMessages = () ->
-      messages
+        messages
 
     addMessage = (msg) ->
-      messages.push msg
+        messages.push msg
     $interval ->
-      if messages.length
-        messages.shift()
+        if messages.length
+            messages.shift()
     ,5000
 
 
     {
-      getMessages:getMessages
+        getMessages:getMessages
         setResponseMsg:addMessage
     }
-  ]
+]

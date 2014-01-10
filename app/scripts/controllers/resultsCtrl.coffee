@@ -40,9 +40,9 @@ angular.module('angularAktivatorApp')
 
     # Functions for defining question kind for ng-ifs
     $scope.isRadio = (kind) ->
-      kind == "Radiobutton"
+        kind == "Radiobutton"
 
     $scope.isCheckbox = (kind) ->
-      kind == "Checkbox"
+        kind == "Checkbox"
 
   ]

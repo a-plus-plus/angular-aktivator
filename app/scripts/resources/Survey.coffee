@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-  .factory 'Survey', ['$resource','RailsFormatter','databaseUrl',($resource, RailsFormatter,databaseUrl) ->
+.factory 'Survey', ['$resource','RailsFormatter','databaseUrl',($resource, RailsFormatter,databaseUrl) ->
 
   transform = (data, headersGetter)->
     survey = angular.copy data
@@ -11,10 +11,10 @@ angular.module('angularAktivatorApp')
     #console.log 'after', angular.copy survey
     angular.toJson {survey:survey}
 
-    $resource databaseUrl+'/surveys/:id', id: '@id', {
-      'save':     {method:'POST', transformRequest:transform}
-      'update': {method:'PUT', transformRequest:transform}
-    }
+  $resource databaseUrl+'/surveys/:id', id: '@id', {
+    'save':     {method:'POST', transformRequest:transform}
+    'update': {method:'PUT', transformRequest:transform}
+  }
 
 
-  ]
+]
