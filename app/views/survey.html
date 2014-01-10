@@ -1,16 +1,16 @@
 
 <h1>Surveys</h1>
 
- <form class="form-horizontal form">
-    <br>
-    <span style="margin:4px" class="label label-{{color($index)}}" ng-repeat="tag in tagList">{{tag.title}}
-      <i style="padding-left=4px;cursor:pointer" ng-click="removeTagFromFilter($index)" class="icon-remove icon-white"></i>
-    </span>
-    <br>
+<form class="form-horizontal form">
+  <br>
+  <span style="margin:4px" class="label label-{{color($index)}}" ng-repeat="tag in tagList">{{tag.title}}
+    <i style="padding-left=4px;cursor:pointer" ng-click="removeTagFromFilter($index)" class="icon-remove icon-white"></i>
+  </span>
+  <br>
 
-    <input class="input" type="text" placeholder="Filter view by tags" autocomplete="tags" pluck="title" options="list" ng-model="tag" >
-    <button class="btn btn-success btn-small addTag" ng-click="addTagToFilter(tag)">Add</button>
-  </form>
+  <input class="input" type="text" placeholder="Filter view by tags" autocomplete="tags" pluck="title" options="list" ng-model="tag" >
+  <button class="btn btn-success btn-small addTag" ng-click="addTagToFilter(tag)">Add</button>
+</form>
 
 <table class="table table-hover table-striped" ng-init="colors = {Unpublished:'warning', Published:'success', Finished:'info'}">
   <thead>
@@ -26,9 +26,9 @@
       <a href="" ng-click="predicate = '-status'; reverse=false" style="font-size:18px;">↓</a>
     </th>
     <th>
-        <label ng-if = "isLogged()" class="checkbox">
-          <input type="checkbox" ng-model="onlyOwn" class="MySurveys"/> Show only my own surveys
-        </label>
+      <label ng-if = "isLogged()" class="checkbox">
+        <input type="checkbox" ng-model="onlyOwn" class="MySurveys"/> Show only my own surveys
+      </label>
     </th>
     <th></th>
     <th></th>
@@ -63,4 +63,4 @@
 
     </tr>
   </tbody>
- </table>
+</table>
