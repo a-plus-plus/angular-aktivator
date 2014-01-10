@@ -6,18 +6,18 @@ angular.module('angularAktivatorApp')
 
 
     setNavigationBars = () ->
-        if Session.isLogged() then (
-            $scope.links = [
-                {text:'Surveys',        link:'/'}
+      if Session.isLogged() then (
+        $scope.links = [
+          {text:'Surveys',        link:'/'}
                 {text:'Create Survey',  link:'/surveys/new'}
                 {text:'Tags',           link:'/tags'}
-            ]
-        )else (
-            $scope.links = [
-                {text:'Surveys',        link:'/'}
+        ]
+      )else (
+        $scope.links = [
+          {text:'Surveys',        link:'/'}
                 {text:'Registration',   link:'/registration'}
-            ]
-        )
+        ]
+      )
 
     $scope.$watch () ->
       Session.isLogged()
@@ -26,7 +26,7 @@ angular.module('angularAktivatorApp')
     setNavigationBars()
 
     $scope.isActive = (viewLocation) ->
-        viewLocation == $location.path()
+      viewLocation == $location.path()
 
 
   ]

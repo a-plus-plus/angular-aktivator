@@ -1,10 +1,10 @@
 <nav ng-controller="NavigationCtrl" class="navbar">
-  <div class="navbar-inner">
-    <ul class="nav">
-      <li ng-repeat="link in links" ng-class="{active:isActive(link.link)}"><a ng-href="#{{link.link}}" >{{link.text}}</a></li>
-    </ul>
-    
-    <ng-include src="'views/partials/login.html'"></ng-include>
+<div class="navbar-inner">
+  <ul class="nav">
+    <li ng-repeat="link in links" ng-class="{active:isActive(link.link)}"><a ng-href="#{{link.link}}" >{{link.text}}</a></li>
+  </ul>
 
-  </div>
+  <ng-include src="'views/partials/login.html'"></ng-include>
+
+</div>
 </nav>

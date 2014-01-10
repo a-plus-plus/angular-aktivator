@@ -6,34 +6,34 @@ Total of {{result.answer_count}} answers
 
   <h2>{{question.title}}</h2>
   <fieldset style="border:0">
-	<div ng-repeat = "option in question.options" class="option_{{$index}}">
-    <label ng-if="isRadio(question.kind)" class="radio">
+    <div ng-repeat = "option in question.options" class="option_{{$index}}">
+      <label ng-if="isRadio(question.kind)" class="radio">
         <input type="radio" checked disabled>
         <span style="font-weight:bold; font-size:17px;" class="option_value">{{option.value}}:</span>
         <span class="option_count">{{option.count}}</span>
-    </label>
-    <label ng-if="isCheckbox(question.kind)" class="checkbox">
+      </label>
+      <label ng-if="isCheckbox(question.kind)" class="checkbox">
         <input type="checkbox" checked disabled>
         <span style="font-weight:bold; font-size:17px;" class="option_value">{{option.value}}:</span>
         <span class="option_count">{{option.count}}</span>
-    </label>
-	</div>
-  <div ng-show="question.kind == 'Textfield'">
-    <button type="button" class="btn btn-small btn-info" ng-click="textbox.expand=!textbox.expand" ng-init="textbox.expand = true">
-      <i class="icon-white icon-list-alt"/> Show text answers (<small class="count">{{question.answer_count}}</small>)
-    </button>
-    <br>
-    <br>
-    <fieldset class="text_answers_view" ng-hide="textbox.expand">
+      </label>
+    </div>
+    <div ng-show="question.kind == 'Textfield'">
+      <button type="button" class="btn btn-small btn-info" ng-click="textbox.expand=!textbox.expand" ng-init="textbox.expand = true">
+        <i class="icon-white icon-list-alt"></i> Show text answers (<small class="count">{{question.answer_count}}</small>)
+      </button>
       <br>
-      <ul>
-        <li ng-repeat="answer in question.answers" class="text_{{$index}}">
+      <br>
+      <fieldset class="text_answers_view" ng-hide="textbox.expand">
+        <br>
+        <ul>
+          <li ng-repeat="answer in question.answers" class="text_{{$index}}">
           {{answer.value}}
           <br><br>
-        </li>
-      </ul>
-    </fieldset>
-  </div>
+          </li>
+        </ul>
+      </fieldset>
+    </div>
   </fieldset>
   <br>
 </span>

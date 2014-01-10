@@ -1,40 +1,40 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-.controller 'SurveyManagerCtrl', ['$scope','Survey', 'RailsFormatter', '$routeParams','Tag', '$location', '$q',($scope, Survey, RailsFormatter, $routeParams,Tag, $location,$q) ->
+  .controller 'SurveyManagerCtrl', ['$scope','Survey', 'RailsFormatter', '$routeParams','Tag', '$location', '$q',($scope, Survey, RailsFormatter, $routeParams,Tag, $location,$q) ->
 
   id = $routeParams.id
 
-  $scope.survey = if id =='new' then {questions:[], tags:[]} else Survey.get(id:id)
+    $scope.survey = if id =='new' then {questions:[], tags:[]} else Survey.get(id:id)
 
   $scope.tags = Tag.query()
 
-  # Returns true when creating a new survey and false when editing an existing survey, used by ng-ifs
+    # Returns true when creating a new survey and false when editing an existing survey, used by ng-ifs
   $scope.isNew = () ->
     id == 'new'
 
-  $scope.color = (i) ->
+    $scope.color = (i) ->
     colors = ['info', 'success', 'warning', 'important', 'error', 'inverse']
     colors[i % colors.length]
 
-  redirectToListing = () ->
+    redirectToListing = () ->
     $location.path('/')
 
-  $scope.newQuestion = (event) ->
+    $scope.newQuestion = (event) ->
     event.preventDefault()
     $scope.survey.questions.push({kind:'Radiobutton', options:[]})
 
-  $scope.removeQuestion = (question, event, index, survey) ->
+    $scope.removeQuestion = (question, event, index, survey) ->
     event.preventDefault()
     if question.id
       question._destroy = 1
     else
       survey.questions.splice(index, 1)
 
-  $scope.removeTag = (i) ->
+    $scope.removeTag = (i) ->
     $scope.survey.tags.splice(i,1)
 
-  $scope.addTag = (title) ->
+    $scope.addTag = (title) ->
     tag = findBy('title',$scope.tags, title)
     if tag
       if !findBy('title', $scope.survey.tags,tag.title)
@@ -43,12 +43,12 @@ angular.module('angularAktivatorApp')
       Tag.save({title:title}).$promise.then (tag)->
         $scope.tags.push tag
         $scope.survey.tags.push tag
-    else
-      return
+      else
+        return
     $scope.tag = ''
 
 
-  findBy = (key, arr, comp) ->
+    findBy = (key, arr, comp) ->
     if !comp
       return false
 

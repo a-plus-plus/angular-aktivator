@@ -1,19 +1,19 @@
 'use strict'
 
 angular.module('angularAktivatorApp')
-.controller('UserCtrl', ['$scope','User', 'RailsFormatter','$location', 'messageService', ($scope, User, RailsFormatter, $location, messageService) ->
+  .controller('UserCtrl', ['$scope','User', 'RailsFormatter','$location', 'messageService', ($scope, User, RailsFormatter, $location, messageService) ->
 
   $scope.users = User.query()
-  $scope.user = {}
-  $scope.message = ''
+    $scope.user = {}
+    $scope.message = ''
 
-  $scope.info = (event) ->
+    $scope.info = (event) ->
     console.log($scope.users);
 
-  $scope.errorMsg = () ->
+    $scope.errorMsg = () ->
     $scope.message.length > 0
 
-  $scope.submit = (user) ->
+    $scope.submit = (user) ->
     User.save(user, success , (obj) ->
       if obj.data.email
         $scope.message = "E-mail " + obj.data.email[0] + "!"
@@ -21,17 +21,17 @@ angular.module('angularAktivatorApp')
         $scope.message = "Username " + obj.data.name[0] + "!"
     )
 
-  success = () ->
+    success = () ->
     messageService.setResponseMsg({value:"Created new user, please login using your username and password", type:"success"})
     $location.path('/')
-])
+  ])
 
-.directive( "passwordVerify", ->
+    .directive( "passwordVerify", ->
   require: "ngModel"
-  scope:
-    passwordVerify: "="
+      scope:
+        passwordVerify: "="
 
-  link: (scope, element, attrs, ngController) ->
+      link: (scope, element, attrs, ngController) ->
     scope.$watch (->
       combined = undefined
       combined = scope.passwordVerify + "_" + ngController.$viewValue  if scope.passwordVerify or ngController.$viewValue
@@ -46,13 +46,13 @@ angular.module('angularAktivatorApp')
           else
             ngController.$setValidity "passwordVerify", true
             viewValue
- )
+    )
 
 
-.directive( "usernameVerify", ->
+      .directive( "usernameVerify", ->
   require: "ngModel"
-  scope: true
-  link: (scope, element, attrs, ngController) ->
+        scope: true
+        link: (scope, element, attrs, ngController) ->
     scope.$watch (->
       ngController.$viewValue
     ), (value) ->
@@ -64,7 +64,7 @@ angular.module('angularAktivatorApp')
               valid = false
           ngController.$setValidity 'usernameVerify', valid
           viewValue
- )
+      )
 
 
 
