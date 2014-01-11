@@ -2,6 +2,7 @@
 
 angular.module('angularAktivatorApp')
   .service 'RailsFormatter', [() ->
+
     transformNested = (obj,keys,deep) ->
       angular.forEach keys, (key,i) ->
         if obj[key] and angular.isArray obj[key]

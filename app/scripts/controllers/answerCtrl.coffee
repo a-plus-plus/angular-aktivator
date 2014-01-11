@@ -3,7 +3,7 @@
 # Contains functions used by answer.html
 
 angular.module('angularAktivatorApp')
-  .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', '$location', '$rootScope','messageService', ($scope, Survey, $routeParams, Response, RailsFormatter, $location, $rootScope, messageService) ->
+  .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', 'storageService' ,'$location', '$rootScope','messageService', ($scope, Survey, $routeParams,  Response, RailsFormatter, storageService, $location, $rootScope, messageService) ->
     $scope.survey = Survey.get(id: $routeParams.id)
     $scope.response = {answers:[]} # <- this would be nice :)
     $scope.survey.$promise.then ->
@@ -20,6 +20,15 @@ angular.module('angularAktivatorApp')
         # end removethis
 
         console.log(response)
+
+        # Tässä kerrotaan et oot vastannut j
+        key = "answered_to_#{$scope.survey.id}"
+        if storageService.get(key)
+            messageService.setResponseMsg {value:"Cannot answer multiple times ", type:'error'}
+            return
+
+        storageService.store(key, 1)
+
         Response.save(response, redirectToResults, (err) ->
             messageService.setResponseMsg {value:"Something went wrong: " + err.data.message, type:'error'}
         )
