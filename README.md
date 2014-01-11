@@ -55,6 +55,7 @@ open up a new terminal and run
 ``` bash
   grunt e2e-test
 ```
+note that many tests are depending on current seed file
 ### Unit tests
 ``` bash
   grunt test

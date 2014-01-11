@@ -1,27 +1,26 @@
-
 <h1>Answer to a survey</h1>
 <form name="response_form" class="response_form">
-	<h3>{{survey.title}}</h3>
-	<div ng-repeat="question in survey.questions" class="question question_{{$index}}">
-		<h4>{{question.title}}</h4>
-		<div style="padding-left:25px">
-			<div ng-if="isRadio(question.kind)" ng-repeat="option in question.options" class="option_{{$index}}">
-				<label class="radio">
-				<input type="radio" name="{{question.id}}" ng-click="radiobuttonSave(question.id, option.id)"> {{option.value}}</label>
-			</div>
-			<div ng-if="isCheckbox(question.kind)" ng-repeat="option in question.options" class="option_{{$index}}">
-				<label class="checkbox">
-				<input type="checkbox" name="{{question.id}}"  ng-click="checkboxSave(question.id, option.id)"> {{option.value}}</label>
-			</div>
-			<div ng-if="isTextfield(question.kind)">
-				<textarea name="{{question.id}}" ng-model = "response.answers[question.index].value" ng-init="question.index = response.answers.length; initTextbox(question.id)" maxlength="1000"></textarea>
-			</div>
-		</div>
-	</div>
-	<br>
-	<button ng-click="submit()" class="submit">Submit</button>
-	<br><br>
-	<div ng-if="errorMsg()" class="alert alert-error">
-		{{message}}
-	</div>
+  <h3>{{survey.title}}</h3>
+  <div ng-repeat="question in survey.questions" class="question question_{{$index}}">
+    <h4>{{question.title}}</h4>
+    <div style="padding-left:25px">
+      <div ng-if="isRadio(question.kind)" ng-repeat="option in question.options" class="option_{{$index}}">
+        <label class="radio">
+          <input type="radio" name="{{question.id}}" ng-click="radiobuttonSave(question.id, option.id)"> {{option.value}}</label>
+      </div>
+      <div ng-if="isCheckbox(question.kind)" ng-repeat="option in question.options" class="option_{{$index}}">
+        <label class="checkbox">
+          <input type="checkbox" name="{{question.id}}"  ng-click="checkboxSave(question.id, option.id)"> {{option.value}}</label>
+      </div>
+      <div ng-if="isTextfield(question.kind)">
+        <textarea name="{{question.id}}" ng-model = "response.answers[question.index].value" ng-init="question.index = response.answers.length; initTextbox(question.id)" maxlength="1000"></textarea>
+      </div>
+    </div>
+  </div>
+  <br>
+  <button ng-click="submit()" class="submit btn btn-primary">Submit</button>
+  <br><br>
+  <div ng-if="errorMsg()" class="alert alert-error">
+    {{message}}
+  </div>
 </form>
