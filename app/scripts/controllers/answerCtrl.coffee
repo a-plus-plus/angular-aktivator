@@ -4,7 +4,11 @@
 
 angular.module('angularAktivatorApp')
   .controller 'AnswerCtrl', ['$scope', 'Survey', '$routeParams','Response', 'RailsFormatter', 'storageService' ,'$location', '$rootScope','messageService', ($scope, Survey, $routeParams,  Response, RailsFormatter, storageService, $location, $rootScope, messageService) ->
-    $scope.survey = Survey.get(id: $routeParams.id)
+    $scope.survey = Survey.get {id: $routeParams.id} , ->
+        $scope.key = "answered_to_#{$scope.survey.id}"
+        if storageService.get($scope.key)
+            redirectToResults1("You may answer only once!", 'error')
+            return
     $scope.response = {answers:[]} # <- this would be nice :)
     $scope.survey.$promise.then ->
       $scope.response.survey_id = $scope.survey.id
@@ -22,12 +26,8 @@ angular.module('angularAktivatorApp')
         console.log(response)
 
         # Tässä kerrotaan et oot vastannut j
-        key = "answered_to_#{$scope.survey.id}"
-        if storageService.get(key)
-            messageService.setResponseMsg {value:"Cannot answer multiple times ", type:'error'}
-            return
 
-        storageService.store(key, 1)
+        storageService.store($scope.key, 1)
 
         Response.save(response, redirectToResults, (err) ->
             messageService.setResponseMsg {value:"Something went wrong: " + err.data.message, type:'error'}
@@ -75,9 +75,12 @@ angular.module('angularAktivatorApp')
 
     # Redirects the browser to the results page
     redirectToResults = () ->
+        messageService.setResponseMsg({value: "Your responce was saved successfully!", type: 'success'})
+        $location.path('/results/' + $routeParams.id)
 
-        messageService.setResponseMsg({value:"Your response was saved successfully!",type:"success"})
-
+    # Redirects the browser to the results page
+    redirectToResults1 = (msg, type) ->
+        messageService.setResponseMsg({value: msg, type: type})
         $location.path('/results/' + $routeParams.id)
 
 
