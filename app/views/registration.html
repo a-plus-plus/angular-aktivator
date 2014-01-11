@@ -1,8 +1,4 @@
 <h1>Register to Aktivator plus plus</h1>
-<h2>current users:</h2>
-<div ng-repeat="user in users">
-    {{user.name}}
-</div>
 <h3>Please fill in the following fields</h3>
 
 
@@ -67,7 +63,7 @@
             </div>
 
             <button ng-click="submit(user)" ng-disabled="registration_form.$invalid || isUnchanged(user)">Register</button>
-            
+
 
         </fieldset>
         <br>
